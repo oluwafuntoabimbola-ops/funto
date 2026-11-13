@@ -1,92 +1,87 @@
 # DESIGN.md
 
-The single source for every visual decision on Oluwafunto Abimbola's site. This is version 2, adopted on 13 November 2026 after she rejected version 1 as too close to her old site. Status: in use.
+The single source for every visual decision on Oluwafunto Abimbola's site. This is version 3, adopted on 13 November 2026. Status: in use.
 
 ## 1. Brief
 
-- Unique, engaging and interesting. It must not look like her old site.
+- Look and feel like the five sites she chose on Refero: Resend, SVZ (Branding), Oryzo, Studio.Design and Function.
 - Professional enough for the most senior audience. Her test: the UN Secretary-General's office sees it and says "let's invite her".
-- So: confident and warm, never toy-like. Colour and one strong idea carry the personality. No gimmicks.
+- Unique and engaging. It must not look like her old site.
 
-## 2. The idea: follow the policy
+## 2. What the references actually look like
 
-Her research follows one commitment from an international convention down to a classroom and shows where it breaks. The Home page does the same thing on screen. A line runs down a dark panel through five stops: the international convention, Nigerian federal policy, Osun State implementation, the school gate, the classroom. The line is solid and teal at the top, turns dashed and yellow after the federal law (which has no education-specific enforcement), fades to dots after the school gate, and ends in an empty dashed circle at the classroom. It draws itself as the visitor scrolls. This is the one thing on the site no other researcher's site could have.
+Versions 1 and 2 were designed from Refero's written descriptions only, because the screenshots were blocked. Version 3 is designed from the screenshots themselves.
 
-## 3. Colours
+| Reference | What is on screen | What this site takes |
+|---|---|---|
+| Resend | Pure black. One large serif headline at left. A dark 3D object turning slowly at right, lit by soft diagonal light. A small outlined pill above the headline. Two quiet buttons. | The whole opening screen: black canvas, serif headline, pill, light streaks, and a slowly turning 3D object. |
+| SVZ (Branding) | Black. Giant type. Huge dark-grey shapes moving slowly in the background. One red dot. Tiny tracked uppercase labels. Arrow links. | The closing "Let's talk." screen with giant type and slow dark shapes. One red accent. Tracked labels. |
+| Oryzo | An immersive 3D scene of one object, explained as you scroll. | The pinned journey: the object stays on screen and changes as the visitor scrolls through five stops. |
+| Function | A full-screen cinematic photo, an italic serif headline, a row of facts along the bottom edge separated by thin lines, pill buttons. | The row of four facts along the foot of the opening screen. Pill buttons. Photos with a dark fade at the bottom. |
+| Studio.Design | Very large tight type beside small navigation. | Scale contrast: very large headlines, small quiet navigation. |
+
+## 3. The centrepiece: five plates
+
+A stack of five dark glass plates floats in space and turns slowly. Each plate is one level a commitment must pass through: the international convention, Nigerian federal policy, Osun State implementation, the school gate, the classroom. The top plates are solid. The lower ones fade. The last is only a dashed outline set apart from the rest, because the commitment never fully arrives there.
+
+On the Home page the stack appears beside the headline, then the next section pins to the screen. As the visitor scrolls, the plates spread apart, each lights up in turn, and the text beside it changes to that stop. At the fifth stop the empty plate glows red and the line "That gap is where I work." appears.
+
+## 4. Colours
 
 | Token | Value | Use |
 |---|---|---|
-| `--cream` | `#FFF3DC` | Page background. Text on dark panels. |
-| `--ink` | `#1B1B1B` | Text. Dark panels: the journey, closing bands, footer. |
-| `--red` | `#E4002B` | Primary buttons, small labels, the greeting. |
-| `--teal` | `#007C89` | Journey line, second card colour, "accepted" tags. |
-| `--teal-deep` | `#0A5C66` | Pattern stripe. |
-| `--yellow` | `#FFB703` | Marker stroke under headline emphasis, first card colour, name strip, accents on dark. |
-| `--white` | `#FFFFFF` | Small surfaces: tags, pills, the fourth card colour. |
-| `--stone` | `#5F574D` | Muted text on cream. |
+| `--bg` | `#050505` | The canvas, everywhere. |
+| `--fg` | `#F4F4F1` | Headlines, primary buttons. |
+| `--soft` | `#D0D0CB` | Reading text. |
+| `--muted` | `#A6A6A1` | Lead paragraphs, italic headline words, labels. |
+| `--dim` | `#73736F` | Dates and numbering. |
+| `--line` | white at 12% | Hairlines. |
+| `--accent` | `#FF4D5E` | The only colour. Small dots, the fifth plate, "where I work." Never on buttons or large areas. |
 
-Rules:
-
-- Red, teal and yellow appear as solid blocks of colour on cards and number tiles. That is where the energy comes from.
-- White text on red and on teal, ink text on yellow and white. All pairs meet the 4.5 to 1 contrast level.
-- No gradients, no shadows, no glows.
-
-## 4. Fonts
+## 5. Fonts
 
 | Role | Font | Use |
 |---|---|---|
-| Display | Fraunces (variable, weight 600, italic for emphasis) | Headlines, card titles, numerals, the name strip, the greeting. |
-| Text | DM Sans (variable) | Body, navigation, buttons, labels. |
+| Display | Instrument Serif, regular and italic | Headlines, large row titles, the name strip, numerals. |
+| Text | Geist (variable) | Body, navigation, buttons, labels. |
 
-Both are self-hosted. No handwriting font.
+Both self-hosted. Emphasis in a headline is serif italic in the muted grey. Emphasis only on words already in COPY.md.
 
-Emphasis: one or two words in a headline are set in Fraunces italic with a yellow marker stroke behind the lower third of the letters. On dark panels the emphasised words are yellow italic with no stroke. Emphasis only on words already in COPY.md.
+Type scale (desktop to mobile): display 96 to 46px, page headline 96 to 44px, section headline 68 to 36px, closing call up to 148px, lead 20 to 17px, body 18 to 16px, label 11.5px uppercase with 0.18em tracking.
 
-Type scale (desktop to mobile): display 88 to 41px, page headline 72 to 38px, section headline 48 to 30px, card title 26 to 21px, lead 21 to 18px, body 18 to 16.5px, label 12px uppercase with 0.14em tracking.
+## 6. Layout and components
 
-## 5. Spacing and shape
+- **Opening screen (Home).** Fills the screen. Pill, headline, opening paragraph and two buttons at left. The plate stack at right. Four facts along the bottom edge. Soft light falls from the top right.
+- **Inner page openings.** Same black and light, label and large serif headline.
+- **Navigation.** Name in serif at left, small grey links at right, "Email me" as a glass pill. Turns to blurred glass once scrolled. On phone, a Menu button opens a full black screen of large serif links.
+- **Buttons.** Pills. Primary is white with black text. Secondary is dark glass with a thin border.
+- **Big rows.** On Home, the three sides of her work are three very large serif titles divided by hairlines, each with a round arrow button.
+- **Ruled rows.** Publications, talks, experience and awards: date at left in small caps, title in serif, link or status at right.
+- **Glass cards.** Thin border, faint top-down sheen, a soft light that follows the pointer.
+- **Name strip.** Journal and conference names in serif italic, scrolling slowly, fading at both edges. Text only, never logos.
+- **Closing call.** Giant serif headline over two large dark bars that turn slowly.
+- **Photos.** Hers only, 14px radius, thin border, dark fade at the foot.
+- **Footer.** Her name very large in serif, surname in dim italic.
+- Spacing: 8px base, max width 1240px, section gap 88 to 176px. Hairlines, no drop shadows except the glow on the fifth plate.
 
-- Base unit 8px. Page max width 1200px. Gutter 20 to 48px. Section gap 64 to 120px.
-- Borders: 1.5px ink lines. No shadows.
-- Radius: 999px for buttons, tags and pills. 18px for cards, tiles and photos. The Home portrait sits in an arch.
-- Nothing is rotated or tilted.
+## 7. Motion
 
-## 6. Layout
+- The plate stack drifts continuously and leans slightly toward the pointer.
+- The journey pins and steps through five stops with the scroll.
+- Headlines rise in line by line. Sections come into focus from a slight blur as they enter.
+- The four facts count up. The name strip scrolls and pauses on hover. Navigation hides on the way down and returns on the way up. Pages cross-fade.
+- For visitors with "reduce motion" set: nothing drifts or animates, and the journey still steps with the scroll. With JavaScript off, the five stops show as a plain list.
 
-- Pages open on cream with the headline. Dark ink panels are used for the journey, the closing call to action and the footer.
-- Home hero: greeting, headline, opening paragraph, two buttons, with the portrait in an arch to the right and three pills naming her three sides of work. Both buttons are visible without scrolling on laptop and phone.
-- Section label: small red uppercase label with a number, above each heading.
-- Long factual lists (publications, talks, experience, awards) are ruled rows: date at left, title in Fraunces, link or status tag at right.
-- Mobile: one column. Rows stack. Tap targets at least 44px high.
+## 8. Accessibility and performance
 
-## 7. Components
-
-- **Navigation.** Name in Fraunces at left, links at right, "Email me" as an outlined pill. Current page has a yellow underline. On phone, a Menu button opens a full-screen ink panel.
-- **Buttons.** Pills. Primary: red with white text. Secondary: outlined. Each ends with an arrow. Hover lifts the button 2px.
-- **Cards.** Solid colour blocks cycling yellow, teal, red, white. Hover lifts the card 4px.
-- **Number tiles.** Same colour cycle, large Fraunces numeral, short caption. Numbers count up when first seen.
-- **Journey.** See section 2. Each stop has a dot on the line, a small "Stop n" label, a Fraunces title and a boxed sentence.
-- **Name strip.** Yellow band with journal and conference names in Fraunces italic, separated by a red mark, scrolling slowly. Text only, never logos.
-- **Pattern strip.** A thin band of teal diagonal stripes with yellow dots, above the footer. It is the one decorative element and nods to West African textile pattern.
-- **Tags.** White pills with ink border. Status tags: teal for accepted or published.
-- **Photos.** Hers only, 18px radius, 1.5px ink border. See decision D16 for which are used.
-- **Footer.** Ink. Her name very large in Fraunces with the surname in yellow italic.
-
-## 8. Motion
-
-- Headlines rise in line by line, then the yellow marker stroke draws across the emphasised words.
-- The journey line draws stop by stop as the visitor scrolls. Each dot pops in and its text slides in.
-- Sections, cards and rows fade up, slightly staggered. The three pills beside the portrait pop in one after another.
-- Numbers count up. The name strip scrolls slowly and pauses on hover.
-- Navigation hides on the way down and returns on the way up. Pages cross-fade.
-- Not used: dragging, tilting, flipping, custom cursors, 3D, sound.
-- All motion is off for visitors who have "reduce motion" set, and everything is readable with JavaScript off.
+- Text contrast at least 4.5 to 1 on black. Visible red focus outline. One H1 per page. Descriptive alt text.
+- The 3D object is built with CSS, not a 3D library, so it adds no download weight. No third-party scripts or embeds.
 
 ## 9. Do and don't
 
-Do: let the journey be the centrepiece. Use colour in solid blocks. Keep lines thin and shapes clean.
+Do: keep the black empty. Let one object and one headline hold the screen. Use red once per screen at most.
 
-Don't: no invented logos, press mentions, testimonials or statistics. No stock photos. No handwriting, stickers, tilted or draggable elements. No copy that is not in COPY.md.
+Don't: no invented logos, press mentions, testimonials or statistics. No stock photos. No second colour. No copy that is not in COPY.md.
 
 ## 10. Decision log
 
@@ -114,4 +109,9 @@ Every design choice gets recorded here, newest at the bottom.
 | D18 | 2026-11-13 | Version 2 direction: a mix of "Follow the policy" (the journey line) and "Bold and warm" (red, teal, yellow on cream, Fraunces and DM Sans). | She chose "Mix A and B" from three mockups. | Approved 2026-11-13 |
 | D19 | 2026-11-13 | The playful parts of the "Bold and warm" mockup are left out: draggable stickers, handwriting font, tilted cards, thick outlines and hard shadows. In their place: three static pills beside the portrait, thin borders, flat colour blocks. "Hi, I'm Funto." stays, set in Fraunces italic. | Straight after choosing, she asked that everything stay professional because the UN Secretary-General's office may see it. | Approved 2026-11-13 (her instruction) |
 | D20 | 2026-11-13 | The Home hero is laid out so both main buttons are visible without scrolling on a laptop and on a phone. | In the live review of version 1 the buttons sat below the first screen. | Done |
+| D21 | 2026-11-13 | Version 2 (cream with red, teal and yellow blocks) is retired. Decisions D18 to D20 no longer apply. | She said it was nowhere close to the five sites she sent. She was right. |  Approved 2026-11-13 |
+| D22 | 2026-11-13 | Version 3 is modelled on the screenshots of her five references: black canvas, serif headline, a turning 3D object, pinned scroll journey, facts row, giant closing type. | Versions 1 and 2 were built from written descriptions because images.refero.design was blocked. With access approved, the references could be seen for the first time. | In use |
+| D23 | 2026-11-13 | The 3D object is a stack of five plates standing for the five levels of her policy journey, with the classroom plate as an empty dashed outline. | Resend's object is abstract. Hers should mean something, so the references' signature device also carries her research finding. | In use |
+| D24 | 2026-11-13 | One accent colour only, a warm red, used for dots and the final stop. | SVZ and Oryzo both hold a single accent back so it lands when it appears. It also keeps the site formal. | In use |
+| D25 | 2026-11-13 | The greeting "Hi, I'm Funto." is removed again and the eyebrow "Inclusive education researcher and programme lead" returns, in a pill. | Matches the references and the senior audience she named. | In use |
 

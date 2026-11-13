@@ -14,16 +14,55 @@ const names = [
   'IPSA World Congress',
   'London International Conference on Inclusive Education',
 ];
+const stops = [
+  {
+    title: 'The international convention',
+    say: 'Article 24 of the UN Convention on the Rights of Persons with Disabilities commits countries to inclusive education.',
+  },
+  {
+    title: 'Nigerian federal policy',
+    say: 'Nigeria has written the convention into law. But the law carries no education-specific enforcement.',
+  },
+  {
+    title: 'Osun State implementation',
+    say: "My doctoral research follows the commitment here, through the state's own policy.",
+  },
+  {
+    title: 'The school gate',
+    say: 'Five schools. 48 adults and 15 learners, interviewed in Yoruba and English with no translator in between.',
+  },
+  {
+    title: 'The classroom',
+    say: 'In many schools inclusion stays on paper, and children with disabilities are left at the classroom door.',
+  },
+];
+const sides = [
+  {
+    href: '/research',
+    title: 'Policy research',
+    text: 'Doctoral research on how Article 24 of the UN disability convention reaches schools in Osun State, Nigeria. Three published journal articles and one more accepted.',
+  },
+  {
+    href: '/programmes',
+    title: 'Programmes',
+    text: 'Director of Programmes at Living Hope Care Society, an education and health NGO in Osun State.',
+  },
+  {
+    href: '/speaking',
+    title: 'Speaking and teaching',
+    text: "Four conference talks since 2024, in Seoul and Moscow, two more papers accepted at conferences in London and Kaohsiung, and master's level teaching at HSE University.",
+  },
+];
 ---
 
 <Base
   title="Oluwafunto Abimbola | Inclusive education researcher"
   description="Oluwafunto Abimbola is an inclusive education researcher and programme lead working on why inclusion policy stalls before it reaches the classroom, in Nigeria and beyond."
 >
-  <section class="hero light">
+  <section class="hero home">
     <div class="wrap grid">
       <div class="hero-text">
-        <p class="hi" data-reveal>Hi, I'm Funto.</p>
+        <p class="pill" data-reveal>Inclusive education researcher and programme lead</p>
         <h1 class="display" data-split>
           I help close the gap between inclusion policy and <em>the classroom.</em>
         </h1>
@@ -37,92 +76,66 @@ const names = [
           <A class="btn ghost" href={email}>Email me</A>
         </div>
       </div>
-      <div class="stage" data-reveal>
-        <figure class="arch">
-          <Image
-            src={portrait}
-            alt="Oluwafunto Abimbola in a graduation gown and cap, smiling and holding a blue diploma folder outside the Higher School of Economics in Moscow"
-            widths={[380, 570, 760, 960]}
-            sizes="(max-width: 900px) 290px, 360px"
-            loading="eager"
-            fetchpriority="high"
-          />
-        </figure>
-        <ul class="pillars" data-stagger aria-label="Three sides of my work">
-          <li class="pillar" data-pop>Policy research</li>
-          <li class="pillar" data-pop>Programmes</li>
-          <li class="pillar" data-pop>Classroom practice</li>
+      <div class="hero-stage" data-reveal aria-hidden="true">
+        <div class="scene">
+          <div class="stack" data-stack>
+            <span class="plate"></span><span class="plate"></span><span class="plate"></span><span
+              class="plate"></span><span class="plate"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-facts">
+      <div class="wrap">
+        <ul class="facts" data-reveal>
+          <li class="fact"><b data-count="5">5</b><span>schools in my Osun State field study</span></li>
+          <li class="fact"><b data-count="48">48</b><span>adults and 15 learners interviewed</span></li>
+          <li class="fact"><b data-count="3">3</b><span>peer-reviewed journal articles published</span></li>
+          <li class="fact"><b data-count="4">4</b><span>conference talks since 2024</span></li>
         </ul>
       </div>
     </div>
   </section>
 
-  <section class="section dark journey" id="journey">
-    <div class="wrap grid">
-      <div class="head">
-        <p class="label" data-reveal><span class="n">01</span> The problem</p>
-        <h2 class="h2" data-split>Where does inclusion <em>get lost?</em></h2>
-        <p class="hint" data-reveal>Follow one commitment from the convention to the classroom.</p>
+  <section class="journey" data-journey>
+    <div class="pin">
+      <div class="wrap grid">
+        <div class="copy">
+          <p class="label"><span class="n">01</span> The problem</p>
+          <h2 class="h2">Where does inclusion <em>get lost?</em></h2>
+          <ol class="stops">
+            {
+              stops.map((s, i) => (
+                <li class="stop">
+                  <p class="kicker">Stop {i + 1} of 5</p>
+                  <h3>{s.title}</h3>
+                  <p class="say">{s.say}</p>
+                  {i === 4 && (
+                    <p class="pull">
+                      That gap is <em>where I work.</em>
+                    </p>
+                  )}
+                </li>
+              ))
+            }
+          </ol>
+          <div class="ticks" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+        <div class="scene-wrap" aria-hidden="true">
+          <div class="scene">
+            <div class="stack" data-stack>
+              <span class="plate"></span><span class="plate"></span><span class="plate"></span><span
+                class="plate"></span><span class="plate"></span>
+            </div>
+          </div>
+        </div>
       </div>
-      <ol class="route">
-        <li class="stop">
-          <span class="dot" aria-hidden="true"></span><span class="seg" aria-hidden="true"></span>
-          <div class="body">
-            <p class="kicker">Stop 1</p>
-            <h3>The international convention</h3>
-            <p class="box">
-              Article 24 of the UN Convention on the Rights of Persons with Disabilities commits countries to
-              inclusive education.
-            </p>
-          </div>
-        </li>
-        <li class="stop breaking">
-          <span class="dot" aria-hidden="true"></span><span class="seg" aria-hidden="true"></span>
-          <div class="body">
-            <p class="kicker">Stop 2</p>
-            <h3>Nigerian federal policy</h3>
-            <p class="box">
-              Nigeria has written the convention into law. But the law carries{' '}
-              <strong>no education-specific enforcement.</strong>
-            </p>
-          </div>
-        </li>
-        <li class="stop breaking">
-          <span class="dot" aria-hidden="true"></span><span class="seg" aria-hidden="true"></span>
-          <div class="body">
-            <p class="kicker">Stop 3</p>
-            <h3>Osun State implementation</h3>
-            <p class="box">My doctoral research follows the commitment here, through the state's own policy.</p>
-          </div>
-        </li>
-        <li class="stop fading">
-          <span class="dot" aria-hidden="true"></span><span class="seg" aria-hidden="true"></span>
-          <div class="body">
-            <p class="kicker">Stop 4</p>
-            <h3>The school gate</h3>
-            <p class="box">
-              Five schools. 48 adults and 15 learners, interviewed in Yoruba and English with no translator in
-              between.
-            </p>
-          </div>
-        </li>
-        <li class="stop lost">
-          <span class="dot" aria-hidden="true"></span>
-          <div class="body">
-            <p class="kicker">Stop 5</p>
-            <h3>The classroom</h3>
-            <p class="box">
-              In many schools inclusion stays on paper, and children with disabilities are left at the classroom
-              door.
-            </p>
-            <p class="pull">That gap is <em>where I work.</em></p>
-          </div>
-        </li>
-      </ol>
     </div>
   </section>
 
-  <section class="section light">
+  <section class="section">
     <div class="wrap grid">
       <div class="head">
         <p class="label" data-reveal><span class="n">02</span> Three sides of the same problem</p>
@@ -132,62 +145,34 @@ const names = [
           programmes and programmes hold up in real classrooms.
         </p>
       </div>
-      <div class="cards" style="grid-column:1 / -1" data-stagger>
-        <a class="card" href="/research" data-reveal>
-          <span class="label plain">01</span>
-          <h3 class="h3">Policy research</h3>
-          <p>
-            Doctoral research on how Article 24 of the UN disability convention reaches schools in Osun State,
-            Nigeria. Three published journal articles and one more accepted.
-          </p>
-          <span class="more">Research <span class="arrow" aria-hidden="true">↗</span></span>
-        </a>
-        <a class="card" href="/programmes" data-reveal>
-          <span class="label plain">02</span>
-          <h3 class="h3">Programmes</h3>
-          <p>Director of Programmes at Living Hope Care Society, an education and health NGO in Osun State.</p>
-          <span class="more">Programmes <span class="arrow" aria-hidden="true">↗</span></span>
-        </a>
-        <a class="card" href="/speaking" data-reveal>
-          <span class="label plain">03</span>
-          <h3 class="h3">Speaking and teaching</h3>
-          <p>
-            Four conference talks since 2024, in Seoul and Moscow, two more papers accepted at conferences in London
-            and Kaohsiung, and master's level teaching at HSE University.
-          </p>
-          <span class="more">Speaking <span class="arrow" aria-hidden="true">↗</span></span>
-        </a>
+      <figure class="photo portrait" data-reveal>
+        <Image
+          src={portrait}
+          alt="Oluwafunto Abimbola in a graduation gown and cap, smiling and holding a blue diploma folder outside the Higher School of Economics in Moscow"
+          widths={[380, 570, 760, 960]}
+          sizes="(max-width: 900px) 380px, 400px"
+        />
+      </figure>
+      <div class="bigrows" data-stagger>
+        {
+          sides.map((s, i) => (
+            <a class="bigrow" href={s.href} data-reveal>
+              <span class="num">0{i + 1}</span>
+              <h3>{s.title}</h3>
+              <span class="go" aria-hidden="true">
+                ↗
+              </span>
+              <p>{s.text}</p>
+            </a>
+          ))
+        }
       </div>
     </div>
   </section>
 
-  <section class="section light same">
+  <section class="section same">
     <div class="wrap">
-      <p class="label" data-reveal style="margin-bottom:24px"><span class="n">03</span> In numbers</p>
-      <div class="stats" data-stagger>
-        <div class="stat" data-reveal>
-          <div class="numeral" data-count="5">5</div>
-          <p>schools in my Osun State field study</p>
-        </div>
-        <div class="stat" data-reveal>
-          <div class="numeral" data-count="48">48</div>
-          <p>adults and 15 learners interviewed</p>
-        </div>
-        <div class="stat" data-reveal>
-          <div class="numeral" data-count="3">3</div>
-          <p>peer-reviewed journal articles published</p>
-        </div>
-        <div class="stat" data-reveal>
-          <div class="numeral" data-count="4">4</div>
-          <p>conference talks since 2024</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section light same">
-    <div class="wrap">
-      <p class="label" data-reveal style="margin-bottom:24px"><span class="n">04</span> Where the work has appeared</p>
+      <p class="label" data-reveal style="margin-bottom:28px"><span class="n">03</span> Where the work has appeared</p>
     </div>
     <div class="strip" data-reveal>
       <div class="strip-track">

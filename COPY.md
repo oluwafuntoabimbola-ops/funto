@@ -19,7 +19,7 @@ Photo credit (footer): Graduation gown photo by Island Photography
 
 ### Hero
 
-Greeting: Hi, I'm Funto.
+Eyebrow (in a pill): Inclusive education researcher and programme lead
 
 Headline (H1): I help close the gap between inclusion policy and the classroom.
 
@@ -50,7 +50,7 @@ In many schools inclusion stays on paper, and children with disabilities are lef
 
 Closing line: That gap is where I work.
 
-Beside the portrait (three pills): Policy research · Programmes · Classroom practice
+Each stop is labelled "Stop n of 5".
 
 ### Three sides of the same problem
 
@@ -427,3 +427,4 @@ Button: oluwafuntoabimbola@gmail.com
 6. "Team of 11" and "Scopus Q3" are left out, unconfirmed.
 7. Figures from her CVs that depend on internal measurement (accuracy rates, percentage improvements) are left out. Counts and dates are kept.
 9. 13 November 2026: the Home page problem section was rewritten as a five-stop journey for design version 2. She chose the mockup that contained it. The greeting "Hi, I'm Funto." replaces the eyebrow line.
+10. 13 November 2026, design version 3: the eyebrow line returns in place of the greeting, and the four numbers sit along the foot of the opening screen instead of in their own section.

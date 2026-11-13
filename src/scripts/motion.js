@@ -49,7 +49,7 @@ function countUp(el) {
   const target = parseInt(el.dataset.count, 10);
   if (!Number.isFinite(target) || reduce()) return;
   const start = performance.now();
-  const dur = 1100;
+  const dur = 1200;
   const tick = (now) => {
     const p = Math.min(1, (now - start) / dur);
     const eased = 1 - Math.pow(1 - p, 3);
@@ -64,14 +64,11 @@ function countUp(el) {
 function init() {
   cleanup.forEach((fn) => fn());
   cleanup = [];
-  const root = document.documentElement;
-  root.classList.add('js');
+  document.documentElement.classList.add('js');
 
-  // Stagger index for grouped reveals
   document.querySelectorAll('[data-stagger]').forEach((group) => {
     [...group.children].forEach((child, i) => {
-      if (child.hasAttribute('data-reveal') || child.hasAttribute('data-pop'))
-        child.style.setProperty('--i', Math.min(i, 8));
+      if (child.hasAttribute('data-reveal')) child.style.setProperty('--i', Math.min(i, 8));
     });
   });
 
@@ -84,20 +81,44 @@ function init() {
         if (!entry.isIntersecting) return;
         entry.target.classList.add('in');
         entry.target.querySelectorAll?.('[data-count]').forEach(countUp);
-        if (entry.target.matches('[data-count]')) countUp(entry.target);
         seen.unobserve(entry.target);
       });
     },
     { rootMargin: '0px 0px -8% 0px', threshold: 0.08 },
   );
-  document
-    .querySelectorAll('[data-reveal], [data-split], [data-count], [data-pop], .stop')
-    .forEach((el) => seen.observe(el));
+  document.querySelectorAll('[data-reveal], [data-split]').forEach((el) => seen.observe(el));
   cleanup.push(() => seen.disconnect());
 
-  // Header: solid after the top, hide on the way down, show on the way up
+  // The journey: pin the section and step through the five stops as the page scrolls
+  const journey = document.querySelector('[data-journey]');
+  let stepJourney = () => {};
+  if (journey && window.innerHeight >= 560) {
+    journey.classList.add('live');
+    const stops = [...journey.querySelectorAll('.stop')];
+    const ticks = [...journey.querySelectorAll('.ticks span')];
+    const plates = [...journey.querySelectorAll('.plate')];
+    const stack = journey.querySelector('.stack');
+    let last = -1;
+    stepJourney = () => {
+      const r = journey.getBoundingClientRect();
+      const span = r.height - window.innerHeight;
+      const p = span > 0 ? Math.min(1, Math.max(0, -r.top / span)) : 0;
+      const idx = Math.min(stops.length - 1, Math.floor(p * stops.length * 0.999));
+      if (stack) stack.style.setProperty('--spread', (0.25 + p * 1.1).toFixed(3));
+      if (idx === last) return;
+      last = idx;
+      stops.forEach((s, i) => {
+        s.classList.toggle('on', i === idx);
+        s.classList.toggle('past', i < idx);
+      });
+      ticks.forEach((t, i) => t.classList.toggle('on', i <= idx));
+      plates.forEach((pl, i) => pl.classList.toggle('on', i === idx));
+    };
+    cleanup.push(() => journey.classList.remove('live'));
+  }
+
+  // Header and scroll-driven pieces
   const header = document.querySelector('.site-header');
-  const drifters = [];
   let lastY = window.scrollY;
   let ticking = false;
   const onFrame = () => {
@@ -110,18 +131,7 @@ function init() {
       else if (y < lastY - 4 || y <= 240) header.classList.remove('away');
     }
     lastY = y;
-    if (!reduce()) {
-      const vh = window.innerHeight;
-      drifters.forEach((el) => {
-        const r = el.parentElement.getBoundingClientRect();
-        if (r.bottom < -100 || r.top > vh + 100) return;
-        const centre = r.top + r.height / 2 - vh / 2;
-        const speed = parseFloat(el.dataset.drift) || 0.06;
-        const max = r.height * 0.045;
-        const shift = Math.max(-max, Math.min(max, centre * -speed));
-        el.style.transform = `translate3d(0, ${shift.toFixed(1)}px, 0) scale(1.1)`;
-      });
-    }
+    stepJourney();
   };
   const onScroll = () => {
     if (!ticking) {
@@ -136,6 +146,27 @@ function init() {
     window.removeEventListener('resize', onScroll);
   });
   onFrame();
+
+  // The object leans gently toward the pointer; cards catch the light
+  if (!reduce() && window.matchMedia('(pointer: fine)').matches) {
+    const stacks = [...document.querySelectorAll('[data-stack]')];
+    const onMove = (e) => {
+      const mx = (e.clientX / window.innerWidth - 0.5) * 2;
+      const my = (e.clientY / window.innerHeight - 0.5) * 2;
+      stacks.forEach((s) => {
+        s.style.setProperty('--mx', mx.toFixed(3));
+        s.style.setProperty('--my', (-my).toFixed(3));
+      });
+      const card = e.target.closest?.('.card');
+      if (card) {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--px', `${e.clientX - r.left}px`);
+        card.style.setProperty('--py', `${e.clientY - r.top}px`);
+      }
+    };
+    window.addEventListener('pointermove', onMove, { passive: true });
+    cleanup.push(() => window.removeEventListener('pointermove', onMove));
+  }
 
   // Mobile menu
   const btn = document.querySelector('.menu-btn');
