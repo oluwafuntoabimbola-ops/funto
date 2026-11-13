@@ -44,14 +44,14 @@ In most teams these three sit with different people. I work across all of them, 
 
 **Programmes.** Director of Programmes at Living Hope Care Society, an education and health NGO in Osun State. → Programmes
 
-**Speaking and teaching.** Six conference talks since 2024, in Seoul, London, Kaohsiung and Moscow, plus master's level teaching at HSE University. → Speaking
+**Speaking and teaching.** Four conference talks since 2024, in Seoul and Moscow, two more papers accepted at conferences in London and Kaohsiung, and master's level teaching at HSE University. → Speaking
 
 ### In numbers
 
 - 5 schools in my Osun State field study
 - 48 adults and 15 learners interviewed
 - 3 peer-reviewed journal articles published
-- 6 conference talks since 2024
+- 4 conference talks since 2024
 
 ### Where the work has appeared
 
@@ -179,7 +179,7 @@ Buttons: Email me about this research · Read more on Substack
 
 Headline (H1): Inclusive education speaker, grounded in fieldwork
 
-Opening: I speak on inclusive education and education policy in Africa, drawing on fieldwork in Nigerian schools, published research and years of running an education programme. Six conference talks since 2024.
+Opening: I speak on inclusive education and education policy in Africa, drawing on fieldwork in Nigerian schools, published research and years of running an education programme. Four conference talks since 2024, and two more papers accepted at international conferences.
 
 Button: Invite me to speak
 
@@ -203,10 +203,6 @@ Conference talks, panels, guest lectures, seminars, workshops and webinars. In p
 
 Heading (H2): Past talks
 
-October 2026 · Policy borrowing, policy translation, and inclusive education reform: Global-to-state dynamics in Osun State, Nigeria. TERA and WERA Annual Conference, Kaohsiung, Taiwan.
-
-July 2026 · Educational processes and learning outcomes for children with special educational needs: A global scoping review. London International Conference on Inclusive Education, University College London.
-
 May 2026 · The Contribution of Universities to the Development of an Inclusive Culture in Society. III International Scientific and Practical Conference, RUDN University, Moscow.
 
 July 2025 · Autocratic governance and inclusive education barriers: Africa. 28th IPSA World Congress of Political Science, Seoul.
@@ -214,6 +210,14 @@ July 2025 · Autocratic governance and inclusive education barriers: Africa. 28t
 February 2025 · From grassroots to policy framework: A critical analysis of chess-based pedagogical innovation in Nigerian urban informal settlements. XXI International Scientific and Practical Conference "Trends in the Development of Education", Moscow.
 
 June 2024 · Facilitators and barriers to inclusive education for learners with learning disabilities in low- and lower-middle-income nations: A case study of Nigeria. Southern Political Science Association Virtual Summer Meeting.
+
+### Accepted conference papers
+
+Heading (H2): Accepted conference papers
+
+October 2026 · Policy borrowing, policy translation, and inclusive education reform: Global-to-state dynamics in Osun State, Nigeria. TERA and WERA Annual Conference, Kaohsiung, Taiwan. Paper accepted.
+
+July 2026 · Educational processes and learning outcomes for children with special educational needs: A global scoping review. London International Conference on Inclusive Education, University College London. In proceedings.
 
 ### Teaching
 
@@ -396,6 +400,7 @@ Button: oluwafuntoabimbola@gmail.com
 
 ## Decisions made on her behalf (she said "whatever you think is best")
 
+8. Correction from her, 13 November 2026: four of the six conference items were talks. The London (LICIE) and Kaohsiung (TERA and WERA) items were accepted papers, not talks she gave.
 1. Speaking topics: the three listed. Formats: all, in person or online.
 2. No recordings, slides or photos of talks were supplied, so the Speaking page lists talks only.
 3. The current site's line "looking at Canada, the UK and other English-speaking countries" is dropped. It reads as job hunting, which works against an authority site. "Open to" wording is kept.

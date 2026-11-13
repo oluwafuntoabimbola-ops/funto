@@ -101,7 +101,9 @@ Qualitative policy analysis; comparative and cross-national policy analysis; doc
 
 Downloads: she wants papers available to read and download. No PDF files supplied yet. Until they are, link each paper to its DOI.
 
-## 8. Conference talks
+## 8. Conference talks and accepted papers
+
+Corrected by her on 13 November 2026: she gave four conference talks. The October 2026 (TERA and WERA) and July 2026 (LICIE) items are accepted papers, not talks she gave. Never write "six talks".
 
 - October 2026: "Policy borrowing, policy translation, and inclusive education reform: Global-to-state dynamics in Osun State, Nigeria". TERA and WERA Annual Conference, Kaohsiung, Taiwan. Paper accepted.
 - July 2026: "Educational processes and learning outcomes for children with special educational needs: A global scoping review". London International Conference on Inclusive Education (LICIE), University College London. In proceedings.

@@ -131,11 +131,18 @@ Sizes scale fluidly between mobile and desktop. Reading text is never wider than
 
 ## 8. Motion
 
-- Headline and lead fade up 12px over 500ms on page load. (R1)
-- Sections fade up once as they enter the screen.
-- Hover transitions 150ms ease-out. (R1)
-- No autoplay, no scrolling marquees, no parallax, no cursor effects.
-- All motion is switched off for visitors who have "reduce motion" set on their device.
+Level: lively. She asked for motion closer to her references and left the amount to my judgment (D13).
+
+- **Headlines** reveal line by line on load and when scrolled into view: each line rises from behind a mask, 700ms, 80ms apart. (R1, R2)
+- **Sections, cards and ledger rows** fade up 24px as they enter the screen, staggered 60ms apart, once only.
+- **Numbers** in the stat block count up from zero when first seen.
+- **Photos** drift a few pixels slower than the page as it scrolls, and collage photos move at slightly different speeds. (R4)
+- **Name strip** ("Where the work has appeared") scrolls slowly sideways in a loop and pauses on hover or focus. (R2, R4)
+- **Hover:** arrows shift up and right and turn terracotta, ledger titles shift 4px, photos scale to 1.03 inside their frame. 150 to 300ms ease-out. (R1)
+- **Navigation** hides when scrolling down and returns when scrolling up.
+- **Page changes** cross-fade, 250ms.
+- Not used: 3D or WebGL scenes, custom cursors, sound, scroll hijacking. They slow down phones and get in the way of reading research.
+- All motion is switched off for visitors who have "reduce motion" set on their device, and everything is readable with JavaScript off.
 
 ## 9. Accessibility and performance
 
@@ -174,6 +181,7 @@ Every design choice gets recorded here, newest at the bottom.
 | D7 | 2026-11-13 | Radius has two values: 999px and 16px. | The references disagree (6 to 40px). R1's two-value rule keeps it consistent, and pills come from R3 and R5. | Approved 2026-11-13 |
 | D8 | 2026-11-13 | Publications, talks and experience are hairline ledger rows, not cards. | Long factual lists read faster as rows, and R1 and R2 favour lines over boxes. | Approved 2026-11-13 |
 | D9 | 2026-11-13 | Two extra accent shades, `#8C3E21` and `#E48A62`, are used for small accent text. | Base terracotta is not readable enough at small sizes on cream or on ink. Both shades already exist on her site. | Approved 2026-11-13 |
-| D10 | 2026-11-13 | The scrolling marquees, shuffle cards and draggable photos from her existing site are dropped. | References favour stillness and restraint. Motion is limited to fades. | Approved 2026-11-13 |
+| D10 | 2026-11-13 | The shuffle cards and draggable photos from her existing site are dropped. (Amended by D13: one slow name strip is kept.) | They are toys, not information. | Approved 2026-11-13 |
 | D11 | 2026-11-13 | "Where the work has appeared" is a text strip, not a logo row. | Hard rule: never invent or borrow logos. | Fixed |
 | D12 | 2026-11-13 | Photos from her existing site are reused. | They are the only photos of her available. Credit line for Mountain Photography is kept in the footer. | Confirmed 2026-11-13 |
+| D13 | 2026-11-13 | Motion raised from calm to lively: masked headline reveals, staggered scroll reveals, counting numbers, photo drift, a slow name strip, hide-and-show navigation, page cross-fades. No 3D, no custom cursor. | She asked whether the site would move like her references and left the level to me. The references move a lot, but she needs research readers on phones to read comfortably. | Approved 2026-11-13 (her discretion to me) |
