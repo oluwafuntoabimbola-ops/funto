@@ -19,7 +19,7 @@ Photo credit (footer): Graduation gown photo by Island Photography
 
 ### Hero
 
-Eyebrow: Inclusive education researcher and programme lead
+Greeting: Hi, I'm Funto.
 
 Headline (H1): I help close the gap between inclusion policy and the classroom.
 
@@ -27,13 +27,30 @@ Opening: Countries sign inclusive education commitments, yet children with disab
 
 Buttons: Read my research · Email me
 
-### The problem
+### The problem (the journey)
 
-Heading (H2): The law says every child. The classroom often says otherwise.
+Heading (H2): Where does inclusion get lost?
 
-Nigeria has written the UN Convention on the Rights of Persons with Disabilities into law. But the law carries no education-specific enforcement, so in many schools inclusion stays on paper and children with disabilities are left at the classroom door.
+Line under the heading: Follow one commitment from the convention to the classroom.
 
-That gap is where I work.
+Stop 1 · The international convention
+Article 24 of the UN Convention on the Rights of Persons with Disabilities commits countries to inclusive education.
+
+Stop 2 · Nigerian federal policy
+Nigeria has written the convention into law. But the law carries no education-specific enforcement.
+
+Stop 3 · Osun State implementation
+My doctoral research follows the commitment here, through the state's own policy.
+
+Stop 4 · The school gate
+Five schools. 48 adults and 15 learners, interviewed in Yoruba and English with no translator in between.
+
+Stop 5 · The classroom
+In many schools inclusion stays on paper, and children with disabilities are left at the classroom door.
+
+Closing line: That gap is where I work.
+
+Beside the portrait (three pills): Policy research · Programmes · Classroom practice
 
 ### Three sides of the same problem
 
@@ -409,3 +426,4 @@ Button: oluwafuntoabimbola@gmail.com
 5. Early years teaching sits on the About page, with dates, not as its own page.
 6. "Team of 11" and "Scopus Q3" are left out, unconfirmed.
 7. Figures from her CVs that depend on internal measurement (accuracy rates, percentage improvements) are left out. Counts and dates are kept.
+9. 13 November 2026: the Home page problem section was rewritten as a five-stop journey for design version 2. She chose the mockup that contained it. The greeting "Hi, I'm Funto." replaces the eyebrow line.

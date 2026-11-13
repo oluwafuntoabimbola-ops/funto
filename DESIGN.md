@@ -1,172 +1,94 @@
 # DESIGN.md
 
-The single source for every visual decision on Oluwafunto Abimbola's site. Status: APPROVED by her on 2026-11-13.
+The single source for every visual decision on Oluwafunto Abimbola's site. This is version 2, adopted on 13 November 2026 after she rejected version 1 as too close to her old site. Status: in use.
 
-Rule of the merge: **her brand wins on colours and fonts. The references win on layout and feel.**
+## 1. Brief
 
-## 1. Sources
+- Unique, engaging and interesting. It must not look like her old site.
+- Professional enough for the most senior audience. Her test: the UN Secretary-General's office sees it and says "let's invite her".
+- So: confident and warm, never toy-like. Colour and one strong idea carry the personality. No gimmicks.
 
-### Brand kit
+## 2. The idea: follow the policy
 
-No separate brand kit file was supplied. The colours and fonts below are taken from her existing site, oluwafuntoa.netlify.app, and treated as the brand. (Assumption, see decision D1.)
-
-### References (Refero Styles)
-
-| # | Reference | Theme | What we take from it |
-|---|---|---|---|
-| R1 | Resend | Dark | One large serif headline as the whole hero. Hairline 1px borders instead of shadows. Ghost buttons. Restraint. |
-| R2 | Branding (SVZ) | Dark | Oversized display type carrying the hierarchy. Italic serif words set against roman. Tiny tracked uppercase labels. One rare accent used like punctuation. Diagonal arrow (↗) on links. Light sections that feel like turning a page. |
-| R3 | ORYZO AI | Warm dark | Warm near-black, never pure black. Cream text, never pure white. Dashed hairline dividers. Pill controls. Lots of empty space. |
-| R4 | Studio.Design | Light | Very large, tightly set statements beside small, compact navigation. Quiet chrome so the content supplies the colour. Photo collage that breaks the grid. |
-| R5 | Function | Warm light | Parchment surfaces, serif headlines mixing roman and italic, terracotta as a single seal-like accent. Closest to her existing brand. |
-
-What the five share, and so what this site must have: very large type with tight leading, one accent colour used rarely, borders instead of shadows, quiet buttons, and generous space.
-
-## 2. Feel
-
-A printed policy journal with a gallery's confidence. Warm dark openings, cream reading pages, one terracotta mark per screen. Type does the work. Nothing decorative that is not hers: no stock images, no invented logos, no icons standing in for proof.
+Her research follows one commitment from an international convention down to a classroom and shows where it breaks. The Home page does the same thing on screen. A line runs down a dark panel through five stops: the international convention, Nigerian federal policy, Osun State implementation, the school gate, the classroom. The line is solid and teal at the top, turns dashed and yellow after the federal law (which has no education-specific enforcement), fades to dots after the school gate, and ends in an empty dashed circle at the classroom. It draws itself as the visitor scrolls. This is the one thing on the site no other researcher's site could have.
 
 ## 3. Colours
 
-All colours come from her existing site. No reference colours are used.
-
 | Token | Value | Use |
 |---|---|---|
-| `--ink` | `#171412` | Dark section background. Body text on light sections. |
-| `--ink-deep` | `#0E0C0B` | Footer and deepest surface. |
-| `--ink-line` | `#2A2522` | Hairline borders and dividers on dark sections. |
-| `--cream` | `#FAF6EF` | Light section background. Text on dark sections. |
-| `--paper` | `#F1E9DC` | Cards and panels on light sections. |
-| `--sand` | `#E6DCCD` | Hairline borders and dividers on light sections. |
-| `--stone` | `#6B6360` | Muted text and metadata on light sections. |
-| `--terracotta` | `#B85C38` | The accent. Large display words, arrows, dots, rules, hover states. |
-| `--terracotta-deep` | `#8C3E21` | Accent for small text on light sections (passes contrast). |
-| `--terracotta-soft` | `#E48A62` | Accent for small text on dark sections (passes contrast). |
-| `--forest` | `#3D5A47` | Second colour, used only for status tags such as "Accepted" and "Published". |
+| `--cream` | `#FFF3DC` | Page background. Text on dark panels. |
+| `--ink` | `#1B1B1B` | Text. Dark panels: the journey, closing bands, footer. |
+| `--red` | `#E4002B` | Primary buttons, small labels, the greeting. |
+| `--teal` | `#007C89` | Journey line, second card colour, "accepted" tags. |
+| `--teal-deep` | `#0A5C66` | Pattern stripe. |
+| `--yellow` | `#FFB703` | Marker stroke under headline emphasis, first card colour, name strip, accents on dark. |
+| `--white` | `#FFFFFF` | Small surfaces: tags, pills, the fourth card colour. |
+| `--stone` | `#5F574D` | Muted text on cream. |
 
 Rules:
 
-- Never pure black or pure white. Dark is `--ink`, light is `--cream`. (R3, R5)
-- Terracotta is punctuation. At most one terracotta headline word and one or two small terracotta marks per screen. Never a large filled area. (R2, R3)
-- `--terracotta` at its base value is for text 24px and larger or for non-text marks. Small accent text uses the deep or soft variant so it stays readable.
-- Muted text on dark sections is `--cream` at 70% opacity.
-- No gradients. No glows. (R1, R2)
+- Red, teal and yellow appear as solid blocks of colour on cards and number tiles. That is where the energy comes from.
+- White text on red and on teal, ink text on yellow and white. All pairs meet the 4.5 to 1 contrast level.
+- No gradients, no shadows, no glows.
 
 ## 4. Fonts
 
-| Role | Font | Weights | Use |
-|---|---|---|---|
-| Display | Playfair Display | 400 roman, 400 italic | Headlines only. |
-| Text | Inter | 400, 500, 600 | Body, navigation, buttons, labels. |
+| Role | Font | Use |
+|---|---|---|
+| Display | Fraunces (variable, weight 600, italic for emphasis) | Headlines, card titles, numerals, the name strip, the greeting. |
+| Text | DM Sans (variable) | Body, navigation, buttons, labels. |
 
-Fonts are self-hosted with the site. No font service embed.
+Both are self-hosted. No handwriting font.
 
-The signature move, taken from R2 and R5: one or two words in each headline are set in Playfair italic and coloured terracotta, the rest in roman. Example: "I help close the gap between inclusion policy and *the classroom.*" Emphasis only on words already in COPY.md. Never add words.
+Emphasis: one or two words in a headline are set in Fraunces italic with a yellow marker stroke behind the lower third of the letters. On dark panels the emphasised words are yellow italic with no stroke. Emphasis only on words already in COPY.md.
 
-### Type scale
-
-| Token | Size (desktop → mobile) | Line height | Tracking | Font |
-|---|---|---|---|---|
-| `display` | 96px → 44px | 1.0 | -0.02em | Playfair 400 |
-| `h1-page` | 72px → 40px | 1.05 | -0.02em | Playfair 400 |
-| `h2` | 48px → 32px | 1.1 | -0.01em | Playfair 400 |
-| `h3` | 24px → 20px | 1.25 | 0 | Inter 600 |
-| `lead` | 22px → 19px | 1.5 | -0.01em | Inter 400 |
-| `body` | 18px → 17px | 1.65 | 0 | Inter 400 |
-| `small` | 15px | 1.5 | 0 | Inter 400 |
-| `label` | 12px | 1.2 | +0.14em, uppercase | Inter 500 |
-| `numeral` | 72px → 48px | 1.0 | -0.02em | Playfair 400 |
-
-Sizes scale fluidly between mobile and desktop. Reading text is never wider than 68 characters.
+Type scale (desktop to mobile): display 88 to 41px, page headline 72 to 38px, section headline 48 to 30px, card title 26 to 21px, lead 21 to 18px, body 18 to 16.5px, label 12px uppercase with 0.14em tracking.
 
 ## 5. Spacing and shape
 
-- Base unit: 8px. Scale: 8, 16, 24, 32, 48, 64, 96, 128.
-- Page max width: 1200px. Side gutter: 24px on mobile, 48px on desktop.
-- Section gap: 128px on desktop, 72px on mobile. (R1, R5 at the generous end)
-- Card padding: 32px. Element gap: 16px.
-- Radius, two values only: 999px for buttons and tags, 16px for cards and photos. (R1's two-value discipline, R3 and R5's pills)
-- Borders: 1px. Solid for cards and inputs. Dashed for dividers between sections. (R1, R3)
-- Shadows: none. Layers are separated by borders and by the cream/paper/ink surface steps. (R1, R2, R5)
+- Base unit 8px. Page max width 1200px. Gutter 20 to 48px. Section gap 64 to 120px.
+- Borders: 1.5px ink lines. No shadows.
+- Radius: 999px for buttons, tags and pills. 18px for cards, tiles and photos. The Home portrait sits in an arch.
+- Nothing is rotated or tilted.
 
 ## 6. Layout
 
-- **Page rhythm.** Every page opens on a dark `--ink` hero, then turns to cream for reading, and closes on a dark call-to-action band above the footer. Moving from dark to cream should feel like turning a page. (R2)
-- **Home hero.** Fills the first screen. Small tracked label, then the headline at `display` size, opening paragraph at `lead` size, two buttons. Her portrait sits to the right on desktop and below on mobile. Nothing else. (R1, R4)
-- **Inner page heroes.** Shorter. Label, `h1-page` headline, lead paragraph.
-- **Grid.** 12 columns. Text blocks sit in 7 or 8 columns and are deliberately off-centre, leaving empty columns as breathing room. (R2, R4)
-- **Section label.** Each section starts with a numbered tracked label, such as "01 · THE PROBLEM", above its heading. (R2)
-- **Lists as ledgers.** Publications, talks, experience and awards are rows separated by hairlines: year in the left column, title and detail in the middle, link or status on the right. No cards for these. (R1, R2)
-- **Mobile.** One column. Ledger rows stack with the year on top. Navigation collapses to a menu button. All tap targets at least 44px high.
+- Pages open on cream with the headline. Dark ink panels are used for the journey, the closing call to action and the footer.
+- Home hero: greeting, headline, opening paragraph, two buttons, with the portrait in an arch to the right and three pills naming her three sides of work. Both buttons are visible without scrolling on laptop and phone.
+- Section label: small red uppercase label with a number, above each heading.
+- Long factual lists (publications, talks, experience, awards) are ruled rows: date at left, title in Fraunces, link or status tag at right.
+- Mobile: one column. Rows stack. Tap targets at least 44px high.
 
 ## 7. Components
 
-**Navigation.** Her name in Playfair at left, page links in Inter 15px at right, "Email me" as a small ghost pill. Transparent over the hero, then solid with a hairline bottom border once scrolled. Current page marked with a terracotta dot. (R4)
-
-**Buttons.** Pills, 999px radius, 14px by 28px padding, Inter 16px 500.
-- Primary: on dark sections, cream fill with ink text. On light sections, ink fill with cream text.
-- Ghost: transparent, 1px border in the section's text colour.
-- Every button and standalone link ends with ↗. On hover the arrow turns terracotta and shifts 2px up and right. No colour fill on hover. (R1, R2)
-- Terracotta is never a button fill. (R1, R2, R3, R4. R5 disagrees, see D6.)
-
-**Text links.** Underlined with a 1px terracotta line, 4px below the text.
-
-**Label / eyebrow.** `label` style, with a small terracotta dot before it.
-
-**Tags.** Pill, 1px border, `label` style. Status tags ("Published", "Accepted", "Under review", "In preparation") use `--forest` for published and accepted, `--stone` for the others.
-
-**Stat block.** Large Playfair numeral with a short Inter caption beneath, four across on desktop and two across on mobile, divided by hairlines. Used only for the four numbers in COPY.md.
-
-**Ledger row.** See Layout. Hover: the title shifts 4px right and the arrow turns terracotta.
-
-**Card.** Used only for the three "sides" on Home, the two ideas on Research, the topics on Speaking and "Where I can help" on Programmes. `--paper` fill on light sections, 1px `--sand` border, 16px radius, 32px padding, numbered label at the top.
-
-**Name strip.** The "Where the work has appeared" list is set as one line of Playfair italic names separated by terracotta dots. Text only. No logos, ever.
-
-**Pull statement.** One sentence at `h2` size on a dark band, used for "That gap is where I work."
-
-**Photos.** Hers only. 16px radius, no shadow, no filter beyond the original. On Home and About, two or three photos may overlap slightly, off the grid, as a collage. (R4)
-
-**Footer.** `--ink-deep`. Her name very large in Playfair across the full width, then links and the copyright line in `small`. (R2)
+- **Navigation.** Name in Fraunces at left, links at right, "Email me" as an outlined pill. Current page has a yellow underline. On phone, a Menu button opens a full-screen ink panel.
+- **Buttons.** Pills. Primary: red with white text. Secondary: outlined. Each ends with an arrow. Hover lifts the button 2px.
+- **Cards.** Solid colour blocks cycling yellow, teal, red, white. Hover lifts the card 4px.
+- **Number tiles.** Same colour cycle, large Fraunces numeral, short caption. Numbers count up when first seen.
+- **Journey.** See section 2. Each stop has a dot on the line, a small "Stop n" label, a Fraunces title and a boxed sentence.
+- **Name strip.** Yellow band with journal and conference names in Fraunces italic, separated by a red mark, scrolling slowly. Text only, never logos.
+- **Pattern strip.** A thin band of teal diagonal stripes with yellow dots, above the footer. It is the one decorative element and nods to West African textile pattern.
+- **Tags.** White pills with ink border. Status tags: teal for accepted or published.
+- **Photos.** Hers only, 18px radius, 1.5px ink border. See decision D16 for which are used.
+- **Footer.** Ink. Her name very large in Fraunces with the surname in yellow italic.
 
 ## 8. Motion
 
-Level: lively. She asked for motion closer to her references and left the amount to my judgment (D13).
+- Headlines rise in line by line, then the yellow marker stroke draws across the emphasised words.
+- The journey line draws stop by stop as the visitor scrolls. Each dot pops in and its text slides in.
+- Sections, cards and rows fade up, slightly staggered. The three pills beside the portrait pop in one after another.
+- Numbers count up. The name strip scrolls slowly and pauses on hover.
+- Navigation hides on the way down and returns on the way up. Pages cross-fade.
+- Not used: dragging, tilting, flipping, custom cursors, 3D, sound.
+- All motion is off for visitors who have "reduce motion" set, and everything is readable with JavaScript off.
 
-- **Headlines** reveal line by line on load and when scrolled into view: each line rises from behind a mask, 700ms, 80ms apart. (R1, R2)
-- **Sections, cards and ledger rows** fade up 24px as they enter the screen, staggered 60ms apart, once only.
-- **Numbers** in the stat block count up from zero when first seen.
-- **Photos** drift a few pixels slower than the page as it scrolls, and collage photos move at slightly different speeds. (R4)
-- **Name strip** ("Where the work has appeared") scrolls slowly sideways in a loop and pauses on hover or focus. (R2, R4)
-- **Hover:** arrows shift up and right and turn terracotta, ledger titles shift 4px, photos scale to 1.03 inside their frame. 150 to 300ms ease-out. (R1)
-- **Navigation** hides when scrolling down and returns when scrolling up.
-- **Page changes** cross-fade, 250ms.
-- Not used: 3D or WebGL scenes, custom cursors, sound, scroll hijacking. They slow down phones and get in the way of reading research.
-- All motion is switched off for visitors who have "reduce motion" set on their device, and everything is readable with JavaScript off.
+## 9. Do and don't
 
-## 9. Accessibility and performance
+Do: let the journey be the centrepiece. Use colour in solid blocks. Keep lines thin and shapes clean.
 
-- Text contrast at least 4.5 to 1, and 3 to 1 for text 24px and larger.
-- Visible keyboard focus: 2px terracotta outline, 3px offset.
-- One H1 per page. Headings in order. Every photo has descriptive alt text.
-- Static pages, self-hosted fonts, compressed images, no third-party scripts or embeds.
+Don't: no invented logos, press mentions, testimonials or statistics. No stock photos. No handwriting, stickers, tilted or draggable elements. No copy that is not in COPY.md.
 
-## 10. Do and don't
-
-Do:
-- Let type size carry the hierarchy.
-- Keep terracotta rare.
-- Leave empty columns empty.
-- Use hairlines to separate, not boxes or shadows.
-
-Don't:
-- No invented logos, press mentions, testimonials or statistics.
-- No stock photos or stock icons.
-- No pure black, pure white, gradients or shadows.
-- No terracotta buttons or terracotta backgrounds.
-- No copy that is not in COPY.md.
-
-## 11. Decision log
+## 10. Decision log
 
 Every design choice gets recorded here, newest at the bottom.
 
@@ -188,3 +110,8 @@ Every design choice gets recorded here, newest at the bottom.
 | D14 | 2026-11-13 | Photo placement: pinstripe suit on Home, maroon suit on Speaking, red blazer and desk photo on About, pleated dress beside her story, red blazer close-up on Contact. The tulle, heart-pose and street photos are not used. | The formal portraits suit the authority the site is building. The unused three are the most playful. Easy to swap. | Proposed |
 | D15 | 2026-11-13 | All photos taken from her old site are removed. The site uses six photos she supplied herself: HSE graduation with diploma (Home), flags and advocacy T-shirt (Programmes, wide), graduation gown from behind and a glasses close-up (About hero), Ankara dress (About story), glasses close-up (Contact). Speaking has no photo. Supersedes D12 and D14. | She asked for real photos in place of AI-made ones. No photo of her presenting was supplied, so Speaking carries none. Footer credit is now Island Photography, whose mark is on the gown photo. | Approved 2026-11-13 |
 | D16 | 2026-11-13 | Three photos removed: both glasses close-ups and the Ankara dress screenshot. Kept: HSE graduation (Home, and cropped on About), flags and advocacy T-shirt (Programmes), graduation gown from behind (About). Contact and Speaking carry no photo. | She asked that any photo not fitting a professional site be left out. The close-ups are casual selfies and the Ankara image is a small, tilted screenshot. | Approved 2026-11-13 (her instruction) |
+| D17 | 2026-11-13 | Version 1 of the design is retired: the cream, terracotta and Playfair look, and the dark opening screens. Decisions D1 to D11 and D13 describe version 1 and no longer apply. | After seeing the live site she said it looked like her old website and had nothing unique, fun or engaging. Version 1 had copied the old site's colours and fonts as "her brand". | Approved 2026-11-13 |
+| D18 | 2026-11-13 | Version 2 direction: a mix of "Follow the policy" (the journey line) and "Bold and warm" (red, teal, yellow on cream, Fraunces and DM Sans). | She chose "Mix A and B" from three mockups. | Approved 2026-11-13 |
+| D19 | 2026-11-13 | The playful parts of the "Bold and warm" mockup are left out: draggable stickers, handwriting font, tilted cards, thick outlines and hard shadows. In their place: three static pills beside the portrait, thin borders, flat colour blocks. "Hi, I'm Funto." stays, set in Fraunces italic. | Straight after choosing, she asked that everything stay professional because the UN Secretary-General's office may see it. | Approved 2026-11-13 (her instruction) |
+| D20 | 2026-11-13 | The Home hero is laid out so both main buttons are visible without scrolling on a laptop and on a phone. | In the live review of version 1 the buttons sat below the first screen. | Done |
+

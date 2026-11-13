@@ -20,10 +20,10 @@ const names = [
   title="Oluwafunto Abimbola | Inclusive education researcher"
   description="Oluwafunto Abimbola is an inclusive education researcher and programme lead working on why inclusion policy stalls before it reaches the classroom, in Nigeria and beyond."
 >
-  <section class="hero full dark">
+  <section class="hero light">
     <div class="wrap grid">
       <div class="hero-text">
-        <p class="label" data-reveal>Inclusive education researcher and programme lead</p>
+        <p class="hi" data-reveal>Hi, I'm Funto.</p>
         <h1 class="display" data-split>
           I help close the gap between inclusion policy and <em>the classroom.</em>
         </h1>
@@ -37,39 +37,88 @@ const names = [
           <A class="btn ghost" href={email}>Email me</A>
         </div>
       </div>
-      <figure class="hero-photo photo" data-reveal style="aspect-ratio:3/4">
-        <Image
-          src={portrait}
-          alt="Oluwafunto Abimbola in a graduation gown and cap, smiling and holding a blue diploma folder outside the Higher School of Economics in Moscow"
-          widths={[380, 570, 760, 960]}
-          sizes="(max-width: 900px) 420px, 380px"
-          loading="eager"
-          fetchpriority="high"
-          data-drift="0.04"
-        />
-      </figure>
+      <div class="stage" data-reveal>
+        <figure class="arch">
+          <Image
+            src={portrait}
+            alt="Oluwafunto Abimbola in a graduation gown and cap, smiling and holding a blue diploma folder outside the Higher School of Economics in Moscow"
+            widths={[380, 570, 760, 960]}
+            sizes="(max-width: 900px) 290px, 360px"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </figure>
+        <ul class="pillars" data-stagger aria-label="Three sides of my work">
+          <li class="pillar" data-pop>Policy research</li>
+          <li class="pillar" data-pop>Programmes</li>
+          <li class="pillar" data-pop>Classroom practice</li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <section class="section light">
+  <section class="section dark journey" id="journey">
     <div class="wrap grid">
       <div class="head">
         <p class="label" data-reveal><span class="n">01</span> The problem</p>
-        <h2 class="h2" data-split>The law says every child. The classroom often says <em>otherwise.</em></h2>
+        <h2 class="h2" data-split>Where does inclusion <em>get lost?</em></h2>
+        <p class="hint" data-reveal>Follow one commitment from the convention to the classroom.</p>
       </div>
-      <div class="body-offset prose" data-reveal>
-        <p>
-          Nigeria has written the UN Convention on the Rights of Persons with Disabilities into law. But the law
-          carries no education-specific enforcement, so in many schools inclusion stays on paper and children with
-          disabilities are left at the classroom door.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section dark">
-    <div class="wrap">
-      <p class="pull" data-split>That gap is <em>where I work.</em></p>
+      <ol class="route">
+        <li class="stop">
+          <span class="dot" aria-hidden="true"></span><span class="seg" aria-hidden="true"></span>
+          <div class="body">
+            <p class="kicker">Stop 1</p>
+            <h3>The international convention</h3>
+            <p class="box">
+              Article 24 of the UN Convention on the Rights of Persons with Disabilities commits countries to
+              inclusive education.
+            </p>
+          </div>
+        </li>
+        <li class="stop breaking">
+          <span class="dot" aria-hidden="true"></span><span class="seg" aria-hidden="true"></span>
+          <div class="body">
+            <p class="kicker">Stop 2</p>
+            <h3>Nigerian federal policy</h3>
+            <p class="box">
+              Nigeria has written the convention into law. But the law carries{' '}
+              <strong>no education-specific enforcement.</strong>
+            </p>
+          </div>
+        </li>
+        <li class="stop breaking">
+          <span class="dot" aria-hidden="true"></span><span class="seg" aria-hidden="true"></span>
+          <div class="body">
+            <p class="kicker">Stop 3</p>
+            <h3>Osun State implementation</h3>
+            <p class="box">My doctoral research follows the commitment here, through the state's own policy.</p>
+          </div>
+        </li>
+        <li class="stop fading">
+          <span class="dot" aria-hidden="true"></span><span class="seg" aria-hidden="true"></span>
+          <div class="body">
+            <p class="kicker">Stop 4</p>
+            <h3>The school gate</h3>
+            <p class="box">
+              Five schools. 48 adults and 15 learners, interviewed in Yoruba and English with no translator in
+              between.
+            </p>
+          </div>
+        </li>
+        <li class="stop lost">
+          <span class="dot" aria-hidden="true"></span>
+          <div class="body">
+            <p class="kicker">Stop 5</p>
+            <h3>The classroom</h3>
+            <p class="box">
+              In many schools inclusion stays on paper, and children with disabilities are left at the classroom
+              door.
+            </p>
+            <p class="pull">That gap is <em>where I work.</em></p>
+          </div>
+        </li>
+      </ol>
     </div>
   </section>
 
@@ -96,9 +145,7 @@ const names = [
         <a class="card" href="/programmes" data-reveal>
           <span class="label plain">02</span>
           <h3 class="h3">Programmes</h3>
-          <p>
-            Director of Programmes at Living Hope Care Society, an education and health NGO in Osun State.
-          </p>
+          <p>Director of Programmes at Living Hope Care Society, an education and health NGO in Osun State.</p>
           <span class="more">Programmes <span class="arrow" aria-hidden="true">↗</span></span>
         </a>
         <a class="card" href="/speaking" data-reveal>

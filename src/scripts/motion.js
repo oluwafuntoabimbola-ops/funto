@@ -70,7 +70,8 @@ function init() {
   // Stagger index for grouped reveals
   document.querySelectorAll('[data-stagger]').forEach((group) => {
     [...group.children].forEach((child, i) => {
-      if (child.hasAttribute('data-reveal')) child.style.setProperty('--i', Math.min(i, 8));
+      if (child.hasAttribute('data-reveal') || child.hasAttribute('data-pop'))
+        child.style.setProperty('--i', Math.min(i, 8));
     });
   });
 
@@ -89,12 +90,14 @@ function init() {
     },
     { rootMargin: '0px 0px -8% 0px', threshold: 0.08 },
   );
-  document.querySelectorAll('[data-reveal], [data-split], [data-count]').forEach((el) => seen.observe(el));
+  document
+    .querySelectorAll('[data-reveal], [data-split], [data-count], [data-pop], .stop')
+    .forEach((el) => seen.observe(el));
   cleanup.push(() => seen.disconnect());
 
   // Header: solid after the top, hide on the way down, show on the way up
   const header = document.querySelector('.site-header');
-  const drifters = [...document.querySelectorAll('[data-drift]')];
+  const drifters = [];
   let lastY = window.scrollY;
   let ticking = false;
   const onFrame = () => {
