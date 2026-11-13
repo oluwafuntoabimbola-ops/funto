@@ -1,6 +1,6 @@
 # COPY.md
 
-Draft copy for every page of Oluwafunto Abimbola's site. Built from CONTEXT.md only. Status: DRAFT, waiting for her yes.
+Draft copy for every page of Oluwafunto Abimbola's site. Built from CONTEXT.md only. Status: APPROVED by her on 2026-11-13.
 
 Navigation (all pages): Home · Research · Speaking · Programmes · About · Contact
 Header button (all pages): Email me

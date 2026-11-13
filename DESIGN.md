@@ -1,6 +1,6 @@
 # DESIGN.md
 
-The single source for every visual decision on Oluwafunto Abimbola's site. Status: DRAFT, waiting for her yes.
+The single source for every visual decision on Oluwafunto Abimbola's site. Status: APPROVED by her on 2026-11-13.
 
 Rule of the merge: **her brand wins on colours and fonts. The references win on layout and feel.**
 
@@ -165,15 +165,15 @@ Every design choice gets recorded here, newest at the bottom.
 
 | # | Date | Decision | Why | Status |
 |---|---|---|---|---|
-| D1 | 2026-11-13 | Brand colours and fonts are taken from her existing site (terracotta `#B85C38`, cream, warm ink, forest; Playfair Display and Inter). | She referred to a brand kit but attached none. The existing site is the only record of her brand. | Needs her confirmation |
-| D2 | 2026-11-13 | Pages open dark and turn to cream, instead of the all-cream look of her existing site. | Three of her five references are dark and R2 uses light sections as a page turn. References win on feel. Her own ink and cream colours make both modes. | Proposed |
-| D3 | 2026-11-13 | Headlines mix Playfair roman with terracotta italic words. | Signature of R2 and R5, and R1 uses a serif hero. Uses her own font. | Proposed |
-| D4 | 2026-11-13 | Caveat, the handwriting font on her existing site, is not used. | None of the references use a script face, and it works against the authority the site is meant to build. | Proposed, easy to reverse |
-| D5 | 2026-11-13 | No shadows. Hairline borders and surface steps only. | R1, R2, R3 and R5 all separate layers this way. | Proposed |
-| D6 | 2026-11-13 | Buttons are cream or ink pills. Terracotta is never a button fill. | Four of five references refuse accent-coloured buttons. Also, cream text on `#B85C38` falls just short of the 4.5 to 1 contrast needed for button text. | Proposed |
-| D7 | 2026-11-13 | Radius has two values: 999px and 16px. | The references disagree (6 to 40px). R1's two-value rule keeps it consistent, and pills come from R3 and R5. | Proposed |
-| D8 | 2026-11-13 | Publications, talks and experience are hairline ledger rows, not cards. | Long factual lists read faster as rows, and R1 and R2 favour lines over boxes. | Proposed |
-| D9 | 2026-11-13 | Two extra accent shades, `#8C3E21` and `#E48A62`, are used for small accent text. | Base terracotta is not readable enough at small sizes on cream or on ink. Both shades already exist on her site. | Proposed |
-| D10 | 2026-11-13 | The scrolling marquees, shuffle cards and draggable photos from her existing site are dropped. | References favour stillness and restraint. Motion is limited to fades. | Proposed |
+| D1 | 2026-11-13 | Brand colours and fonts are taken from her existing site (terracotta `#B85C38`, cream, warm ink, forest; Playfair Display and Inter). | She referred to a brand kit but attached none. The existing site is the only record of her brand. | Confirmed 2026-11-13 |
+| D2 | 2026-11-13 | Pages open dark and turn to cream, instead of the all-cream look of her existing site. | Three of her five references are dark and R2 uses light sections as a page turn. References win on feel. Her own ink and cream colours make both modes. | Approved 2026-11-13 |
+| D3 | 2026-11-13 | Headlines mix Playfair roman with terracotta italic words. | Signature of R2 and R5, and R1 uses a serif hero. Uses her own font. | Approved 2026-11-13 |
+| D4 | 2026-11-13 | Caveat, the handwriting font on her existing site, is not used. | None of the references use a script face, and it works against the authority the site is meant to build. | Approved 2026-11-13 |
+| D5 | 2026-11-13 | No shadows. Hairline borders and surface steps only. | R1, R2, R3 and R5 all separate layers this way. | Approved 2026-11-13 |
+| D6 | 2026-11-13 | Buttons are cream or ink pills. Terracotta is never a button fill. | Four of five references refuse accent-coloured buttons. Also, cream text on `#B85C38` falls just short of the 4.5 to 1 contrast needed for button text. | Approved 2026-11-13 |
+| D7 | 2026-11-13 | Radius has two values: 999px and 16px. | The references disagree (6 to 40px). R1's two-value rule keeps it consistent, and pills come from R3 and R5. | Approved 2026-11-13 |
+| D8 | 2026-11-13 | Publications, talks and experience are hairline ledger rows, not cards. | Long factual lists read faster as rows, and R1 and R2 favour lines over boxes. | Approved 2026-11-13 |
+| D9 | 2026-11-13 | Two extra accent shades, `#8C3E21` and `#E48A62`, are used for small accent text. | Base terracotta is not readable enough at small sizes on cream or on ink. Both shades already exist on her site. | Approved 2026-11-13 |
+| D10 | 2026-11-13 | The scrolling marquees, shuffle cards and draggable photos from her existing site are dropped. | References favour stillness and restraint. Motion is limited to fades. | Approved 2026-11-13 |
 | D11 | 2026-11-13 | "Where the work has appeared" is a text strip, not a logo row. | Hard rule: never invent or borrow logos. | Fixed |
-| D12 | 2026-11-13 | Photos from her existing site are reused. | They are the only photos of her available. Credit line for Mountain Photography is kept in the footer. | Needs her confirmation |
+| D12 | 2026-11-13 | Photos from her existing site are reused. | They are the only photos of her available. Credit line for Mountain Photography is kept in the footer. | Confirmed 2026-11-13 |
