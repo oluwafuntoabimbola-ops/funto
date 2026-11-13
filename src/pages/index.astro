@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import A from '../components/A.astro';
 import Cta from '../components/Cta.astro';
-import portrait from '../assets/photos/hero1.jpg';
+import portrait from '../assets/photos/hse-graduation.jpg';
 
 const email = 'mailto:oluwafuntoabimbola@gmail.com';
 const names = [
@@ -37,11 +37,11 @@ const names = [
           <A class="btn ghost" href={email}>Email me</A>
         </div>
       </div>
-      <figure class="hero-photo photo" data-reveal style="aspect-ratio:4/5">
+      <figure class="hero-photo photo" data-reveal style="aspect-ratio:3/4">
         <Image
           src={portrait}
-          alt="Oluwafunto Abimbola seated in a wooden armchair, smiling, wearing a black pinstripe suit"
-          widths={[360, 540, 720]}
+          alt="Oluwafunto Abimbola in a graduation gown and cap, smiling and holding a blue diploma folder outside the Higher School of Economics in Moscow"
+          widths={[380, 570, 760, 960]}
           sizes="(max-width: 900px) 420px, 380px"
           loading="eager"
           fetchpriority="high"

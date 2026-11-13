@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
+import flags from '../assets/photos/flags.jpg';
 import A from '../components/A.astro';
 import Cta from '../components/Cta.astro';
 
@@ -39,6 +41,15 @@ const help = [
           Osun State. The scholarship programme I lead is the same one that paid for my own schooling.
         </p>
       </div>
+      <figure class="photo wide-photo" data-reveal>
+        <Image
+          src={flags}
+          alt="Oluwafunto Abimbola standing in front of a row of African national flags, wearing a black T-shirt printed with a message about supporting people living with cancer, autism and Down syndrome"
+          widths={[480, 768, 1024]}
+          sizes="(max-width: 1296px) 92vw, 1200px"
+          loading="eager"
+        />
+      </figure>
     </div>
   </section>
 

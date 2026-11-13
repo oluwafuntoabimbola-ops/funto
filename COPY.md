@@ -5,6 +5,7 @@ Draft copy for every page of Oluwafunto Abimbola's site. Built from CONTEXT.md o
 Navigation (all pages): Home · Research · Speaking · Programmes · About · Contact
 Header button (all pages): Email me
 Footer (all pages): © 2026 Oluwafunto Abimbola · Inclusion policy to practice · LinkedIn · ORCID · Substack · Instagram
+Photo credit (footer): Graduation gown photo by Island Photography
 
 ---
 

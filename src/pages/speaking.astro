@@ -1,9 +1,7 @@
 ---
-import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import A from '../components/A.astro';
 import Cta from '../components/Cta.astro';
-import portrait from '../assets/photos/about.jpg';
 
 const invite = 'mailto:oluwafuntoabimbola@gmail.com?subject=Speaking%20invitation';
 const talks = [
@@ -55,7 +53,7 @@ const papers = [
 >
   <section class="hero dark">
     <div class="wrap grid">
-      <div class="hero-text">
+      <div class="hero-text wide">
         <p class="label" data-reveal>Speaking</p>
         <h1 class="h1-page" data-split>Inclusive education speaker, <em>grounded in fieldwork</em></h1>
         <p class="lead" data-reveal>
@@ -67,16 +65,6 @@ const papers = [
           <A class="btn" href={invite}>Invite me to speak</A>
         </div>
       </div>
-      <figure class="hero-photo photo" data-reveal style="aspect-ratio:4/5">
-        <Image
-          src={portrait}
-          alt="Oluwafunto Abimbola standing with arms crossed, wearing a maroon suit against a dark background"
-          widths={[360, 540, 720]}
-          sizes="(max-width: 900px) 420px, 380px"
-          loading="eager"
-          data-drift="0.04"
-        />
-      </figure>
     </div>
   </section>
 

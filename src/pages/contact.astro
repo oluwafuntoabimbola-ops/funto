@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import A from '../components/A.astro';
-import portrait from '../assets/photos/contact.jpg';
+import portrait from '../assets/photos/portrait-glasses.jpg';
 
 const elsewhere = [
   ['LinkedIn', 'Oluwafunto Abimbola', 'https://www.linkedin.com/in/abimbola-oluwafunto'],
@@ -29,11 +29,11 @@ const elsewhere = [
           <A class="btn wrap-ok" href="mailto:oluwafuntoabimbola@gmail.com">oluwafuntoabimbola@gmail.com</A>
         </div>
       </div>
-      <figure class="hero-photo photo" data-reveal style="aspect-ratio:1/1">
+      <figure class="hero-photo photo" data-reveal style="aspect-ratio:4/5">
         <Image
           src={portrait}
-          alt="Oluwafunto Abimbola smiling, wearing a red blazer and gold necklace"
-          widths={[300, 450, 600]}
+          alt="Close-up of Oluwafunto Abimbola in green-framed glasses, smiling and looking to one side"
+          widths={[380, 570, 760, 1140]}
           sizes="(max-width: 900px) 420px, 380px"
           loading="eager"
           data-drift="0.04"
