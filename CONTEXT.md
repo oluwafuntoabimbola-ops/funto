@@ -35,7 +35,7 @@ Open question for the copy stage: which group the homepage addresses first.
 - LinkedIn: https://www.linkedin.com/in/abimbola-oluwafunto
 - ORCID: https://orcid.org/0000-0001-6459-255X
 - Instagram: https://instagram.com/phdwithfunto (research, academia and life as an international student)
-- Substack: exists. URL NOT YET SUPPLIED.
+- Substack: handle "funtoabimbola" (profile name: Funto Abimbola), from her profile screenshot. Profile address should be https://substack.com/@funtoabimbola (test the link before launch). Publication address not yet supplied.
 - Academic email on the existing site: oabimbola@hse.ru (confirm before reusing)
 
 ## 5. Who she is
