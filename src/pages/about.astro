@@ -3,9 +3,8 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import A from '../components/A.astro';
 import Cta from '../components/Cta.astro';
-import red from '../assets/photos/graduation-gown.jpg';
-import desk from '../assets/photos/portrait-glasses-2.jpg';
-import stool from '../assets/photos/ankara.jpg';
+import grad from '../assets/photos/hse-graduation.jpg';
+import gown from '../assets/photos/graduation-gown.jpg';
 
 const experience = [
   ['January 2026 to present', 'Director of Programmes', 'Living Hope Care Society'],
@@ -56,18 +55,19 @@ const awards = [
       <div class="collage" data-reveal>
         <figure class="photo p1">
           <Image
-            src={red}
-            alt="Oluwafunto Abimbola seen from behind in a black graduation gown and cap with a red and silver hood"
-            widths={[330, 500, 660, 990]}
+            src={grad}
+            alt="Oluwafunto Abimbola in a graduation cap and gown, smiling outside the Higher School of Economics in Moscow"
+            widths={[330, 500, 660, 960]}
             sizes="(max-width: 900px) 300px, 330px"
             loading="eager"
+            style="object-position:50% 22%"
             data-drift="0.03"
           />
         </figure>
         <figure class="photo p2">
           <Image
-            src={desk}
-            alt="Close-up of Oluwafunto Abimbola in green-framed glasses, looking down"
+            src={gown}
+            alt="Oluwafunto Abimbola seen from behind in a black graduation gown and cap with a red and silver hood"
             widths={[240, 360, 480, 720]}
             sizes="(max-width: 900px) 200px, 220px"
             loading="eager"
@@ -98,14 +98,6 @@ const awards = [
           keeps my research honest about what a classroom is really like.
         </p>
       </div>
-      <figure class="photo" data-reveal style="grid-column:9 / span 4;aspect-ratio:3/4;align-self:start" id="about-side">
-        <Image
-          src={stool}
-          alt="Oluwafunto Abimbola in a blue and black Ankara dress, walking along a paved path lined with trees"
-          widths={[320, 480, 640]}
-          sizes="(max-width: 900px) 320px, 360px"
-        />
-      </figure>
     </div>
   </section>
 
