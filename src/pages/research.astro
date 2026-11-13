@@ -1,0 +1,296 @@
+---
+import Base from '../layouts/Base.astro';
+import A from '../components/A.astro';
+import Cta from '../components/Cta.astro';
+
+const published = [
+  {
+    year: '2026',
+    title:
+      'Factors promoting and hindering inclusive education for learners with disabilities in low- and lower-middle-income countries: A comparative review',
+    journal: 'Psychological Science and Education',
+    rest: ', 31(2), 244-255. Single author.',
+    href: 'https://doi.org/10.17759/pse.2026310216',
+  },
+  {
+    year: '2025',
+    title:
+      'Systemic barriers and multi-level collaboration in inclusive education: Stakeholder perspectives from Nigeria',
+    journal: 'World of Psychology (Mir psikhologii)',
+    rest: ', 3(122), 200-211. With A. J. Balogun.',
+    href: 'https://doi.org/10.51944/20738528_2025_3_200',
+  },
+  {
+    year: '2023',
+    title: 'Data gathering and utilization: Humanitarian targeting and ethical issues in northeastern Nigeria',
+    journal: 'International Journal of Humanitarian Action',
+    rest: ', 8, Article 6. With O. Fayehun and colleagues.',
+    href: 'https://doi.org/10.1186/s41018-023-00137-2',
+  },
+];
+const interests = [
+  'Inclusive education policy implementation in low- and middle-income countries',
+  'Policy borrowing, policy translation and the localisation of global education norms',
+  'Disability rights, the CRPD and education governance',
+  'Comparative and cross-national education policy analysis',
+  'Teacher preparation for inclusive classrooms in low-resource settings',
+];
+const methods = [
+  'Qualitative policy analysis',
+  'Comparative policy analysis',
+  'Policy document analysis',
+  'Semi-structured interviews',
+  'Thematic analysis',
+  'Case study design',
+  'Scoping reviews (PRISMA-ScR)',
+  'NVivo',
+];
+---
+
+<Base
+  title="Inclusive education policy research in Nigeria | Oluwafunto Abimbola"
+  description="Research on inclusive education policy in Nigeria: how CRPD Article 24 reaches schools in Osun State, and the ideas of Culturally Negotiated Inclusion and Advocacy Literacy."
+>
+  <section class="hero dark">
+    <div class="wrap grid">
+      <div class="hero-text wide">
+        <p class="label" data-reveal>Research</p>
+        <h1 class="h1-page" data-split>
+          Inclusive education policy research, from the convention to <em>the classroom</em>
+        </h1>
+        <p class="lead" data-reveal>
+          My research on inclusive education policy in Nigeria asks one question: why do commitments made in law stall
+          before they reach children? I follow CRPD Article 24 through three levels, the international convention,
+          Nigerian federal policy and Osun State implementation, to see where it holds and where it breaks.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section light">
+    <div class="wrap grid">
+      <div class="head">
+        <p class="label" data-reveal><span class="n">01</span> The doctoral study</p>
+        <h2 class="h2" data-split>Five schools in <em>Osun State</em></h2>
+        <div class="prose" data-reveal>
+          <p>
+            Dissertation: "Socio-Cultural and Institutional Conditions of Implementing Inclusive Education in Osun
+            State, Nigeria". Education Policy, Institute of Education, HSE University. Supervisor: Prof. Sergey
+            Kosaretsky.
+          </p>
+        </div>
+      </div>
+      <ol class="steps body-offset" data-stagger>
+        <li data-reveal>
+          <span>Qualitative fieldwork in five schools, three private and two state-run, in December 2024</span>
+        </li>
+        <li data-reveal><span>48 adult participants and 15 learner narratives</span></li>
+        <li data-reveal>
+          <span
+            >Interviews run, transcribed and analysed in Yoruba and English, with no translator in between</span
+          >
+        </li>
+        <li data-reveal>
+          <span
+            >Ethics approval, with access negotiated with state officials, school leadership and community
+            gatekeepers</span
+          >
+        </li>
+        <li data-reveal><span>Policy document analysis at international, federal and state level</span></li>
+      </ol>
+      <p class="body-offset small muted" data-reveal>
+        Status: doctoral programme completed October 2026. Pre-defense passed, final defense ahead.
+      </p>
+    </div>
+  </section>
+
+  <section class="section light same">
+    <div class="wrap grid">
+      <div class="head">
+        <p class="label" data-reveal><span class="n">02</span> Two ideas from the study</p>
+        <h2 class="h2" data-split>Two ideas this research <em>adds</em></h2>
+      </div>
+      <div class="cards two" style="grid-column:1 / -1" data-stagger>
+        <div class="card" data-reveal>
+          <span class="label plain">Idea 01</span>
+          <h3 class="h2" style="font-size:clamp(28px,3vw,36px)">Culturally Negotiated Inclusion</h3>
+          <p>Communities do not simply fail to implement inclusion. They reshape it.</p>
+        </div>
+        <div class="card" data-reveal>
+          <span class="label plain">Idea 02</span>
+          <h3 class="h2" style="font-size:clamp(28px,3vw,36px)">Advocacy Literacy</h3>
+          <p>
+            The competence families, mothers in particular, build to claim entitlements for their children that exist
+            only on paper.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section light same" id="publications">
+    <div class="wrap">
+      <div class="grid" style="margin-bottom:40px">
+        <div class="head">
+          <p class="label" data-reveal><span class="n">03</span> Publications</p>
+          <h2 class="h2" data-split>Publications</h2>
+        </div>
+      </div>
+
+      <h3 class="label plain group-title" data-reveal>Peer-reviewed journal articles</h3>
+      <div class="ledger" data-stagger>
+        {
+          published.map((p) => (
+            <article class="row" data-reveal>
+              <p class="when">{p.year}</p>
+              <div class="what">
+                <p class="title serif">{p.title}</p>
+                <p class="detail">
+                  <i>{p.journal}</i>
+                  {p.rest}
+                </p>
+              </div>
+              <p class="end">
+                <A href={p.href}>Read the paper</A>
+              </p>
+            </article>
+          ))
+        }
+      </div>
+
+      <h3 class="label plain group-title" data-reveal>Accepted and under review</h3>
+      <div class="ledger" data-stagger>
+        <article class="row" data-reveal>
+          <p class="when">2027</p>
+          <div class="what">
+            <p class="title serif">
+              Policy borrowing without education-specific enforcement: Translating the CRPD into Nigerian federal law
+              and policy on inclusive education
+            </p>
+            <p class="detail"><i>Journal of Social Policy Studies</i>. Single author.</p>
+          </div>
+          <p class="end"><span class="tag ok">Accepted</span></p>
+        </article>
+        <article class="row" data-reveal>
+          <p class="when">&nbsp;</p>
+          <div class="what">
+            <p class="title serif">
+              Between stigma and support: The psychological experiences of parents of children with learning
+              disabilities in Osun State, Nigeria
+            </p>
+            <p class="detail"><i>Vestnik Tomskogo Gosudarstvennogo Universiteta</i>. Single author.</p>
+          </div>
+          <p class="end"><span class="tag">Under review</span></p>
+        </article>
+      </div>
+
+      <h3 class="label plain group-title" data-reveal>In preparation</h3>
+      <div class="ledger" data-stagger>
+        <article class="row" data-reveal>
+          <p class="when">&nbsp;</p>
+          <div class="what">
+            <p class="title serif">
+              Culturally Negotiated Inclusion: A theoretical framework for understanding implementation in Global
+              South education systems.
+            </p>
+          </div>
+          <p class="end"><span class="tag">In preparation</span></p>
+        </article>
+        <article class="row" data-reveal>
+          <p class="when">&nbsp;</p>
+          <div class="what">
+            <p class="title serif">
+              Disintegration of inclusive education: How autocratic policies threaten support for children with
+              learning disabilities.
+            </p>
+          </div>
+          <p class="end"><span class="tag">In preparation</span></p>
+        </article>
+      </div>
+
+      <h3 class="label plain group-title" data-reveal>Other writing</h3>
+      <div class="ledger" data-stagger>
+        <article class="row" data-reveal>
+          <p class="when">2022</p>
+          <div class="what">
+            <p class="title serif">
+              Data and displacement: Assessing the practical and ethical implications of data-driven humanitarianism
+              for internally displaced persons in camp-like settings.
+            </p>
+            <p class="detail">With V. Squire, O. Fayehun and colleagues.</p>
+          </div>
+          <p class="end"></p>
+        </article>
+        <article class="row" data-reveal>
+          <p class="when">2021</p>
+          <div class="what">
+            <p class="title serif">Data and Displacement: Collaborative Research at a Time of Uncertainty.</p>
+            <p class="detail">University of Warwick blog.</p>
+          </div>
+          <p class="end">
+            <A href="https://blogs.warwick.ac.uk/po901/entry/data_and_displacement/">Read the post</A>
+          </p>
+        </article>
+      </div>
+
+      <p style="margin-top:32px" data-reveal>
+        Full record: <A class="link" href="https://orcid.org/0000-0001-6459-255X">ORCID 0000-0001-6459-255X</A>
+      </p>
+    </div>
+  </section>
+
+  <section class="section light same">
+    <div class="wrap grid">
+      <div class="head">
+        <p class="label" data-reveal><span class="n">04</span> Other research work</p>
+        <h2 class="h2" data-split>Other research <em>work</em></h2>
+      </div>
+      <div class="ledger" style="grid-column:1 / -1" data-stagger>
+        <article class="row no-end" data-reveal>
+          <p class="when">April to December 2025</p>
+          <div class="what">
+            <p class="title">
+              Research Assistant, A. A. Pinsky Centre of General and Extracurricular Education, HSE University
+            </p>
+            <p class="detail">
+              A global scoping review of educational processes and learning outcomes for children with special
+              educational needs, and an analytical review of special education systems in China, South Korea, Japan
+              and Singapore.
+            </p>
+          </div>
+        </article>
+        <article class="row no-end" data-reveal>
+          <p class="when">January to August 2021</p>
+          <div class="what">
+            <p class="title">Research Intern, University of Ibadan</p>
+            <p class="detail">
+              Data and Displacement: the practical and ethical implications of targeting humanitarian protection.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section light same">
+    <div class="wrap grid">
+      <div class="side-4">
+        <p class="label" data-reveal><span class="n">05</span> Research interests</p>
+      </div>
+      <ul class="bullets body-offset" data-reveal>
+        {interests.map((i) => <li>{i}</li>)}
+      </ul>
+      <div class="side-4" style="margin-top:40px">
+        <p class="label" data-reveal><span class="n">06</span> Methods</p>
+      </div>
+      <ul class="tags soft body-offset" style="margin-top:40px" data-reveal>
+        {methods.map((m) => <li class="tag">{m}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <Cta heading="Want to use or build on" em="this research?">
+    <A class="btn" href="mailto:oluwafuntoabimbola@gmail.com">Email me about this research</A>
+    <A class="btn ghost" href="https://substack.com/@funtoabimbola">Read more on Substack</A>
+  </Cta>
+</Base>

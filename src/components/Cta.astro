@@ -1,0 +1,20 @@
+---
+interface Props {
+  heading: string;
+  em?: string;
+  text?: string;
+}
+const { heading, em, text } = Astro.props;
+---
+
+<section class="section dark cta">
+  <div class="wrap grid">
+    <div class="head" style="grid-column:1 / -1">
+      <h2 class="h2" data-split>{heading}{em && <Fragment>{' '}<em>{em}</em></Fragment>}</h2>
+      {text && <p class="lead" data-reveal>{text}</p>}
+      <div class="btns" data-reveal>
+        <slot />
+      </div>
+    </div>
+  </div>
+</section>

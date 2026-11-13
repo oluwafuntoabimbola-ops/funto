@@ -1,0 +1,195 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import A from '../components/A.astro';
+import Cta from '../components/Cta.astro';
+import portrait from '../assets/photos/about.jpg';
+
+const invite = 'mailto:oluwafuntoabimbola@gmail.com?subject=Speaking%20invitation';
+const talks = [
+  {
+    when: 'May 2026',
+    title: 'The Contribution of Universities to the Development of an Inclusive Culture in Society.',
+    where: 'III International Scientific and Practical Conference, RUDN University, Moscow.',
+  },
+  {
+    when: 'July 2025',
+    title: 'Autocratic governance and inclusive education barriers: Africa.',
+    where: '28th IPSA World Congress of Political Science, Seoul.',
+  },
+  {
+    when: 'February 2025',
+    title:
+      'From grassroots to policy framework: A critical analysis of chess-based pedagogical innovation in Nigerian urban informal settlements.',
+    where:
+      'XXI International Scientific and Practical Conference "Trends in the Development of Education", Moscow.',
+  },
+  {
+    when: 'June 2024',
+    title:
+      'Facilitators and barriers to inclusive education for learners with learning disabilities in low- and lower-middle-income nations: A case study of Nigeria.',
+    where: 'Southern Political Science Association Virtual Summer Meeting.',
+  },
+];
+const papers = [
+  {
+    when: 'October 2026',
+    title:
+      'Policy borrowing, policy translation, and inclusive education reform: Global-to-state dynamics in Osun State, Nigeria.',
+    where: 'TERA and WERA Annual Conference, Kaohsiung, Taiwan.',
+    status: 'Paper accepted',
+  },
+  {
+    when: 'July 2026',
+    title:
+      'Educational processes and learning outcomes for children with special educational needs: A global scoping review.',
+    where: 'London International Conference on Inclusive Education, University College London.',
+    status: 'In proceedings',
+  },
+];
+---
+
+<Base
+  title="Inclusive education speaker | Oluwafunto Abimbola"
+  description="Invite Oluwafunto Abimbola to speak on inclusive education, disability rights in schools and education policy in Africa. Conference talks, panels, guest lectures and workshops."
+>
+  <section class="hero dark">
+    <div class="wrap grid">
+      <div class="hero-text">
+        <p class="label" data-reveal>Speaking</p>
+        <h1 class="h1-page" data-split>Inclusive education speaker, <em>grounded in fieldwork</em></h1>
+        <p class="lead" data-reveal>
+          I speak on inclusive education and education policy in Africa, drawing on fieldwork in Nigerian schools,
+          published research and years of running an education programme. Four conference talks since 2024, and two
+          more papers accepted at international conferences.
+        </p>
+        <div class="btns" data-reveal>
+          <A class="btn" href={invite}>Invite me to speak</A>
+        </div>
+      </div>
+      <figure class="hero-photo photo" data-reveal style="aspect-ratio:4/5">
+        <Image
+          src={portrait}
+          alt="Oluwafunto Abimbola standing with arms crossed, wearing a maroon suit against a dark background"
+          widths={[360, 540, 720]}
+          sizes="(max-width: 900px) 420px, 380px"
+          loading="eager"
+          data-drift="0.04"
+        />
+      </figure>
+    </div>
+  </section>
+
+  <section class="section light">
+    <div class="wrap grid">
+      <div class="head">
+        <p class="label" data-reveal><span class="n">01</span> Topics</p>
+        <h2 class="h2" data-split>What I <em>speak about</em></h2>
+      </div>
+      <div class="cards" style="grid-column:1 / -1" data-stagger>
+        <div class="card" data-reveal>
+          <span class="label plain">01</span>
+          <h3 class="h3">Why inclusion policy stalls between the law and the classroom.</h3>
+          <p>What happens to a global commitment as it passes through federal law, state policy and the school gate.</p>
+        </div>
+        <div class="card" data-reveal>
+          <span class="label plain">02</span>
+          <h3 class="h3">Inclusive education in low- and middle-income countries: what the evidence shows.</h3>
+          <p>What helps and what hinders, from my comparative review and scoping work.</p>
+        </div>
+        <div class="card" data-reveal>
+          <span class="label plain">03</span>
+          <h3 class="h3">Running education programmes for vulnerable learners.</h3>
+          <p>Lessons from directing a scholarship programme in Osun State that I once benefited from myself.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section light same">
+    <div class="wrap grid">
+      <div class="side-4">
+        <p class="label" data-reveal><span class="n">02</span> Formats</p>
+        <h2 class="h2" style="margin-top:20px" data-split>Formats</h2>
+      </div>
+      <div class="body-offset prose" data-reveal>
+        <p class="lead" style="color:var(--fg)">
+          Conference talks, panels, guest lectures, seminars, workshops and webinars. In person or online. I am based
+          in Moscow and speak in English.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section light same">
+    <div class="wrap">
+      <div class="grid" style="margin-bottom:40px">
+        <div class="head">
+          <p class="label" data-reveal><span class="n">03</span> Past talks</p>
+          <h2 class="h2" data-split>Past <em>talks</em></h2>
+        </div>
+      </div>
+      <div class="ledger" data-stagger>
+        {
+          talks.map((t) => (
+            <article class="row no-end" data-reveal>
+              <p class="when">{t.when}</p>
+              <div class="what">
+                <p class="title serif">{t.title}</p>
+                <p class="detail">{t.where}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section light same">
+    <div class="wrap">
+      <div class="grid" style="margin-bottom:40px">
+        <div class="head">
+          <p class="label" data-reveal><span class="n">04</span> Accepted conference papers</p>
+          <h2 class="h2" data-split>Accepted conference <em>papers</em></h2>
+        </div>
+      </div>
+      <div class="ledger" data-stagger>
+        {
+          papers.map((t) => (
+            <article class="row" data-reveal>
+              <p class="when">{t.when}</p>
+              <div class="what">
+                <p class="title serif">{t.title}</p>
+                <p class="detail">{t.where}</p>
+              </div>
+              <p class="end">
+                <span class="tag ok">{t.status}</span>
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section light same">
+    <div class="wrap grid">
+      <div class="side-4">
+        <p class="label" data-reveal><span class="n">05</span> Teaching</p>
+        <h2 class="h2" style="margin-top:20px" data-split>In the <em>lecture room</em></h2>
+      </div>
+      <div class="body-offset prose" data-reveal>
+        <p>
+          Teaching Assistant at HSE University's Department of Public Policy for Theory and Practice of Policy
+          Analysis (Fall 2022) and Foundations of Public Policy (Spring 2023), with seminar facilitation and
+          assessment at master's level. I also mentored three master's students through research design and thesis
+          development.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <Cta heading="Planning" em="an event?" text="Tell me the audience, the date and the topic you have in mind.">
+    <A class="btn" href={invite}>Invite me to speak</A>
+  </Cta>
+</Base>

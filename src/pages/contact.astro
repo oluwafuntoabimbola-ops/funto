@@ -1,0 +1,91 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import A from '../components/A.astro';
+import portrait from '../assets/photos/contact.jpg';
+
+const elsewhere = [
+  ['LinkedIn', 'Oluwafunto Abimbola', 'https://www.linkedin.com/in/abimbola-oluwafunto'],
+  ['Substack', 'Funto Abimbola', 'https://substack.com/@funtoabimbola'],
+  ['ORCID', '0000-0001-6459-255X', 'https://orcid.org/0000-0001-6459-255X'],
+  ['Instagram', '@phdwithfunto', 'https://instagram.com/phdwithfunto'],
+];
+---
+
+<Base
+  title="Contact Oluwafunto Abimbola"
+  description="Contact Oluwafunto Abimbola about inclusive education research, programme and policy work, or a speaking invitation."
+>
+  <section class="hero dark">
+    <div class="wrap grid">
+      <div class="hero-text">
+        <p class="label" data-reveal>Contact</p>
+        <h1 class="display" data-split>Let's <em>talk.</em></h1>
+        <p class="lead" data-reveal>
+          I am open to research partnerships, programme and policy work, and invitations to speak. Email is the best
+          way to reach me.
+        </p>
+        <div class="btns" data-reveal>
+          <A class="btn wrap-ok" href="mailto:oluwafuntoabimbola@gmail.com">oluwafuntoabimbola@gmail.com</A>
+        </div>
+      </div>
+      <figure class="hero-photo photo" data-reveal style="aspect-ratio:1/1">
+        <Image
+          src={portrait}
+          alt="Oluwafunto Abimbola smiling, wearing a red blazer and gold necklace"
+          widths={[300, 450, 600]}
+          sizes="(max-width: 900px) 420px, 380px"
+          loading="eager"
+          data-drift="0.04"
+        />
+      </figure>
+    </div>
+  </section>
+
+  <section class="section light">
+    <div class="wrap grid">
+      <div class="side-4">
+        <p class="label" data-reveal><span class="n">01</span> What to write to me about</p>
+      </div>
+      <div class="ledger body-offset" data-stagger>
+        <div class="row no-end" data-reveal>
+          <p class="when">Research</p>
+          <div class="what"><p>collaboration, co-authoring, or using my findings in your work</p></div>
+        </div>
+        <div class="row no-end" data-reveal>
+          <p class="when">Programmes and policy</p>
+          <div class="what">
+            <p>roles, consultancy and advisory work with NGOs, funders, development agencies and ministries</p>
+          </div>
+        </div>
+        <div class="row no-end" data-reveal>
+          <p class="when">Speaking</p>
+          <div class="what"><p>conference talks, panels, guest lectures and workshops</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section light same">
+    <div class="wrap grid">
+      <div class="side-4">
+        <p class="label" data-reveal><span class="n">02</span> Elsewhere</p>
+      </div>
+      <div class="ledger body-offset" data-stagger>
+        {
+          elsewhere.map(([name, handle, href]) => (
+            <div class="row" data-reveal>
+              <p class="when">{name}</p>
+              <div class="what">
+                <p class="title serif">{handle}</p>
+              </div>
+              <p class="end">
+                <A href={href}>Open</A>
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Base>

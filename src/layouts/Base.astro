@@ -1,0 +1,102 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import '@fontsource/playfair-display/400.css';
+import '@fontsource/playfair-display/400-italic.css';
+import '@fontsource-variable/inter';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/research', label: 'Research' },
+  { href: '/speaking', label: 'Speaking' },
+  { href: '/programmes', label: 'Programmes' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+];
+const email = 'oluwafuntoabimbola@gmail.com';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#171412" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script is:inline>
+      document.documentElement.classList.add('js');
+      document.addEventListener('astro:after-swap', function () {
+        document.documentElement.classList.add('js');
+      });
+    </script>
+    <ClientRouter />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="wrap bar">
+        <a class="brand" href="/">Oluwafunto Abimbola</a>
+        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">
+          <span class="menu-word">Menu</span>
+        </button>
+        <nav class="nav" id="site-nav" aria-label="Main">
+          {
+            links.map((l) => (
+              <a class="nav-link" href={l.href} aria-current={path === l.href ? 'page' : undefined}>
+                {l.label}
+              </a>
+            ))
+          }
+          <a class="btn ghost" href={`mailto:${email}`}>Email me <span class="arrow" aria-hidden="true">↗</span></a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <p class="footer-name" aria-hidden="true">Oluwafunto <em>Abimbola</em></p>
+        <div class="footer-meta">
+          <p>© 2026 Oluwafunto Abimbola · Inclusion policy to practice</p>
+          <ul class="footer-links">
+            <li>
+              <a href="https://www.linkedin.com/in/abimbola-oluwafunto" target="_blank" rel="noopener"
+                >LinkedIn <span class="arrow" aria-hidden="true">↗</span></a
+              >
+            </li>
+            <li>
+              <a href="https://orcid.org/0000-0001-6459-255X" target="_blank" rel="noopener"
+                >ORCID <span class="arrow" aria-hidden="true">↗</span></a
+              >
+            </li>
+            <li>
+              <a href="https://substack.com/@funtoabimbola" target="_blank" rel="noopener"
+                >Substack <span class="arrow" aria-hidden="true">↗</span></a
+              >
+            </li>
+            <li>
+              <a href="https://instagram.com/phdwithfunto" target="_blank" rel="noopener"
+                >Instagram <span class="arrow" aria-hidden="true">↗</span></a
+              >
+            </li>
+          </ul>
+        </div>
+        <p class="small muted" style="margin-top:8px">Red suit and pinstripe suit photos by Mountain Photography</p>
+      </div>
+    </footer>
+    <script>
+      import '../scripts/motion.js';
+    </script>
+  </body>
+</html>

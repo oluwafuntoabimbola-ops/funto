@@ -1,0 +1,103 @@
+---
+import Base from '../layouts/Base.astro';
+import A from '../components/A.astro';
+import Cta from '../components/Cta.astro';
+
+const work = [
+  'Direct scholarship and educational support programmes for learners in Osun State',
+  'Designed and deployed a digital scholarship application and assessment portal for the 2026 cycle, with a vulnerability-scoring framework and a review workflow',
+  'Wrote programme policy: selection criteria, household eligibility rules and staff reporting standards',
+  'Redesigned the application review workflow, cutting processing time from six weeks to 3.6 weeks',
+  'Built partnerships with 20+ schools, educational institutions and community organisations',
+  'Produced 12+ quarterly reports tracking funding across 15+ partner institutions and outcomes for 2,500+ beneficiaries',
+  'Contributed to a USD 20,000 USAID-supported health education programme, covering needs assessment, theory of change and a results-based budget. It reached 500+ beneficiaries across 12 communities.',
+];
+const help = [
+  {
+    t: 'Selection and eligibility.',
+    d: 'Fair, written criteria for who a programme serves, and a process that applies them the same way every time.',
+  },
+  { t: 'Programme design.', d: 'Needs assessment, theory of change and budgets tied to results.' },
+  { t: 'Reporting.', d: 'Regular reporting that shows funders where money went and what changed.' },
+  { t: 'Evidence.', d: "A researcher's read on whether a programme design fits the community it is meant for." },
+];
+---
+
+<Base
+  title="Education programmes in Nigeria | Oluwafunto Abimbola"
+  description="Oluwafunto Abimbola directs scholarship and education programmes at Living Hope Care Society in Osun State, Nigeria, from selection policy to reporting."
+>
+  <section class="hero dark">
+    <div class="wrap grid">
+      <div class="hero-text wide">
+        <p class="label" data-reveal>Programmes</p>
+        <h1 class="h1-page" data-split>
+          Education programmes that reach <em>the children</em> they were written for
+        </h1>
+        <p class="lead" data-reveal>
+          I direct education programmes in Nigeria at Living Hope Care Society (LIHOC), a health and education NGO in
+          Osun State. The scholarship programme I lead is the same one that paid for my own schooling.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section light">
+    <div class="wrap grid">
+      <div class="head">
+        <p class="label" data-reveal><span class="n">01</span> The story</p>
+        <h2 class="h2" data-split>From scholar <em>to director</em></h2>
+      </div>
+      <div class="body-offset prose" data-reveal>
+        <p class="lead" style="color:var(--fg)">
+          LIHOC's academic scholarship supported my schooling from 2005 to 2018. I joined the organisation as
+          Education Program Coordinator in November 2019, and since January 2026 I have been its Director of
+          Programmes.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section light same">
+    <div class="wrap grid">
+      <div class="side-4">
+        <p class="label" data-reveal><span class="n">02</span> What I have done there</p>
+        <h2 class="h2" style="margin-top:20px" data-split>The <em>work</em></h2>
+      </div>
+      <ol class="steps body-offset" data-stagger>
+        {
+          work.map((w) => (
+            <li data-reveal>
+              <span>{w}</span>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="section light same">
+    <div class="wrap grid">
+      <div class="head">
+        <p class="label" data-reveal><span class="n">03</span> What I can bring to your programme</p>
+        <h2 class="h2" data-split>Where I <em>can help</em></h2>
+      </div>
+      <div class="cards two" style="grid-column:1 / -1" data-stagger>
+        {
+          help.map((h, i) => (
+            <div class="card" data-reveal>
+              <span class="label plain">{String(i + 1).padStart(2, '0')}</span>
+              <h3 class="h3">{h.t}</h3>
+              <p>{h.d}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <Cta heading="Funding or running" em="an education programme?">
+    <A class="btn" href="mailto:oluwafuntoabimbola@gmail.com">Email me</A>
+    <A class="btn ghost" href="https://www.linkedin.com/in/abimbola-oluwafunto">Follow on LinkedIn</A>
+  </Cta>
+</Base>

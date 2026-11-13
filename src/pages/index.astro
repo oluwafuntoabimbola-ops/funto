@@ -1,0 +1,166 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import A from '../components/A.astro';
+import Cta from '../components/Cta.astro';
+import portrait from '../assets/photos/hero1.jpg';
+
+const email = 'mailto:oluwafuntoabimbola@gmail.com';
+const names = [
+  'Psychological Science and Education',
+  'World of Psychology',
+  'International Journal of Humanitarian Action',
+  'Journal of Social Policy Studies (accepted)',
+  'IPSA World Congress',
+  'London International Conference on Inclusive Education',
+];
+---
+
+<Base
+  title="Oluwafunto Abimbola | Inclusive education researcher"
+  description="Oluwafunto Abimbola is an inclusive education researcher and programme lead working on why inclusion policy stalls before it reaches the classroom, in Nigeria and beyond."
+>
+  <section class="hero full dark">
+    <div class="wrap grid">
+      <div class="hero-text">
+        <p class="label" data-reveal>Inclusive education researcher and programme lead</p>
+        <h1 class="display" data-split>
+          I help close the gap between inclusion policy and <em>the classroom.</em>
+        </h1>
+        <p class="lead" data-reveal>
+          Countries sign inclusive education commitments, yet children with disabilities still get left out of
+          learning. I am Oluwafunto Abimbola, an inclusive education researcher. I study why that happens in Nigeria
+          and other low- and middle-income countries, and I run programmes that put the answers to work.
+        </p>
+        <div class="btns" data-reveal>
+          <A class="btn" href="/research">Read my research</A>
+          <A class="btn ghost" href={email}>Email me</A>
+        </div>
+      </div>
+      <figure class="hero-photo photo" data-reveal style="aspect-ratio:4/5">
+        <Image
+          src={portrait}
+          alt="Oluwafunto Abimbola seated in a wooden armchair, smiling, wearing a black pinstripe suit"
+          widths={[360, 540, 720]}
+          sizes="(max-width: 900px) 420px, 380px"
+          loading="eager"
+          fetchpriority="high"
+          data-drift="0.04"
+        />
+      </figure>
+    </div>
+  </section>
+
+  <section class="section light">
+    <div class="wrap grid">
+      <div class="head">
+        <p class="label" data-reveal><span class="n">01</span> The problem</p>
+        <h2 class="h2" data-split>The law says every child. The classroom often says <em>otherwise.</em></h2>
+      </div>
+      <div class="body-offset prose" data-reveal>
+        <p>
+          Nigeria has written the UN Convention on the Rights of Persons with Disabilities into law. But the law
+          carries no education-specific enforcement, so in many schools inclusion stays on paper and children with
+          disabilities are left at the classroom door.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <div class="wrap">
+      <p class="pull" data-split>That gap is <em>where I work.</em></p>
+    </div>
+  </section>
+
+  <section class="section light">
+    <div class="wrap grid">
+      <div class="head">
+        <p class="label" data-reveal><span class="n">02</span> Three sides of the same problem</p>
+        <h2 class="h2" data-split>Research, programmes and practice, <em>in one person</em></h2>
+        <p class="lead" data-reveal>
+          In most teams these three sit with different people. I work across all of them, so findings turn into
+          programmes and programmes hold up in real classrooms.
+        </p>
+      </div>
+      <div class="cards" style="grid-column:1 / -1" data-stagger>
+        <a class="card" href="/research" data-reveal>
+          <span class="label plain">01</span>
+          <h3 class="h3">Policy research</h3>
+          <p>
+            Doctoral research on how Article 24 of the UN disability convention reaches schools in Osun State,
+            Nigeria. Three published journal articles and one more accepted.
+          </p>
+          <span class="more">Research <span class="arrow" aria-hidden="true">↗</span></span>
+        </a>
+        <a class="card" href="/programmes" data-reveal>
+          <span class="label plain">02</span>
+          <h3 class="h3">Programmes</h3>
+          <p>
+            Director of Programmes at Living Hope Care Society, an education and health NGO in Osun State.
+          </p>
+          <span class="more">Programmes <span class="arrow" aria-hidden="true">↗</span></span>
+        </a>
+        <a class="card" href="/speaking" data-reveal>
+          <span class="label plain">03</span>
+          <h3 class="h3">Speaking and teaching</h3>
+          <p>
+            Four conference talks since 2024, in Seoul and Moscow, two more papers accepted at conferences in London
+            and Kaohsiung, and master's level teaching at HSE University.
+          </p>
+          <span class="more">Speaking <span class="arrow" aria-hidden="true">↗</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section light same">
+    <div class="wrap">
+      <p class="label" data-reveal style="margin-bottom:24px"><span class="n">03</span> In numbers</p>
+      <div class="stats" data-stagger>
+        <div class="stat" data-reveal>
+          <div class="numeral" data-count="5">5</div>
+          <p>schools in my Osun State field study</p>
+        </div>
+        <div class="stat" data-reveal>
+          <div class="numeral" data-count="48">48</div>
+          <p>adults and 15 learners interviewed</p>
+        </div>
+        <div class="stat" data-reveal>
+          <div class="numeral" data-count="3">3</div>
+          <p>peer-reviewed journal articles published</p>
+        </div>
+        <div class="stat" data-reveal>
+          <div class="numeral" data-count="4">4</div>
+          <p>conference talks since 2024</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section light same">
+    <div class="wrap">
+      <p class="label" data-reveal style="margin-bottom:24px"><span class="n">04</span> Where the work has appeared</p>
+    </div>
+    <div class="strip" data-reveal>
+      <div class="strip-track">
+        <ul>
+          {names.map((n) => <li>{n}</li>)}
+        </ul>
+        <ul aria-hidden="true">
+          {names.map((n) => <li>{n}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <Cta
+    heading="Working on inclusion?"
+    em="Let's talk."
+    text="I am open to research partnerships, programme and policy work, and invitations to speak."
+  >
+    <A class="btn" href={email}>Email me</A>
+    <A class="btn ghost" href="https://www.linkedin.com/in/abimbola-oluwafunto">Follow on LinkedIn</A>
+    <A class="btn ghost" href="https://substack.com/@funtoabimbola">Subscribe on Substack</A>
+  </Cta>
+</Base>
