@@ -519,7 +519,7 @@ a:focus-visible .arrow {
   right: 0;
   bottom: 0;
   height: 100%;
-  aspect-ratio: 841 / 1090;
+  aspect-ratio: 823 / 1128;
   transform-style: preserve-3d;
   transform: rotateY(clamp(-20deg, calc(var(--mx, 0) * -8deg + var(--drag, 0deg) * 0.25), 20deg))
     rotateX(calc(var(--my, 0) * -5deg));
