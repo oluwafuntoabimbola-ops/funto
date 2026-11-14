@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import A from '../components/A.astro';
+import Pop from '../components/Pop.astro';
+import hands from '../assets/photos/portrait-hands.png';
 
 const elsewhere = [
   ['LinkedIn', 'Oluwafunto Abimbola', 'https://www.linkedin.com/in/abimbola-oluwafunto'],
@@ -16,7 +18,7 @@ const elsewhere = [
 >
   <section class="hero light">
     <div class="wrap grid">
-      <div class="hero-text wide">
+      <div class="hero-text">
         <p class="label" data-reveal>Contact</p>
         <h1 class="display" data-split>Let's <em>talk.</em></h1>
         <p class="lead" data-reveal>
@@ -27,6 +29,11 @@ const elsewhere = [
           <A class="btn wrap-ok" href="mailto:oluwafuntoabimbola@gmail.com">oluwafuntoabimbola@gmail.com</A>
         </div>
       </div>
+      <Pop
+        src={hands}
+        alt="Oluwafunto Abimbola smiling, a bright pink blazer draped over her shoulders"
+        eager
+      />
     </div>
   </section>
 

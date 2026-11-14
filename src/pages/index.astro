@@ -3,8 +3,9 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import A from '../components/A.astro';
 import Cta from '../components/Cta.astro';
+import Pop from '../components/Pop.astro';
 import portrait from '../assets/photos/hse-graduation.jpg';
-import cutout from '../assets/photos/portrait-cutout.png';
+import front from '../assets/photos/portrait-front.png';
 
 const email = 'mailto:oluwafuntoabimbola@gmail.com';
 const names = [
@@ -77,22 +78,12 @@ const sides = [
           <A class="btn ghost" href={email}>Email me</A>
         </div>
       </div>
-      <div class="hero-stage" data-drag>
-        <div class="scene">
-          <div class="pop" data-stack>
-            <div class="pop-frame" aria-hidden="true"></div>
-            <Image
-              class="pop-figure"
-              src={cutout}
-              alt="Oluwafunto Abimbola smiling, a bright pink blazer draped over her shoulders"
-              widths={[420, 630, 823]}
-              sizes="(max-width: 900px) 300px, 420px"
-              loading="eager"
-              fetchpriority="high"
-            />
-          </div>
-        </div>
-      </div>
+      <Pop
+        src={front}
+        alt="Oluwafunto Abimbola smiling, hands resting at her waist, a red blazer draped over her shoulders"
+        top={32}
+        eager
+      />
     </div>
     <div class="hero-facts">
       <div class="wrap">

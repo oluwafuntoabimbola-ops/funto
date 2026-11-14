@@ -1,0 +1,30 @@
+---
+// Her portrait stepping out of a frame. See DESIGN.md, decision D28.
+import { Image } from 'astro:assets';
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  /** How far down the picture the frame's top edge sits, in percent. */
+  top?: number;
+  eager?: boolean;
+}
+const { src, alt, top = 30, eager = false } = Astro.props;
+---
+
+<div class="hero-stage" data-drag>
+  <div class="scene">
+    <div class="pop" data-stack style={`--ar:${src.width} / ${src.height};--top:${top}%`}>
+      <div class="pop-frame" aria-hidden="true"></div>
+      <Image
+        class="pop-figure"
+        src={src}
+        alt={alt}
+        widths={[420, 630, src.width]}
+        sizes="(max-width: 900px) 300px, 420px"
+        loading={eager ? 'eager' : 'lazy'}
+        fetchpriority={eager ? 'high' : undefined}
+      />
+    </div>
+  </div>
+</div>
