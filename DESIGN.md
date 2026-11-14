@@ -42,12 +42,12 @@ On the Home page the stack appears beside the headline, then the next section pi
 
 | Role | Font | Use |
 |---|---|---|
-| Display | Instrument Serif, regular and italic | Headlines, large row titles, the name strip, numerals. |
-| Text | Geist (variable) | Body, navigation, buttons, labels. |
+| Display | Gloock | Headlines, large row titles, the name strip, numerals. |
+| Text | Hanken Grotesk (variable) | Body, navigation, buttons, labels. |
 
-Both self-hosted. Emphasis in a headline is serif italic in the muted grey. Emphasis only on words already in COPY.md.
+Both self-hosted. Gloock has no italic, so emphasis in a headline is carried by tone: the emphasised words are set in the muted grey. Emphasis only on words already in COPY.md.
 
-Type scale (desktop to mobile): display 96 to 46px, page headline 96 to 44px, section headline 68 to 36px, closing call up to 148px, lead 20 to 17px, body 18 to 16px, label 11.5px uppercase with 0.18em tracking.
+Type scale (desktop to mobile): display 90 to 42px, page headline 88 to 40px, section headline 62 to 32px, closing call up to 132px, lead 20 to 17px, body 18 to 16px, label 11.5px uppercase with 0.18em tracking.
 
 ## 6. Layout and components
 
@@ -114,4 +114,6 @@ Every design choice gets recorded here, newest at the bottom.
 | D23 | 2026-11-13 | The 3D object is a stack of five plates standing for the five levels of her policy journey, with the classroom plate as an empty dashed outline. | Resend's object is abstract. Hers should mean something, so the references' signature device also carries her research finding. | In use |
 | D24 | 2026-11-13 | One accent colour only, a warm red, used for dots and the final stop. | SVZ and Oryzo both hold a single accent back so it lands when it appears. It also keeps the site formal. | In use |
 | D25 | 2026-11-13 | The greeting "Hi, I'm Funto." is removed again and the eyebrow "Inclusive education researcher and programme lead" returns, in a pill. | Matches the references and the senior audience she named. | In use |
-
+| D26 | 2026-11-14 | Fonts changed to Gloock (display) and Hanken Grotesk (text). Instrument Serif and Geist are dropped. | She said the fonts looked like generic AI fonts. That pair is on a great many recent sites. Gloock is heavy, high-contrast and uncommon, and stays legible, which matters on a site about inclusion. Chosen from four pairings rendered side by side. | In use, her confirmation pending |
+| D27 | 2026-11-14 | The plate stack on the opening screen now "jumps out": it arrives from deep in the screen, overshoots toward the viewer and fans open, is larger and overlaps the end of the headline, has thickness and throws shadows, can be turned by dragging, and leans as a phone is tilted. At the last journey stop the red plate drops further away. | She asked for something that looks like it jumped out of her phone. | In use |
+| D28 | 2026-11-14 | A pop-out of her own portrait (her figure stepping out of a frame) is planned but not built. | It needs her figure cut out from its background. The background-removal tool was blocked in this session, so she will send a cut-out made on her iPhone. | Waiting on her |

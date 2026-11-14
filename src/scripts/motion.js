@@ -84,7 +84,7 @@ function init() {
         seen.unobserve(entry.target);
       });
     },
-    { rootMargin: '0px 0px -8% 0px', threshold: 0.08 },
+    { rootMargin: '0px 0px -4% 0px', threshold: 0.01 },
   );
   document.querySelectorAll('[data-reveal], [data-split]').forEach((el) => seen.observe(el));
   cleanup.push(() => seen.disconnect());
@@ -166,6 +166,68 @@ function init() {
     };
     window.addEventListener('pointermove', onMove, { passive: true });
     cleanup.push(() => window.removeEventListener('pointermove', onMove));
+  }
+
+  // The object can be turned by hand, and on phones it leans as the phone is tilted
+  const stage = document.querySelector('[data-drag]');
+  if (stage && !reduce()) {
+    const stack = stage.querySelector('[data-stack]');
+    let startX = 0;
+    let base = 0;
+    let angle = 0;
+    let dragging = false;
+    const down = (e) => {
+      dragging = true;
+      startX = e.clientX;
+      base = angle;
+    };
+    const move = (e) => {
+      if (!dragging) return;
+      angle = base + (e.clientX - startX) * 0.45;
+      stack.style.setProperty('--drag', `${angle.toFixed(1)}deg`);
+    };
+    const up = () => {
+      dragging = false;
+    };
+    stage.addEventListener('pointerdown', down);
+    window.addEventListener('pointermove', move, { passive: true });
+    window.addEventListener('pointerup', up);
+    window.addEventListener('pointercancel', up);
+
+    const stacks = [...document.querySelectorAll('[data-stack]')];
+    const tilt = (e) => {
+      if (e.gamma == null || e.beta == null) return;
+      const mx = Math.max(-1, Math.min(1, e.gamma / 28));
+      const my = Math.max(-1, Math.min(1, (e.beta - 45) / 28));
+      stacks.forEach((s) => {
+        s.style.setProperty('--mx', mx.toFixed(3));
+        s.style.setProperty('--my', (-my).toFixed(3));
+      });
+    };
+    const DOE = window.DeviceOrientationEvent;
+    let asked = false;
+    const askTilt = () => {
+      if (asked || !DOE || typeof DOE.requestPermission !== 'function') return;
+      asked = true;
+      DOE.requestPermission()
+        .then((state) => {
+          if (state === 'granted') window.addEventListener('deviceorientation', tilt, { passive: true });
+        })
+        .catch(() => {});
+    };
+    if (DOE && typeof DOE.requestPermission !== 'function') {
+      window.addEventListener('deviceorientation', tilt, { passive: true });
+    } else {
+      stage.addEventListener('click', askTilt);
+    }
+    cleanup.push(() => {
+      stage.removeEventListener('pointerdown', down);
+      stage.removeEventListener('click', askTilt);
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+      window.removeEventListener('pointercancel', up);
+      window.removeEventListener('deviceorientation', tilt);
+    });
   }
 
   // Mobile menu

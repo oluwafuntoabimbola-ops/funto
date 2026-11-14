@@ -11,8 +11,8 @@
   --line-2: rgba(255, 255, 255, 0.24);
   --accent: #ff4d5e;
 
-  --serif: 'Instrument Serif', 'Times New Roman', serif;
-  --sans: 'Geist Variable', Geist, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --serif: Gloock, Georgia, 'Times New Roman', serif;
+  --sans: 'Hanken Grotesk Variable', 'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   --gutter: clamp(20px, 4vw, 56px);
   --section: clamp(88px, 12vw, 176px);
@@ -123,19 +123,19 @@ ol {
   color: var(--fg);
 }
 .display {
-  font-size: clamp(46px, min(6.3vw, 11vh), 96px);
-  line-height: 0.98;
-  letter-spacing: -0.02em;
-}
-.h1-page {
-  font-size: clamp(44px, 6.6vw, 96px);
-  line-height: 1;
-  letter-spacing: -0.02em;
-}
-.h2 {
-  font-size: clamp(36px, 5vw, 68px);
+  font-size: clamp(42px, min(5.9vw, 10.4vh), 90px);
   line-height: 1.02;
   letter-spacing: -0.015em;
+}
+.h1-page {
+  font-size: clamp(40px, 6vw, 88px);
+  line-height: 1.03;
+  letter-spacing: -0.015em;
+}
+.h2 {
+  font-size: clamp(32px, 4.5vw, 62px);
+  line-height: 1.05;
+  letter-spacing: -0.012em;
 }
 .h3 {
   font-family: var(--serif);
@@ -148,7 +148,7 @@ ol {
 .h1-page em,
 .h2 em,
 .pull em {
-  font-style: italic;
+  font-style: normal;
   color: var(--muted);
 }
 .lead {
@@ -318,7 +318,7 @@ a:focus-visible .arrow {
 }
 .brand {
   font-family: var(--serif);
-  font-size: 23px;
+  font-size: 20px;
   letter-spacing: -0.01em;
   text-decoration: none;
   white-space: nowrap;
@@ -398,7 +398,6 @@ a:focus-visible .arrow {
     padding-block: 2px;
   }
   .js .nav a.nav-link[aria-current='page'] {
-    font-style: italic;
     color: var(--muted);
   }
   .js .nav .btn {
@@ -418,22 +417,30 @@ a:focus-visible .arrow {
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
+  z-index: 2;
+  overflow-x: clip;
   padding-top: clamp(128px, 15vw, 210px);
   padding-bottom: clamp(56px, 8vw, 110px);
-  overflow: hidden;
-  isolation: isolate;
 }
 /* Light falling across the black, as on the references */
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
   background:
     radial-gradient(55% 60% at 88% -5%, rgba(255, 255, 255, 0.13), transparent 62%),
     linear-gradient(104deg, transparent 46%, rgba(255, 255, 255, 0.045) 52%, transparent 60%),
     linear-gradient(98deg, transparent 62%, rgba(255, 255, 255, 0.03) 68%, transparent 74%);
   pointer-events: none;
+}
+.hero > .wrap,
+.hero > .hero-facts {
+  position: relative;
+  z-index: 1;
+}
+.hero.home > .hero-facts {
+  position: absolute;
 }
 .hero.home {
   min-height: 100svh;
@@ -488,7 +495,60 @@ a:focus-visible .arrow {
   grid-column: 8 / span 5;
   grid-row: 1;
   align-self: center;
-  height: clamp(300px, 36vw, 520px);
+  height: clamp(340px, 38vw, 520px);
+  margin-block: -70px;
+  cursor: grab;
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.hero-stage:active {
+  cursor: grabbing;
+}
+/* The object arrives from deep inside the screen and overshoots toward the viewer */
+.hero-stage .scene {
+  perspective: 1000px;
+}
+.hero-stage .stack {
+  --gap: 62px;
+  width: clamp(210px, 25vw, 380px);
+}
+.js .hero-stage .scene {
+  animation: launch 1.7s cubic-bezier(0.2, 0.9, 0.25, 1) 0.35s both;
+}
+.js .hero-stage .stack {
+  animation:
+    drift 16s ease-in-out infinite alternate,
+    fan 2s cubic-bezier(0.2, 0.9, 0.25, 1) 0.35s both;
+}
+@keyframes launch {
+  0% {
+    opacity: 0;
+    transform: scale(0.12) translateY(34%);
+    filter: blur(16px);
+  }
+  55% {
+    opacity: 1;
+    transform: scale(1.22) translateY(-3%);
+    filter: blur(0);
+  }
+  78% {
+    transform: scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+@keyframes fan {
+  0%,
+  30% {
+    --spread: -1.75;
+  }
+  100% {
+    --spread: 0.45;
+  }
 }
 /* Facts along the foot of the opening screen */
 .hero-facts {
@@ -532,7 +592,7 @@ a:focus-visible .arrow {
   .hero.home {
     padding-bottom: 48px;
   }
-  .hero-facts {
+  .hero.home > .hero-facts {
     position: static;
     margin-top: 44px;
   }
@@ -552,13 +612,26 @@ a:focus-visible .arrow {
     padding-top: 104px;
     padding-bottom: 40px;
   }
-  .hero-stage {
-    grid-column: 1 / -1;
-    height: 300px;
-    margin-top: 4px;
+  .hero.home > .wrap {
+    position: relative;
   }
-  .hero-facts {
-    position: static;
+  .hero-stage {
+    position: absolute;
+    z-index: 0;
+    top: -70px;
+    right: -96px;
+    width: 330px;
+    height: 330px;
+    margin: 0;
+    opacity: 0.85;
+  }
+  .hero-stage .stack {
+    --gap: 40px;
+    width: 200px;
+  }
+  .hero.home > .hero-facts {
+    position: relative;
+    bottom: auto;
     margin-top: 28px;
   }
   .facts {
@@ -579,6 +652,11 @@ a:focus-visible .arrow {
   inherits: true;
   initial-value: 0deg;
 }
+@property --spread {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
 .scene {
   position: relative;
   width: 100%;
@@ -596,8 +674,8 @@ a:focus-visible .arrow {
   width: clamp(170px, 19vw, 280px);
   aspect-ratio: 1;
   transform-style: preserve-3d;
-  transform: translate(-50%, -46%) rotateX(calc(60deg + var(--my, 0) * 6deg))
-    rotateZ(calc(-38deg + var(--spin) + var(--mx, 0) * 10deg));
+  transform: translate(-50%, -46%) rotateX(calc(60deg + var(--my, 0) * 9deg))
+    rotateZ(calc(-38deg + var(--spin) + var(--drag, 0deg) + var(--mx, 0) * 12deg));
 }
 .js .stack {
   animation: drift 16s ease-in-out infinite alternate;
@@ -617,7 +695,7 @@ a:focus-visible .arrow {
   border-radius: 14%;
   background: linear-gradient(135deg, rgba(60, 60, 60, 0.92), rgba(12, 12, 12, 0.94) 55%, rgba(34, 34, 34, 0.92));
   border: 1px solid rgba(255, 255, 255, 0.28);
-  box-shadow: 0 0 60px rgba(0, 0, 0, 0.6);
+  transform-style: preserve-3d;
   transform: translateZ(calc((var(--z) + var(--lift, 0)) * var(--gap) * (1 + var(--spread) * 0.55)));
   transition:
     transform 0.9s var(--ease),
@@ -640,6 +718,30 @@ a:focus-visible .arrow {
   --z: -1;
   opacity: 0.66;
 }
+.plate::before,
+.plate::after {
+  content: '';
+  position: absolute;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.plate::before {
+  inset: -1px;
+  background: #0a0a0a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transform: translateZ(-7px);
+}
+.plate::after {
+  inset: 4%;
+  background: #000;
+  filter: blur(20px);
+  opacity: 0.7;
+  transform: translateZ(calc(var(--gap) * -0.5));
+}
+.plate:nth-child(5)::before,
+.plate:nth-child(5)::after {
+  display: none;
+}
 /* The classroom: an outline the commitment never fills */
 .plate:nth-child(5) {
   --z: -2;
@@ -654,6 +756,7 @@ a:focus-visible .arrow {
   background: linear-gradient(135deg, rgba(126, 126, 126, 0.95), rgba(28, 28, 28, 0.95) 55%, rgba(76, 76, 76, 0.95));
 }
 .plate:nth-child(5).on {
+  --lift: -1.5;
   background: rgba(255, 77, 94, 0.1);
   border-color: var(--accent);
   box-shadow: 0 0 70px rgba(255, 77, 94, 0.35);
@@ -979,9 +1082,9 @@ a:focus-visible .arrow {
 .bigrow h3 {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(34px, 4.4vw, 60px);
-  line-height: 1;
-  letter-spacing: -0.015em;
+  font-size: clamp(30px, 3.9vw, 54px);
+  line-height: 1.04;
+  letter-spacing: -0.012em;
   transition: transform 0.4s var(--ease);
 }
 .bigrow p {
@@ -1174,8 +1277,7 @@ a:focus-visible .arrow {
   display: flex;
   align-items: center;
   font-family: var(--serif);
-  font-style: italic;
-  font-size: clamp(26px, 3.4vw, 46px);
+  font-size: clamp(24px, 3vw, 42px);
   line-height: 1.2;
   white-space: nowrap;
   color: var(--soft);
@@ -1251,9 +1353,9 @@ html:not(.js) .strip {
   }
 }
 .cta .h2 {
-  font-size: clamp(52px, 9.4vw, 148px);
-  line-height: 0.94;
-  letter-spacing: -0.025em;
+  font-size: clamp(46px, 8.4vw, 132px);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
 }
 .cta .lead {
   margin-top: 28px;
@@ -1308,12 +1410,13 @@ html:not(.js) .strip {
 }
 .footer-name {
   font-family: var(--serif);
-  font-size: min(10.4vw, 168px);
-  line-height: 0.9;
-  letter-spacing: -0.03em;
+  font-size: min(8.9vw, 142px);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
   white-space: nowrap;
 }
 .footer-name em {
+  font-style: normal;
   color: var(--dim);
 }
 .footer-meta {
@@ -1386,6 +1489,8 @@ html:not(.js) .strip {
   }
   .js .strip-track,
   .js .stack,
+  .js .hero-stage .scene,
+  .js .hero-stage .stack,
   .js .cta::before,
   .js .cta::after {
     animation: none;
