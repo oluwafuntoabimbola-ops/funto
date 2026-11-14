@@ -506,6 +506,270 @@ a:focus-visible .arrow {
 .hero-stage:active {
   cursor: grabbing;
 }
+/* ---------- The portrait: she rises out of a frame, slowly, and never quite holds still ---------- */
+@property --sway {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+.hero-stage .scene {
+  perspective: 1100px;
+}
+.pop {
+  --sway: 0;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  aspect-ratio: var(--ar, 4 / 5);
+  transform: rotateY(clamp(-20deg, calc(var(--sway) * 7deg + var(--mx, 0) * -8deg + var(--drag, 0deg) * 0.25), 20deg))
+    rotateX(calc(var(--sway) * -2.5deg + var(--my, 0) * -5deg));
+}
+.pop-frame {
+  position: absolute;
+  left: 6%;
+  right: 4%;
+  top: var(--top, 30%);
+  bottom: 0;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  background: linear-gradient(180deg, #1c1c1c, #070707);
+  box-shadow:
+    0 40px 90px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+/* a red glow that breathes, and a band of light that crosses the glass now and then */
+.pop-frame::before,
+.pop-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.pop-frame::before {
+  background: radial-gradient(90% 60% at 50% 18%, rgba(255, 77, 94, 0.5), transparent 70%);
+  opacity: 0.7;
+}
+.pop-frame::after {
+  inset: -20% -60%;
+  background: linear-gradient(105deg, transparent 44%, rgba(255, 255, 255, 0.13) 50%, transparent 56%);
+  transform: translateX(-60%);
+}
+/* above the frame's top edge she is free; below it she is held inside the frame */
+.pop-clip {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(
+    -20% -20%,
+    120% -20%,
+    120% var(--top, 30%),
+    93.5% var(--top, 30%),
+    93.5% 100%,
+    8.5% 100%,
+    8.5% var(--top, 30%),
+    -20% var(--top, 30%)
+  );
+  -webkit-mask-image: linear-gradient(#000 80%, transparent 99%);
+  mask-image: linear-gradient(#000 80%, transparent 99%);
+}
+.pop-figure {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: 50% 100%;
+  translate: calc(var(--mx, 0) * 9px) calc(var(--my, 0) * -6px);
+  filter: drop-shadow(0 26px 34px rgba(0, 0, 0, 0.6));
+  -webkit-user-drag: none;
+  pointer-events: none;
+  transition: translate 0.8s var(--ease);
+}
+/* a thin orbit around her: the far half passes behind, the near half in front */
+.orbit {
+  position: absolute;
+  left: -14%;
+  width: 128%;
+  top: calc(var(--top, 30%) - 9%);
+  height: 36%;
+  overflow: visible;
+  pointer-events: none;
+}
+.orbit path {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.34);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+.orbit.front path {
+  stroke: rgba(255, 255, 255, 0.5);
+}
+.orbit circle {
+  fill: var(--accent);
+  filter: drop-shadow(0 0 6px var(--accent));
+}
+
+.js .hero-stage .scene {
+  animation: settle 2.6s cubic-bezier(0.16, 0.8, 0.2, 1) 0.2s both;
+}
+.js .pop {
+  animation: sway 15s ease-in-out 1s infinite alternate;
+}
+.js .pop-figure {
+  animation:
+    rise 4.2s cubic-bezier(0.16, 0.84, 0.2, 1) 0.5s both,
+    float 8s ease-in-out 4.7s infinite alternate;
+}
+.js .pop-frame::before {
+  animation: breathe 7s ease-in-out infinite alternate;
+}
+.js .pop-frame::after {
+  animation: sheen 11s cubic-bezier(0.4, 0, 0.2, 1) 3s infinite;
+}
+.js .orbit {
+  animation: orbit-in 2.4s var(--ease) 2.6s both;
+}
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: scale(0.86) translateY(6%);
+    filter: blur(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+/* slow motion: she comes up out of the frame */
+@keyframes rise {
+  0% {
+    transform: translateY(46%) scale(0.94);
+    opacity: 0;
+  }
+  18% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+@keyframes float {
+  from {
+    transform: translateY(0) scale(1);
+  }
+  to {
+    transform: translateY(-2.4%) scale(1.028);
+  }
+}
+@keyframes sway {
+  from {
+    --sway: -1;
+  }
+  to {
+    --sway: 1;
+  }
+}
+@keyframes breathe {
+  from {
+    opacity: 0.45;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes sheen {
+  0% {
+    transform: translateX(-60%);
+  }
+  38%,
+  100% {
+    transform: translateX(60%);
+  }
+}
+@keyframes orbit-in {
+  from {
+    opacity: 0;
+    scale: 0.8;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+.hero-facts {
+  position: relative;
+  z-index: 1;
+}
+.hero.home > .hero-facts {
+  position: absolute;
+}
+.hero.home {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 110px;
+  padding-bottom: clamp(120px, 15vh, 170px);
+}
+.hero .label {
+  margin-bottom: clamp(20px, 2.6vw, 32px);
+}
+.hero .lead {
+  margin-top: clamp(20px, 2.6vw, 32px);
+}
+.hero .btns {
+  margin-top: clamp(26px, 3.2vw, 40px);
+}
+.hero-text {
+  grid-column: 1 / span 8;
+  grid-row: 1;
+  align-self: center;
+  position: relative;
+  z-index: 1;
+}
+.hero-text.wide {
+  grid-column: 1 / span 10;
+}
+.hero-text.seven {
+  grid-column: 1 / span 7;
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 14px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 13.5px;
+  color: var(--soft);
+  margin-bottom: clamp(20px, 2.6vw, 30px);
+}
+.pill::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.hero-stage {
+  grid-column: 8 / span 5;
+  grid-row: 1;
+  align-self: center;
+  height: min(68vh, 640px);
+  min-height: 420px;
+  margin-block: -60px -20px;
+  cursor: grab;
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.hero-stage:active {
+  cursor: grabbing;
+}
 /* The portrait arrives from deep inside the screen and overshoots toward the viewer */
 .hero-stage .scene {
   perspective: 1000px;
@@ -1543,6 +1807,11 @@ html:not(.js) .strip {
   .js .strip-track,
   .js .stack,
   .js .hero-stage .scene,
+  .js .pop,
+  .js .pop-figure,
+  .js .pop-frame::before,
+  .js .pop-frame::after,
+  .js .orbit,
   .js .cta::before,
   .js .cta::after {
     animation: none;
@@ -1550,8 +1819,11 @@ html:not(.js) .strip {
   .js .strip {
     overflow-x: auto;
   }
+  .orbit circle {
+    display: none;
+  }
   .plate,
-  .pop,
+  .pop-figure,
   .arrow,
   .photo img,
   .row .what,

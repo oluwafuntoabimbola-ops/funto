@@ -1,5 +1,5 @@
 ---
-// Her portrait stepping out of a frame. See DESIGN.md, decision D28.
+// Her portrait rising out of a frame, in slow motion. See DESIGN.md, decisions D28 and D31.
 import { Image } from 'astro:assets';
 
 interface Props {
@@ -10,21 +10,54 @@ interface Props {
   eager?: boolean;
 }
 const { src, alt, top = 30, eager = false } = Astro.props;
+const loop = 'M 100,0 A 100,26 0 0,0 -100,0 A 100,26 0 0,0 100,0';
 ---
 
 <div class="hero-stage" data-drag>
   <div class="scene">
     <div class="pop" data-stack style={`--ar:${src.width} / ${src.height};--top:${top}%`}>
       <div class="pop-frame" aria-hidden="true"></div>
-      <Image
-        class="pop-figure"
-        src={src}
-        alt={alt}
-        widths={[420, 630, src.width]}
-        sizes="(max-width: 900px) 300px, 420px"
-        loading={eager ? 'eager' : 'lazy'}
-        fetchpriority={eager ? 'high' : undefined}
-      />
+      <svg class="orbit back" viewBox="-112 -44 224 88" aria-hidden="true">
+        <g transform="rotate(-9)">
+          <path d="M 100,0 A 100,26 0 0,0 -100,0"></path>
+          <circle r="2.6">
+            <animateMotion dur="18s" repeatCount="indefinite" path={loop}></animateMotion>
+            <animate
+              attributeName="opacity"
+              dur="18s"
+              repeatCount="indefinite"
+              calcMode="discrete"
+              values="1;0"
+              keyTimes="0;0.5"></animate>
+          </circle>
+        </g>
+      </svg>
+      <div class="pop-clip">
+        <Image
+          class="pop-figure"
+          src={src}
+          alt={alt}
+          widths={[420, 630, src.width]}
+          sizes="(max-width: 900px) 300px, 420px"
+          loading={eager ? 'eager' : 'lazy'}
+          fetchpriority={eager ? 'high' : undefined}
+        />
+      </div>
+      <svg class="orbit front" viewBox="-112 -44 224 88" aria-hidden="true">
+        <g transform="rotate(-9)">
+          <path d="M -100,0 A 100,26 0 0,0 100,0"></path>
+          <circle r="2.6">
+            <animateMotion dur="18s" repeatCount="indefinite" path={loop}></animateMotion>
+            <animate
+              attributeName="opacity"
+              dur="18s"
+              repeatCount="indefinite"
+              calcMode="discrete"
+              values="0;1"
+              keyTimes="0;0.5"></animate>
+          </circle>
+        </g>
+      </svg>
     </div>
   </div>
 </div>
