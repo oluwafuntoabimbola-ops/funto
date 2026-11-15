@@ -22,7 +22,8 @@ The component supplies the skeleton, `DESIGN.md` supplies the skin, `COPY.md` su
 - Never invent logos, press mentions, testimonials or statistics.
 - No third-party embeds or scripts.
 - She gave four conference talks. The London and Kaohsiung items are accepted papers.
-- Do not call her Dr until she confirms her defense is passed.
+- Do not call her Dr until she confirms her degree is conferred (asked again 15 November 2026: not yet).
+- The site opens on the experience at `/`. The former homepage is `/home`.
 
 ## Working on the site
 

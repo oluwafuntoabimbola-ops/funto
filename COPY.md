@@ -428,3 +428,50 @@ Button: oluwafuntoabimbola@gmail.com
 7. Figures from her CVs that depend on internal measurement (accuracy rates, percentage improvements) are left out. Counts and dates are kept.
 9. 13 November 2026: the Home page problem section was rewritten as a five-stop journey for design version 2. She chose the mockup that contained it. The greeting "Hi, I'm Funto." replaces the eyebrow line.
 10. 13 November 2026, design version 3: the eyebrow line returns in place of the greeting, and the four numbers sit along the foot of the opening screen instead of in their own section.
+
+---
+
+## 7. The experience (the new front door, `/`)
+
+Added 15 November 2026 from her brief. Home page copy above now lives at `/home`.
+
+- Page title: Oluwafunto Abimbola | Inclusive education researcher
+- Meta description: Step into the story of Oluwafunto Abimbola, an inclusive education researcher from Ilesa, Nigeria, working on why inclusion policy stalls before it reaches the classroom.
+
+Opening captions: West Africa · Nigeria · Osun State · Ilesa
+
+Quote: Research begins with curiosity. Change begins with people.
+
+Name: Oluwafunto Abimbola (no "Dr." until the degree is conferred)
+
+Roles: Inclusive Education Researcher · Education Policy Analyst · Speaker · Founder
+
+Button: Enter My World
+
+World: "Choose where to go." Under her portrait: "From Ilesa, Nigeria". Link: "Read the full story" (to `/home`).
+
+Chapter headings: Research · Education · International Experience · Publications · Speaking · NGO and Social Impact · Travel and Global Work · Media · Professional Experience · Pull up a chair. (Contact)
+
+Chapter text is taken from the pages above and from CONTEXT.md section 16. New lines written for the chapters:
+
+- International: "Turn the globe, or choose a country, to see what happened there."
+- Publications: "Take a book from the shelf."
+- Travel: "Places the work has taken me, in the order I reached them." and "I am Yoruba, from Ilesa in Osun State, and I have lived in Moscow since 2021."
+- Contact: "Pull up a chair." Buttons: "Start a conversation", "Copy my email address".
+
+## 8. Timeline on `/home`: "From Ilesa to here"
+
+1. Where it starts · Ilesa, Nigeria · I grew up in Ilesa, in Osun State.
+2. 2005 · A scholarship · Living Hope Care Society begins paying for my schooling. It supports me until 2018.
+3. 2014 to 2018 · History graduate · BA in History and International Studies at Bowen University. Student Ambassador of the Year, 2018.
+4. 2019 · Back to LIHOC, this time to work · I join Living Hope Care Society as Education Program Coordinator, and take part in the African Presidential Leadership Program in Cairo.
+5. 2021 · The move to Russia · After a research internship at the University of Ibadan, I move to Moscow for an MSc in Political Analysis and Public Policy at HSE University.
+6. 2023 · Master's degree, then the doctorate · I complete the MSc, co-author my first journal article, and begin a doctorate in Education Policy.
+7. 2024 · Fieldwork in Osun State · Five schools, 48 adults and 15 learners. My first international conference talk.
+8. 2025 · Publications and Seoul · My first lead-author article is published, and I speak at the IPSA World Congress in Seoul.
+9. 2026 · Director of Programmes · I now direct the programme that once paid for my schooling. Doctoral programme completed, final defense ahead.
+
+A "future vision" stop is wanted but needs her own words.
+
+Awards heading on `/home`: "Backed at every stage".
+

@@ -7,11 +7,13 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description: string;
+  /** The opening experience draws its own chrome. */
+  bare?: boolean;
 }
-const { title, description } = Astro.props;
+const { title, description, bare = false } = Astro.props;
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const links = [
-  { href: '/', label: 'Home' },
+  { href: '/home', label: 'Home' },
   { href: '/research', label: 'Research' },
   { href: '/speaking', label: 'Speaking' },
   { href: '/programmes', label: 'Programmes' },
@@ -51,7 +53,7 @@ const person = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#050505" />
+    <meta name="theme-color" content="#0A1830" />
     <link rel="canonical" href={canonical} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta property="og:type" content="website" />
@@ -82,6 +84,8 @@ const person = {
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
+    {
+      !bare && (
     <header class="site-header">
       <div class="wrap bar">
         <a class="brand" href="/">Oluwafunto Abimbola</a>
@@ -100,11 +104,15 @@ const person = {
         </nav>
       </div>
     </header>
+      )
+    }
 
     <main id="main">
       <slot />
     </main>
 
+    {
+      !bare && (
     <footer class="site-footer">
       <div class="wrap">
         <p class="footer-name" aria-hidden="true">Oluwafunto <em>Abimbola</em></p>
@@ -136,6 +144,8 @@ const person = {
         <p class="small muted" style="margin-top:8px">Portraits by Mountain Photography · Graduation gown photo by Island Photography</p>
       </div>
     </footer>
+      )
+    }
     <script>
       import '../scripts/motion.js';
     </script>

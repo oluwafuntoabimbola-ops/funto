@@ -181,3 +181,14 @@ Training: Global Diplomacy in the Modern World, HSE (June to July 2024); African
 - "Secured" for the USAID grant. The confirmed wording is "contributed to".
 - 58 adult participants. The confirmed figure is 48.
 - No invented logos, press mentions, testimonials or statistics.
+
+## 16. Added 15 November 2026
+
+- Title: her doctorate is not yet conferred (final defense ahead). Do not write "Dr." anywhere until she says it is official.
+- She is the founder and owner of Cityscape Concierge. No other details supplied yet (what it does, year founded).
+- Ilesa, Osun State: she grew up there, and Living Hope Care Society is based there.
+- Roles she wants shown: Inclusive Education Researcher, Education Policy Analyst, Speaker, Founder.
+- Opening line she supplied: "Research begins with curiosity. Change begins with people."
+- Other true items from her CVs, usable in the "world" chapters: African Presidential Leadership Program, Cairo (2019); Ghana International Model United Nations, oral presenter (January 2016) and honourable mention (2017); Honorary award of excellence, Ministry of Tourism, Accra (2016); volunteer, FIFA World Cup, Qatar (2022); volunteer and member, Red Cross Society of Nigeria (2017); Meritorious Service Award, Bowen Baptist Student Fellowship (2018); member, Young African Leaders Initiative.
+- Not supplied, so not shown: talk slides, photos or videos; paper abstracts; a future-vision statement; media appearances; her YouTube address.
+

@@ -230,6 +230,52 @@ function init() {
     });
   }
 
+  // Timeline: drag to move, arrows to step
+  const track = document.querySelector('[data-track]');
+  if (track) {
+    const stepSize = () => (track.querySelector('.moment')?.getBoundingClientRect().width || 320);
+    const by = (d) => track.scrollBy({ left: d * stepSize(), behavior: reduce() ? 'auto' : 'smooth' });
+    const prev = document.querySelector('[data-track-prev]');
+    const next = document.querySelector('[data-track-next]');
+    const goPrev = () => by(-1);
+    const goNext = () => by(1);
+    prev?.addEventListener('click', goPrev);
+    next?.addEventListener('click', goNext);
+    let startX = 0;
+    let startLeft = 0;
+    let held = false;
+    const tDown = (e) => {
+      if (e.pointerType !== 'mouse') return;
+      held = true;
+      startX = e.clientX;
+      startLeft = track.scrollLeft;
+      track.classList.add('dragging');
+    };
+    const tMove = (e) => {
+      if (held) track.scrollLeft = startLeft - (e.clientX - startX);
+    };
+    const tUp = () => {
+      held = false;
+      track.classList.remove('dragging');
+    };
+    const tKey = (e) => {
+      if (e.key === 'ArrowRight') by(1);
+      if (e.key === 'ArrowLeft') by(-1);
+    };
+    track.addEventListener('pointerdown', tDown);
+    window.addEventListener('pointermove', tMove, { passive: true });
+    window.addEventListener('pointerup', tUp);
+    track.addEventListener('keydown', tKey);
+    cleanup.push(() => {
+      prev?.removeEventListener('click', goPrev);
+      next?.removeEventListener('click', goNext);
+      track.removeEventListener('pointerdown', tDown);
+      window.removeEventListener('pointermove', tMove);
+      window.removeEventListener('pointerup', tUp);
+      track.removeEventListener('keydown', tKey);
+    });
+  }
+
   // Mobile menu
   const btn = document.querySelector('.menu-btn');
   if (btn && header) {

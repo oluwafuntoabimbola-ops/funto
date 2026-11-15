@@ -1,15 +1,26 @@
 /* Tokens and rules come from DESIGN.md (version 3). Change them there first. */
 :root {
-  --bg: #050505;
-  --bg-2: #0e0e0e;
-  --bg-3: #171717;
-  --fg: #f4f4f1;
-  --soft: #d0d0cb;
-  --muted: #a6a6a1;
-  --dim: #73736f;
-  --line: rgba(255, 255, 255, 0.12);
-  --line-2: rgba(255, 255, 255, 0.24);
-  --accent: #ff4d5e;
+  --navy: #0a1830;
+  --navy-2: #10233f;
+  --navy-3: #18304f;
+  --ivory: #f6f1e7;
+  --gold: #c9a24b;
+  --gold-soft: #e3c987;
+  --terra: #b5654a;
+  --terra-soft: #d98a6c;
+  --forest: #2f5d46;
+  --slate: #6b7785;
+
+  --bg: var(--navy);
+  --bg-2: var(--navy-2);
+  --bg-3: var(--navy-3);
+  --fg: var(--ivory);
+  --soft: #d6d3ca;
+  --muted: #aab3c2;
+  --dim: #7c8799;
+  --line: rgba(246, 241, 231, 0.13);
+  --line-2: rgba(246, 241, 231, 0.26);
+  --accent: var(--gold);
 
   --serif: Gloock, Georgia, 'Times New Roman', serif;
   --sans: 'Hanken Grotesk Variable', 'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -66,8 +77,8 @@ ol {
   list-style: none;
 }
 ::selection {
-  background: var(--accent);
-  color: #000;
+  background: var(--gold);
+  color: var(--navy);
 }
 
 :focus-visible {
@@ -89,6 +100,49 @@ ol {
 }
 .skip:focus {
   top: 16px;
+}
+
+/* ---------- Ivory reading sections ---------- */
+.light {
+  --bg: var(--ivory);
+  --fg: var(--navy);
+  --soft: #24344d;
+  --muted: #4d5a6c;
+  --dim: #6b7785;
+  --line: rgba(10, 24, 48, 0.14);
+  --line-2: rgba(10, 24, 48, 0.3);
+  --accent: var(--terra);
+  background: var(--bg);
+  color: var(--fg);
+}
+.light .btn {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: var(--ivory);
+}
+.light .btn.ghost {
+  background: transparent;
+  color: var(--navy);
+  border-color: var(--line-2);
+}
+.light .card {
+  background: #fffdf8;
+  border-color: var(--line);
+  box-shadow: 0 1px 0 rgba(10, 24, 48, 0.04), 0 18px 40px -28px rgba(10, 24, 48, 0.35);
+}
+.light .card::before {
+  display: none;
+}
+.light .row .end a:hover {
+  background: var(--navy);
+  color: var(--ivory);
+}
+.light .tag.ok {
+  color: var(--forest);
+  border-color: var(--forest);
+}
+.light :focus-visible {
+  outline-color: var(--terra);
 }
 
 /* ---------- Layout ---------- */
@@ -223,7 +277,7 @@ a:focus-visible .arrow {
   border-radius: 999px;
   border: 1px solid var(--fg);
   background: var(--fg);
-  color: #050505;
+  color: var(--navy);
   font-size: 15.5px;
   font-weight: 500;
   line-height: 1.2;
@@ -302,7 +356,7 @@ a:focus-visible .arrow {
   border-bottom: 1px solid transparent;
 }
 .site-header.solid {
-  background: rgba(5, 5, 5, 0.72);
+  background: rgba(10, 24, 48, 0.78);
   backdrop-filter: blur(14px);
   border-bottom-color: var(--line);
 }
@@ -533,7 +587,7 @@ a:focus-visible .arrow {
   bottom: 0;
   border-radius: 28px;
   border: 1px solid rgba(255, 255, 255, 0.26);
-  background: linear-gradient(180deg, #1c1c1c, #070707);
+  background: linear-gradient(180deg, #1a3050, #0b1a33);
   box-shadow:
     0 40px 90px rgba(0, 0, 0, 0.7),
     inset 0 1px 0 rgba(255, 255, 255, 0.12);
@@ -548,7 +602,7 @@ a:focus-visible .arrow {
   pointer-events: none;
 }
 .pop-frame::before {
-  background: radial-gradient(90% 60% at 50% 18%, rgba(255, 77, 94, 0.5), transparent 70%);
+  background: radial-gradient(90% 60% at 50% 18%, rgba(201, 162, 75, 0.42), transparent 70%);
   opacity: 0.7;
 }
 .pop-frame::after {
@@ -799,7 +853,7 @@ a:focus-visible .arrow {
   border: 1px solid rgba(255, 255, 255, 0.26);
   background:
     radial-gradient(90% 60% at 50% 20%, rgba(255, 77, 94, 0.34), transparent 70%),
-    linear-gradient(180deg, #1c1c1c, #070707);
+    linear-gradient(180deg, #1a3050, #0b1a33);
   box-shadow:
     0 40px 90px rgba(0, 0, 0, 0.7),
     inset 0 1px 0 rgba(255, 255, 255, 0.12);
@@ -1010,7 +1064,7 @@ a:focus-visible .arrow {
   position: absolute;
   inset: 0;
   border-radius: 14%;
-  background: linear-gradient(135deg, rgba(60, 60, 60, 0.92), rgba(12, 12, 12, 0.94) 55%, rgba(34, 34, 34, 0.92));
+  background: linear-gradient(135deg, rgba(46, 70, 108, 0.94), rgba(12, 26, 50, 0.95) 55%, rgba(30, 50, 82, 0.93));
   border: 1px solid rgba(255, 255, 255, 0.28);
   transform-style: preserve-3d;
   transform: translateZ(calc((var(--z) + var(--lift, 0)) * var(--gap) * (1 + var(--spread) * 0.55)));
@@ -1044,7 +1098,7 @@ a:focus-visible .arrow {
 }
 .plate::before {
   inset: -1px;
-  background: #0a0a0a;
+  background: #081428;
   border: 1px solid rgba(255, 255, 255, 0.1);
   transform: translateZ(-7px);
 }
@@ -1070,13 +1124,14 @@ a:focus-visible .arrow {
 .plate.on {
   border-color: #fff;
   opacity: 1;
-  background: linear-gradient(135deg, rgba(126, 126, 126, 0.95), rgba(28, 28, 28, 0.95) 55%, rgba(76, 76, 76, 0.95));
+  background: linear-gradient(135deg, rgba(227, 201, 135, 0.95), rgba(120, 96, 44, 0.95) 55%, rgba(201, 162, 75, 0.95));
 }
+/* the gap is marked in terracotta */
 .plate:nth-child(5).on {
   --lift: -1.5;
-  background: rgba(255, 77, 94, 0.1);
-  border-color: var(--accent);
-  box-shadow: 0 0 70px rgba(255, 77, 94, 0.35);
+  background: rgba(181, 101, 74, 0.16);
+  border-color: var(--terra-soft);
+  box-shadow: 0 0 70px rgba(217, 138, 108, 0.45);
 }
 
 /* ---------- The journey (pinned while scrolling) ---------- */
@@ -1138,7 +1193,7 @@ a:focus-visible .arrow {
   line-height: 1.02;
 }
 .stop .pull em {
-  color: var(--accent);
+  color: var(--terra-soft);
 }
 .ticks {
   display: none;
@@ -1153,7 +1208,7 @@ a:focus-visible .arrow {
   background: var(--fg);
 }
 .ticks span:last-child.on {
-  background: var(--accent);
+  background: var(--terra-soft);
 }
 
 /* With JavaScript: the section pins and one stop shows at a time */
@@ -1573,6 +1628,104 @@ a:focus-visible .arrow {
   background: var(--accent);
 }
 
+/* ---------- Timeline ---------- */
+.track-wrap {
+  margin-top: clamp(32px, 4vw, 56px);
+}
+.track {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  padding: 26px var(--gutter) 30px;
+  cursor: grab;
+}
+.track::-webkit-scrollbar {
+  display: none;
+}
+.track.dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+}
+.moment {
+  position: relative;
+  flex: 0 0 min(78vw, 340px);
+  scroll-snap-align: start;
+  padding: 38px 32px 8px 0;
+  border-top: 1.5px solid var(--line-2);
+}
+.moment-dot {
+  position: absolute;
+  left: 0;
+  top: -8px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--terra);
+  transition:
+    background-color 0.4s var(--ease),
+    scale 0.4s var(--ease);
+}
+.moment:hover .moment-dot {
+  background: var(--terra);
+  scale: 1.3;
+}
+.moment-when {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.moment .h3 {
+  margin-top: 10px;
+}
+.moment p:last-child {
+  margin-top: 10px;
+  color: var(--soft);
+  font-size: 16px;
+  line-height: 1.5;
+  max-width: 19em;
+}
+.track-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.chip-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--line-2);
+  background: transparent;
+  color: var(--fg);
+  font: inherit;
+  cursor: pointer;
+  transition:
+    background-color 0.3s var(--ease),
+    color 0.3s var(--ease);
+}
+.chip-btn:hover {
+  background: var(--fg);
+  color: var(--bg);
+}
+.cards.awards .card {
+  min-height: 190px;
+}
+@media (min-width: 1100px) {
+  .cards.awards {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+  .cards.awards .card {
+    padding: 24px;
+  }
+  .cards.awards .h3 {
+    font-size: 22px;
+  }
+}
+
 /* ---------- Name strip ---------- */
 .strip {
   overflow: hidden;
@@ -1636,7 +1789,7 @@ html:not(.js) .strip {
   content: '';
   position: absolute;
   z-index: -1;
-  background: #111;
+  background: #0e2040;
   pointer-events: none;
 }
 .cta::before {

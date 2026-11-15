@@ -1,89 +1,87 @@
 # DESIGN.md
 
-The single source for every visual decision on Oluwafunto Abimbola's site. This is version 3, adopted on 13 November 2026. Status: in use.
+The single source for every visual decision on Oluwafunto Abimbola's site. This is version 4, adopted on 15 November 2026 from her written brief for an "immersive digital experience". Status: in use.
 
 ## 1. Brief
 
-- Look and feel like the five sites she chose on Refero: Resend, SVZ (Branding), Oryzo, Studio.Design and Function.
-- Professional enough for the most senior audience. Her test: the UN Secretary-General's office sees it and says "let's invite her".
-- Unique and engaging. It must not look like her old site.
+- The site should feel like stepping into her story. Not a portfolio, a CV or a résumé.
+- A cinematic opening introduces her before anything else. Visitors then choose where to go, and the camera travels there. No hard page changes inside the experience.
+- Calm, intentional, unhurried. Elegant, never cartoonish. Warm Nigerian identity with academic professionalism.
+- The visitor should leave thinking: "I want to know more about this person."
+- Still true from earlier: it must hold up in front of the most senior audience, and nothing on it may be invented.
 
-## 2. What the references actually look like
+## 2. Structure
 
-Versions 1 and 2 were designed from Refero's written descriptions only, because the screenshots were blocked. Version 3 is designed from the screenshots themselves.
+| Address | What it is |
+|---|---|
+| `/` | The experience: the opening sequence, then the world of ten chapters. |
+| `/home` | The former homepage, now the fuller story: portrait, the five-stop policy journey, timeline, three sides of her work, awards. |
+| `/research`, `/speaking`, `/programmes`, `/about`, `/contact` | The detailed pages, linked from the chapters. |
 
-| Reference | What is on screen | What this site takes |
-|---|---|---|
-| Resend | Pure black. One large serif headline at left. A dark 3D object turning slowly at right, lit by soft diagonal light. A small outlined pill above the headline. Two quiet buttons. | The whole opening screen: black canvas, serif headline, pill, light streaks, and a slowly turning 3D object. |
-| SVZ (Branding) | Black. Giant type. Huge dark-grey shapes moving slowly in the background. One red dot. Tiny tracked uppercase labels. Arrow links. | The closing "Let's talk." screen with giant type and slow dark shapes. One red accent. Tracked labels. |
-| Oryzo | An immersive 3D scene of one object, explained as you scroll. | The pinned journey: the object stays on screen and changes as the visitor scrolls through five stops. |
-| Function | A full-screen cinematic photo, an italic serif headline, a row of facts along the bottom edge separated by thin lines, pill buttons. | The row of four facts along the foot of the opening screen. Pill buttons. Photos with a dark fade at the bottom. |
-| Studio.Design | Very large tight type beside small navigation. | Scale contrast: very large headlines, small quiet navigation. |
-
-## 3. The centrepiece: five plates
-
-A stack of five dark glass plates floats in space and turns slowly. Each plate is one level a commitment must pass through: the international convention, Nigerian federal policy, Osun State implementation, the school gate, the classroom. The top plates are solid. The lower ones fade. The last is only a dashed outline set apart from the rest, because the commitment never fully arrives there.
-
-On the Home page the stack appears beside the headline, then the next section pins to the screen. As the visitor scrolls, the plates spread apart, each lights up in turn, and the text beside it changes to that stop. At the fifth stop the empty plate glows red and the line "That gap is where I work." appears.
-
-## 4. Colours
+## 3. Colours
 
 | Token | Value | Use |
 |---|---|---|
-| `--bg` | `#050505` | The canvas, everywhere. |
-| `--fg` | `#F4F4F1` | Headlines, primary buttons. |
-| `--soft` | `#D0D0CB` | Reading text. |
-| `--muted` | `#A6A6A1` | Lead paragraphs, italic headline words, labels. |
-| `--dim` | `#73736F` | Dates and numbering. |
-| `--line` | white at 12% | Hairlines. |
-| `--accent` | `#FF4D5E` | The only colour. Small dots, the fifth plate, "where I work." Never on buttons or large areas. |
+| Deep navy `--navy` | `#0A1830` | Primary. The night sky of the experience, page openings, closing bands, footer. |
+| Warm gold `--gold` | `#C9A24B` (soft `#E3C987`) | Secondary. Map lines, drawings, labels, the main "Enter My World" button, lit countries. |
+| Soft ivory `--ivory` | `#F6F1E7` | Background of reading sections on the inner pages. Text on navy. |
+| Muted terracotta `--terra` | `#B5654A` (soft `#D98A6C`) | Accent. The gap in the policy journey, the chosen country, timeline points. |
+| Forest green `--forest` | `#2F5D46` | Supporting. Book spines, "accepted" tags. |
+| Slate grey `--slate` | `#6B7785` | Supporting. Book spines, quiet text. |
 
-## 5. Fonts
+Navy sections carry ivory text. Ivory sections carry navy text, with terracotta as their accent.
 
-| Role | Font | Use |
-|---|---|---|
-| Display | Gloock | Headlines, large row titles, the name strip, numerals. |
-| Text | Hanken Grotesk (variable) | Body, navigation, buttons, labels. |
+## 4. Fonts
 
-Both self-hosted. Gloock has no italic, so emphasis in a headline is carried by tone: the emphasised words are set in the muted grey. Emphasis only on words already in COPY.md.
+Gloock for headings (large, editorial). Hanken Grotesk for body, labels and buttons. Both self-hosted. Generous white space.
 
-Type scale (desktop to mobile): display 90 to 42px, page headline 88 to 40px, section headline 62 to 32px, closing call up to 132px, lead 20 to 17px, body 18 to 16px, label 11.5px uppercase with 0.18em tracking.
+## 5. The opening sequence (about 33 seconds, can be skipped)
 
-## 6. Layout and components
+1. Near black. Small gold particles drift upward.
+2. A world map appears in thin gold lines.
+3. The camera moves in on West Africa, then Nigeria, which fills with gold.
+4. It continues to Osun State, then Ilesa, marked by a pulsing point and rings.
+5. The map dissolves into a line drawing of a workspace that draws itself: desk, books, papers, notes on the wall, a laptop, a cup, a lamp, a classroom through the window.
+6. The quote appears in two beats: "Research begins with curiosity." then "Change begins with people." It holds, then fades.
+7. Her name, her four roles, and one large gold button: Enter My World.
 
-- **Opening screen (Home).** Fills the screen. Pill, headline, opening paragraph and two buttons at left. The plate stack at right. Four facts along the bottom edge. Soft light falls from the top right.
-- **Inner page openings.** Same black and light, label and large serif headline.
-- **Navigation.** Name in serif at left, small grey links at right, "Email me" as a glass pill. Turns to blurred glass once scrolled. On phone, a Menu button opens a full black screen of large serif links.
-- **Buttons.** Pills. Primary is white with black text. Secondary is dark glass with a thin border.
-- **Big rows.** On Home, the three sides of her work are three very large serif titles divided by hairlines, each with a round arrow button.
-- **Ruled rows.** Publications, talks, experience and awards: date at left in small caps, title in serif, link or status at right.
-- **Glass cards.** Thin border, faint top-down sheen, a soft light that follows the pointer.
-- **Name strip.** Journal and conference names in serif italic, scrolling slowly, fading at both edges. Text only, never logos.
-- **Closing call.** Giant serif headline over two large dark bars that turn slowly.
-- **Photos.** Hers only, 14px radius, thin border, dark fade at the foot.
-- **Footer.** Her name very large in serif, surname in dim italic.
-- Spacing: 8px base, max width 1240px, section gap 88 to 176px. Hairlines, no drop shadows except the glow on the fifth plate.
+Rules: the map is drawn from open geographic data at build time. Osun State is shown as a point, not an outline, because the data has no state borders. A "Skip intro" button is always available. The sequence plays once per visit; "Replay intro" brings it back. Sound is a soft generated tone, off unless the visitor switches it on.
 
-## 7. Motion
+## 6. The world
 
-- The plate stack drifts continuously and leans slightly toward the pointer.
-- The journey pins and steps through five stops with the scroll.
-- Headlines rise in line by line. Sections come into focus from a slight blur as they enter.
-- The four facts count up. The name strip scrolls and pauses on hover. Navigation hides on the way down and returns on the way up. Pages cross-fade.
-- For visitors with "reduce motion" set: nothing drifts or animates, and the journey still steps with the scroll. With JavaScript off, the five stops show as a plain list.
+After "Enter My World" the camera pulls through the opening into a night-sky scene. Her portrait stands at the centre, "From Ilesa, Nigeria". Ten places sit around her, joined to her by dotted gold threads, each a line drawing in a glass circle:
 
-## 8. Accessibility and performance
+Library (Research) · University (Education) · Globe (International Experience) · Open Journal (Publications) · Stage (Speaking) · Community (NGO and Social Impact) · Airplane (Travel and Global Work) · Camera (Media) · Briefcase (Professional Experience) · Envelope (Contact)
 
-- Text contrast at least 4.5 to 1 on black. Visible red focus outline. One H1 per page. Descriptive alt text.
-- The 3D object is built with CSS, not a 3D library, so it adds no download weight. No third-party scripts or embeds.
+Hovering lifts and lights a place. Choosing one makes the camera travel into it, and the chapter arrives out of the blur. Arrows move to the next or previous chapter without going back. The browser's Back button returns to the world.
 
-## 9. Do and don't
+What each chapter shows:
 
-Do: keep the black empty. Let one object and one headline hold the screen. Use red once per screen at most.
+- **Research:** the doctoral study, her two ideas, four counting numbers.
+- **Education:** three degrees as rising cards.
+- **International Experience:** a turning globe. Thirteen countries are lit. Choosing one turns the globe to it and shows what happened there.
+- **Publications:** a bookshelf. Each spine is a publication. Taking a book shows its title, journal, authors, status and link.
+- **Speaking:** a lit stage. Six cards rise onto it: four talks and two accepted papers, labelled as such.
+- **NGO and Social Impact:** Living Hope Care Society at the centre of a web of six connections (Research, Education, Policy, Community, Faith, Leadership) with moving lines.
+- **Travel and Global Work:** seven passport stamps that press in one after another.
+- **Media:** Substack, Instagram, her time as a columnist.
+- **Professional Experience:** her roles as ruled rows, with Cityscape Concierge first.
+- **Contact:** "Pull up a chair." A desk that draws itself (notebook, laptop, coffee), a button to start a conversation and one to copy her email address.
 
-Don't: no invented logos, press mentions, testimonials or statistics. No stock photos. No second colour. No copy that is not in COPY.md.
+## 7. Phone
 
-## 10. Decision log
+The world is not shrunk. The ten places become large cards in a row that the visitor swipes through, starting with her portrait. Tapping a card enters the chapter full screen. Every control is at least 44px high.
+
+## 8. Motion, accessibility and performance
+
+- Everything is slow: camera moves take 3.5 to 4.5 seconds, arrivals about 1.5 seconds.
+- Drawings are SVG that trace themselves. The globe and particles are drawn on canvas. No animation libraries, no third-party scripts. The globe's code loads only when that chapter is opened.
+- With "reduce motion" set, the opening goes straight to her name and the button, the camera does not travel, and nothing drifts.
+- With scripts off, the page is an ordinary document: her name, the quote, and all ten chapters in order.
+- Keyboard: every place, book, ticket, country and connection is a real button or link. Escape closes a chapter. Visible gold focus outline.
+- The chapter view is announced as a dialog with the chapter's title.
+
+## 9. Decision log
 
 Every design choice gets recorded here, newest at the bottom.
 
@@ -120,3 +118,11 @@ Every design choice gets recorded here, newest at the bottom.
 | D29 | 2026-11-14 | The opening portrait is replaced with a second cut-out she sent: same suit, hands relaxed at the waist, brighter pink. The first cut-out (arms folded) is kept in the project, unused. | She sent it straight after seeing the first one live, with no message, so I took it as her preferred pose. Credit to Mountain Photography is assumed from the first photo of the same shoot and needs her confirmation. | In use, credit to confirm |
 | D30 | 2026-11-14 | She sent a third cut-out, so all three portraits are used, one per page: front-facing with hands at the waist on Home, arms folded on Speaking, the brighter pink one on Contact. Each uses the same step-out-of-the-frame treatment. | Three poses arrived one after another with no message. Speaking and Contact had no photo of her, and repeating one portrait on three pages would look thin. Easy to reshuffle. | In use, her confirmation pending |
 | D31 | 2026-11-14 | The portrait is no longer still. She rises out of the frame in slow motion (about four seconds), then floats gently for as long as the page is open. The frame sways slowly behind her, its red glow breathes, a band of light crosses the glass every so often, and a thin orbit with one red point of light circles her, passing behind her and then in front. The quick overshoot launch is removed. | She said the pop-out was too stiff and asked for something more interesting and in slow motion. | In use |
+| D32 | 2026-11-15 | Version 3 (black, single red accent) is retired in favour of version 4: navy, gold, ivory, terracotta, forest and slate, with the experience as the front door and the old homepage at `/home`. | Her written brief of 15 November. | In use |
+| D33 | 2026-11-15 | Her name is shown without "Dr.", although the brief wrote it with the title. | She confirmed the degree is not yet conferred. To be added the day she says it is official. | Her decision |
+| D34 | 2026-11-15 | "Founder" is shown as her fourth role, and Cityscape Concierge heads the Professional Experience chapter with no description. | She confirmed she owns Cityscape Concierge. She has not yet said what it does or when it began. | In use, details wanted |
+| D35 | 2026-11-15 | Things the brief asked for that are left out because no real content exists yet: abstracts, keywords, impact figures and downloads for publications; slides, photos and videos for talks; a "future vision" timeline stop; media appearances. | Hard rule: nothing invented. Each has a natural place to be added. | Waiting on her |
+| D36 | 2026-11-15 | Built without Framer Motion or Lottie. | Both belong to a different kind of codebase, and Lottie needs ready-made animation files. The same effects are written directly as SVG, canvas and CSS, which is lighter. | In use |
+| D37 | 2026-11-15 | Sound is a quiet generated tone, off by default, behind a switch. | Browsers block sound until the visitor acts, and she chose this option. | Her decision |
+| D38 | 2026-11-15 | Inner pages open on navy and read on ivory. | Brings the brief's ivory background into the site while keeping the navigation legible over a dark opening. | In use |
+

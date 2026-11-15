@@ -1,198 +1,952 @@
 ---
+// The opening experience: a cinematic introduction, then a world of chapters to choose from.
+// Rules live in DESIGN.md (version 4). Every fact comes from CONTEXT.md.
 import { Image } from 'astro:assets';
+import { geoNaturalEarth1, geoPath } from 'd3-geo';
+import { feature } from 'topojson-client';
+import world from 'world-atlas/countries-110m.json';
 import Base from '../layouts/Base.astro';
-import A from '../components/A.astro';
-import Cta from '../components/Cta.astro';
-import Pop from '../components/Pop.astro';
-import portrait from '../assets/photos/hse-graduation.jpg';
-import front from '../assets/photos/portrait-front.png';
+import '../styles/experience.css';
+import portrait from '../assets/photos/portrait-front.png';
 
-const email = 'mailto:oluwafuntoabimbola@gmail.com';
-const names = [
-  'Psychological Science and Education',
-  'World of Psychology',
-  'International Journal of Humanitarian Action',
-  'Journal of Social Policy Studies (accepted)',
-  'IPSA World Congress',
-  'London International Conference on Inclusive Education',
+const email = 'oluwafuntoabimbola@gmail.com';
+
+// ----- the map, drawn once at build time -----
+const countries = feature(world, world.objects.countries).features;
+const proj = geoNaturalEarth1().fitSize([1000, 500], { type: 'Sphere' });
+const path = geoPath(proj).digits(1);
+const land = countries
+  .filter((c) => c.id !== '566')
+  .map((c) => path(c))
+  .filter(Boolean)
+  .join('');
+const nigeria = path(countries.find((c) => c.id === '566'));
+const at = (lon, lat) => proj([lon, lat]).map((n) => +n.toFixed(1));
+const cams = {
+  world: { p: at(18, 12), s: 1.15, r: -5 },
+  west: { p: at(2, 11), s: 3.2, r: -2 },
+  nigeria: { p: at(8.2, 9.2), s: 7, r: 0 },
+  osun: { p: at(4.52, 7.56), s: 12, r: 0 },
+  ilesa: { p: at(4.74, 7.62), s: 16, r: 0 },
+};
+
+// ----- line drawings -----
+const icons = {
+  research:
+    '<rect x="10" y="10" width="44" height="44" rx="2"/><path d="M10 26h44M10 42h44M16 12v12M21 12v12M27 14v10M33 12v12M40 13l4 11M17 28v12M23 28v12M30 30v10M37 28v12M43 28v12M48 30l-3 10M18 44v9M25 44v9M31 46v7M38 44v9M45 44v9"/>',
+  education: '<path d="M8 26 32 12l24 14z"/><path d="M12 26v22M22 26v22M32 26v22M42 26v22M52 26v22M8 48h48M6 54h52"/>',
+  international:
+    '<circle cx="32" cy="32" r="22"/><path d="M10 32h44M32 10c-9 6-9 38 0 44M32 10c9 6 9 38 0 44M14 20c10 5 26 5 36 0M14 44c10-5 26-5 36 0"/>',
+  publications:
+    '<path d="M32 16c-6-4-14-5-22-4v36c8-1 16 0 22 4 6-4 14-5 22-4V12c-8-1-16 0-22 4zM32 16v36"/><path d="M16 22c4 0 8 .6 11 2M16 29c4 0 8 .6 11 2M16 36c4 0 8 .6 11 2M37 24c3-1.4 7-2 11-2M37 31c3-1.4 7-2 11-2"/>',
+  speaking:
+    '<path d="M6 46h52l-4 8H10z"/><path d="M10 10h44M12 10c0 10 3 18 6 22M52 10c0 10-3 18-6 22M32 22v14M27 46l3-10h4l3 10"/><circle cx="32" cy="19" r="3.5"/>',
+  community:
+    '<circle cx="32" cy="18" r="6"/><circle cx="14" cy="42" r="5"/><circle cx="50" cy="42" r="5"/><path d="M28 23 17 38M36 23l11 15M19 42h26"/>',
+  travel: '<path d="M8 36l48-22-14 40-9-16z"/><path d="M33 38l23-24M33 38v12l6-7"/>',
+  media:
+    '<rect x="8" y="20" width="48" height="30" rx="4"/><path d="M22 20l4-7h12l4 7"/><circle cx="32" cy="35" r="9"/><circle cx="32" cy="35" r="4"/>',
+  experience: '<rect x="8" y="22" width="48" height="30" rx="3"/><path d="M24 22v-6h16v6M8 36h48M28 36v4h8v-4"/>',
+  contact: '<rect x="8" y="16" width="48" height="34" rx="3"/><path d="M8 20l24 18 24-18"/>',
+};
+
+// ----- the ten places -----
+const places = [
+  { id: 'research', place: 'Library', title: 'Research', x: 17, y: 20 },
+  { id: 'education', place: 'University', title: 'Education', x: 50, y: 9 },
+  { id: 'international', place: 'Globe', title: 'International Experience', x: 83, y: 20 },
+  { id: 'publications', place: 'Open Journal', title: 'Publications', x: 8, y: 50 },
+  { id: 'speaking', place: 'Stage', title: 'Speaking', x: 92, y: 50 },
+  { id: 'community', place: 'Community', title: 'NGO and Social Impact', x: 17, y: 80 },
+  { id: 'travel', place: 'Airplane', title: 'Travel and Global Work', x: 38, y: 92 },
+  { id: 'media', place: 'Camera', title: 'Media', x: 62, y: 92 },
+  { id: 'experience', place: 'Briefcase', title: 'Professional Experience', x: 83, y: 80 },
+  { id: 'contact', place: 'Envelope', title: 'Contact', x: 50, y: 78 },
 ];
-const stops = [
+
+// ----- publications, as books -----
+const books = [
   {
-    title: 'The international convention',
-    say: 'Article 24 of the UN Convention on the Rights of Persons with Disabilities commits countries to inclusive education.',
+    id: 'b1',
+    spine: 'Factors promoting and hindering inclusive education',
+    title:
+      'Factors promoting and hindering inclusive education for learners with disabilities in low- and lower-middle-income countries: A comparative review',
+    where: 'Psychological Science and Education, 31(2), 244-255',
+    year: '2026',
+    who: 'Single author',
+    status: 'Published',
+    doi: 'https://doi.org/10.17759/pse.2026310216',
+    tone: 'gold',
+    h: 96,
   },
   {
-    title: 'Nigerian federal policy',
-    say: 'Nigeria has written the convention into law. But the law carries no education-specific enforcement.',
+    id: 'b2',
+    spine: 'Systemic barriers and multi-level collaboration',
+    title:
+      'Systemic barriers and multi-level collaboration in inclusive education: Stakeholder perspectives from Nigeria',
+    where: 'World of Psychology (Mir psikhologii), 3(122), 200-211',
+    year: '2025',
+    who: 'With A. J. Balogun',
+    status: 'Published',
+    doi: 'https://doi.org/10.51944/20738528_2025_3_200',
+    tone: 'terra',
+    h: 88,
   },
   {
-    title: 'Osun State implementation',
-    say: "My doctoral research follows the commitment here, through the state's own policy.",
+    id: 'b3',
+    spine: 'Data gathering and utilization',
+    title: 'Data gathering and utilization: Humanitarian targeting and ethical issues in northeastern Nigeria',
+    where: 'International Journal of Humanitarian Action, 8, Article 6',
+    year: '2023',
+    who: 'With O. Fayehun and colleagues',
+    status: 'Published',
+    doi: 'https://doi.org/10.1186/s41018-023-00137-2',
+    tone: 'forest',
+    h: 92,
   },
   {
-    title: 'The school gate',
-    say: 'Five schools. 48 adults and 15 learners, interviewed in Yoruba and English with no translator in between.',
+    id: 'b4',
+    spine: 'Policy borrowing without enforcement',
+    title:
+      'Policy borrowing without education-specific enforcement: Translating the CRPD into Nigerian federal law and policy on inclusive education',
+    where: 'Journal of Social Policy Studies',
+    year: '2027',
+    who: 'Single author',
+    status: 'Accepted',
+    tone: 'ivory',
+    h: 100,
   },
   {
-    title: 'The classroom',
-    say: 'In many schools inclusion stays on paper, and children with disabilities are left at the classroom door.',
+    id: 'b5',
+    spine: 'Between stigma and support',
+    title:
+      'Between stigma and support: The psychological experiences of parents of children with learning disabilities in Osun State, Nigeria',
+    where: 'Vestnik Tomskogo Gosudarstvennogo Universiteta',
+    year: '',
+    who: 'Single author',
+    status: 'Under review',
+    tone: 'slate',
+    h: 84,
+  },
+  {
+    id: 'b6',
+    spine: 'Culturally Negotiated Inclusion',
+    title:
+      'Culturally Negotiated Inclusion: A theoretical framework for understanding implementation in Global South education systems',
+    where: '',
+    year: '',
+    who: 'Single author',
+    status: 'In preparation',
+    tone: 'gold',
+    h: 90,
+  },
+  {
+    id: 'b7',
+    spine: 'Disintegration of inclusive education',
+    title:
+      'Disintegration of inclusive education: How autocratic policies threaten support for children with learning disabilities',
+    where: '',
+    year: '',
+    who: 'Single author',
+    status: 'In preparation',
+    tone: 'terra',
+    h: 86,
+  },
+  {
+    id: 'b8',
+    spine: 'Data and displacement',
+    title:
+      'Data and displacement: Assessing the practical and ethical implications of data-driven humanitarianism for internally displaced persons in camp-like settings',
+    where: 'Report',
+    year: '2022',
+    who: 'With V. Squire, O. Fayehun and colleagues',
+    status: 'Other writing',
+    tone: 'forest',
+    h: 94,
+  },
+  {
+    id: 'b9',
+    spine: 'Collaborative research at a time of uncertainty',
+    title: 'Data and Displacement: Collaborative Research at a Time of Uncertainty',
+    where: 'University of Warwick blog',
+    year: '2021',
+    who: 'Single author',
+    status: 'Other writing',
+    doi: 'https://blogs.warwick.ac.uk/po901/entry/data_and_displacement/',
+    link: 'Read the post',
+    tone: 'slate',
+    h: 80,
   },
 ];
-const sides = [
+
+// ----- the stage -----
+const talks = [
   {
-    href: '/research',
-    title: 'Policy research',
-    text: 'Doctoral research on how Article 24 of the UN disability convention reaches schools in Osun State, Nigeria. Three published journal articles and one more accepted.',
+    id: 't1',
+    when: 'May 2026',
+    city: 'Moscow',
+    title: 'The Contribution of Universities to the Development of an Inclusive Culture in Society',
+    where: 'III International Scientific and Practical Conference, RUDN University',
+    kind: 'Talk',
   },
   {
-    href: '/programmes',
-    title: 'Programmes',
-    text: 'Director of Programmes at Living Hope Care Society, an education and health NGO in Osun State.',
+    id: 't2',
+    when: 'July 2025',
+    city: 'Seoul',
+    title: 'Autocratic governance and inclusive education barriers: Africa',
+    where: '28th IPSA World Congress of Political Science',
+    kind: 'Talk',
   },
   {
-    href: '/speaking',
-    title: 'Speaking and teaching',
-    text: "Four conference talks since 2024, in Seoul and Moscow, two more papers accepted at conferences in London and Kaohsiung, and master's level teaching at HSE University.",
+    id: 't3',
+    when: 'February 2025',
+    city: 'Moscow',
+    title:
+      'From grassroots to policy framework: A critical analysis of chess-based pedagogical innovation in Nigerian urban informal settlements',
+    where: 'XXI International Scientific and Practical Conference "Trends in the Development of Education"',
+    kind: 'Talk',
   },
+  {
+    id: 't4',
+    when: 'June 2024',
+    city: 'Online',
+    title:
+      'Facilitators and barriers to inclusive education for learners with learning disabilities in low- and lower-middle-income nations: A case study of Nigeria',
+    where: 'Southern Political Science Association Virtual Summer Meeting',
+    kind: 'Talk',
+  },
+  {
+    id: 't5',
+    when: 'October 2026',
+    city: 'Kaohsiung',
+    title:
+      'Policy borrowing, policy translation, and inclusive education reform: Global-to-state dynamics in Osun State, Nigeria',
+    where: 'TERA and WERA Annual Conference, Taiwan',
+    kind: 'Accepted paper',
+  },
+  {
+    id: 't6',
+    when: 'July 2026',
+    city: 'London',
+    title:
+      'Educational processes and learning outcomes for children with special educational needs: A global scoping review',
+    where: 'London International Conference on Inclusive Education, University College London',
+    kind: 'Accepted paper, in proceedings',
+  },
+];
+
+// ----- the globe -----
+const lands = [
+  {
+    id: '566',
+    name: 'Nigeria',
+    kind: 'Home, fieldwork and programmes',
+    notes: [
+      'Grew up in Ilesa, Osun State.',
+      'Doctoral fieldwork in five Osun State schools, December 2024.',
+      'Director of Programmes, Living Hope Care Society.',
+      'Research internship, University of Ibadan, 2021.',
+      'UN Information Centre, Lagos, 2017.',
+    ],
+  },
+  {
+    id: '643',
+    name: 'Russia',
+    kind: 'Study, research and teaching',
+    notes: [
+      'MSc and doctorate at HSE University, Moscow, since 2021.',
+      'Research Assistant and Teaching Assistant at HSE.',
+      'Conference talks in Moscow, February 2025 and May 2026.',
+      'Early years teaching in Moscow since 2023.',
+    ],
+  },
+  {
+    id: '410',
+    name: 'South Korea',
+    kind: 'Presented',
+    notes: ['28th IPSA World Congress of Political Science, Seoul, July 2025.'],
+  },
+  {
+    id: '818',
+    name: 'Egypt',
+    kind: 'Leadership training',
+    notes: [
+      'African Presidential Leadership Program, Cairo, 2019.',
+      'Excellence Award, National Training Academy, Cairo, 2019.',
+    ],
+  },
+  {
+    id: '288',
+    name: 'Ghana',
+    kind: 'Presented',
+    notes: [
+      'Ghana International Model United Nations: oral presenter, 2016, and honourable mention, 2017.',
+      'Honorary award of excellence, Ministry of Tourism, Accra, 2016.',
+    ],
+  },
+  { id: '634', name: 'Qatar', kind: 'Volunteered', notes: ['Volunteer, FIFA World Cup, 2022.'] },
+  {
+    id: '826',
+    name: 'United Kingdom',
+    kind: 'Collaboration and accepted paper',
+    notes: [
+      'Paper in the proceedings of the London International Conference on Inclusive Education, University College London, July 2026.',
+      'Data and Displacement research with colleagues at the University of Warwick.',
+    ],
+  },
+  {
+    id: '158',
+    name: 'Taiwan',
+    kind: 'Accepted paper',
+    notes: ['Paper accepted at the TERA and WERA Annual Conference, Kaohsiung, October 2026.'],
+  },
+  {
+    id: '124',
+    name: 'Canada',
+    kind: 'Worked remotely',
+    notes: ['Study Admission Specialist, HumanSquad Inc., Toronto, 2022 to 2023.'],
+  },
+  {
+    id: '840',
+    name: 'United States',
+    kind: 'Presented online',
+    notes: ['Southern Political Science Association Virtual Summer Meeting, June 2024.'],
+  },
+  {
+    id: '076',
+    name: 'Brazil',
+    kind: 'Researched',
+    notes: ["MSc thesis comparing ICT policy in the education systems of Nigeria and Brazil."],
+  },
+  {
+    id: '156',
+    name: 'China',
+    kind: 'Researched',
+    notes: ['Analytical review of special education systems in China, South Korea, Japan and Singapore.'],
+  },
+  {
+    id: '392',
+    name: 'Japan',
+    kind: 'Researched',
+    notes: ['Analytical review of special education systems in China, South Korea, Japan and Singapore.'],
+  },
+];
+
+// ----- the community web -----
+const nodes = [
+  {
+    id: 'n-research',
+    name: 'Research',
+    x: 50,
+    y: 10,
+    notes: [
+      'Doctoral study of how CRPD Article 24 reaches schools in Osun State.',
+      'Two ideas: Culturally Negotiated Inclusion and Advocacy Literacy.',
+    ],
+  },
+  {
+    id: 'n-education',
+    name: 'Education',
+    x: 87,
+    y: 32,
+    notes: [
+      'Scholarship and educational support for learners in Osun State through Living Hope Care Society.',
+      'Co-organiser, National Youth Service Corps Sustainable Development Goals quality education outreach, 2018 to 2019.',
+    ],
+  },
+  {
+    id: 'n-policy',
+    name: 'Policy',
+    x: 87,
+    y: 72,
+    notes: [
+      'Wrote programme policy: selection criteria, household eligibility rules and staff reporting standards.',
+      'Policy analysis at international, federal and state level.',
+    ],
+  },
+  {
+    id: 'n-community',
+    name: 'Community',
+    x: 50,
+    y: 92,
+    notes: [
+      'Partnerships with 20+ schools, educational institutions and community organisations.',
+      'Volunteer and member, Red Cross Society of Nigeria, 2017.',
+      'Volunteer, HSE Buddy Programme for international students, 2023 to 2024.',
+    ],
+  },
+  {
+    id: 'n-faith',
+    name: 'Faith',
+    x: 13,
+    y: 72,
+    notes: ['Meritorious Service Award, Bowen Baptist Student Fellowship, 2018.'],
+  },
+  {
+    id: 'n-leadership',
+    name: 'Leadership',
+    x: 13,
+    y: 32,
+    notes: [
+      'Director of Programmes, Living Hope Care Society, since January 2026.',
+      'African Presidential Leadership Program, Cairo, 2019.',
+      'Member, Young African Leaders Initiative.',
+      'Student Ambassador of the Year, Bowen University, 2018.',
+    ],
+  },
+];
+
+const stamps = [
+  { city: 'Accra', year: '2016', why: 'Ghana International Model United Nations' },
+  { city: 'Lagos', year: '2017', why: 'UN Information Centre' },
+  { city: 'Cairo', year: '2019', why: 'African Presidential Leadership Program' },
+  { city: 'Ibadan', year: '2021', why: 'Research internship, University of Ibadan' },
+  { city: 'Moscow', year: '2021', why: 'HSE University' },
+  { city: 'Doha', year: '2022', why: 'Volunteer, FIFA World Cup' },
+  { city: 'Seoul', year: '2025', why: 'IPSA World Congress' },
+];
+
+const jobs = [
+  ['January 2026 to present', 'Director of Programmes', 'Living Hope Care Society'],
+  ['November 2019 to January 2026', 'Education Program Coordinator', 'Living Hope Care Society'],
+  ['April to December 2025', 'Research Assistant', 'A. A. Pinsky Centre of General and Extracurricular Education, HSE University'],
+  ['Fall 2022 and Spring 2023', 'Teaching Assistant', 'Department of Public Policy, HSE University'],
+  ['August 2022 to June 2023', 'Research Assistant', 'HSE University'],
+  ['July 2022 to July 2023', 'Study Admission Specialist', 'HumanSquad Inc., Toronto (remote)'],
+  ['January to August 2021', 'Research Intern', 'University of Ibadan'],
 ];
 ---
 
 <Base
   title="Oluwafunto Abimbola | Inclusive education researcher"
-  description="Oluwafunto Abimbola is an inclusive education researcher and programme lead working on why inclusion policy stalls before it reaches the classroom, in Nigeria and beyond."
+  description="Step into the story of Oluwafunto Abimbola, an inclusive education researcher from Ilesa, Nigeria, working on why inclusion policy stalls before it reaches the classroom."
+  bare
 >
-  <section class="hero home">
-    <div class="wrap grid">
-      <div class="hero-text">
-        <p class="pill" data-reveal>Inclusive education researcher and programme lead</p>
-        <h1 class="display" data-split>
-          I help close the gap between inclusion policy and <em>the classroom.</em>
-        </h1>
-        <p class="lead" data-reveal>
-          Countries sign inclusive education commitments, yet children with disabilities still get left out of
-          learning. I am Oluwafunto Abimbola, an inclusive education researcher. I study why that happens in Nigeria
-          and other low- and middle-income countries, and I run programmes that put the answers to work.
-        </p>
-        <div class="btns" data-reveal>
-          <A class="btn" href="/research">Read my research</A>
-          <A class="btn ghost" href={email}>Email me</A>
-        </div>
+  <div class="exp" data-exp data-cams={JSON.stringify(cams)}>
+    <!-- ================= The opening ================= -->
+    <section class="intro" data-intro data-step="0" aria-label="Introduction">
+      <canvas class="motes" aria-hidden="true"></canvas>
+
+      <div class="intro-map" aria-hidden="true">
+        <svg viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid slice">
+          <g class="cam">
+            <path class="land" d={land}></path>
+            <path class="ng" d={nigeria}></path>
+          </g>
+        </svg>
+        <div class="reticle"><i></i><i></i><i></i></div>
       </div>
-      <Pop
-        src={front}
-        alt="Oluwafunto Abimbola smiling, hands resting at her waist, a red blazer draped over her shoulders"
-        top={32}
-        eager
-      />
-    </div>
-    <div class="hero-facts">
-      <div class="wrap">
-        <ul class="facts" data-reveal>
-          <li class="fact"><b data-count="5">5</b><span>schools in my Osun State field study</span></li>
-          <li class="fact"><b data-count="48">48</b><span>adults and 15 learners interviewed</span></li>
-          <li class="fact"><b data-count="3">3</b><span>peer-reviewed journal articles published</span></li>
-          <li class="fact"><b data-count="4">4</b><span>conference talks since 2024</span></li>
+
+      <div class="intro-desk" aria-hidden="true">
+        <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet">
+          <g class="draw">
+            <path pathLength="1" d="M60 380h680M90 380v70M710 380v70"></path>
+            <path
+              pathLength="1"
+              d="M105 360h160v20H105zM110 340h150v20H110zM120 320h130v20H120zM130 330h40M128 350h60M122 370h50"
+            ></path>
+            <path pathLength="1" d="M290 380v-90h22v90M312 380v-104h20v104M332 380v-84h26v84M358 380l18-88 22 5-18 83"
+            ></path>
+            <path pathLength="1" d="M400 372l14-96h170l14 96zM386 372h226v8H386zM432 300h120M432 316h90M432 332h110"
+            ></path>
+            <path
+              pathLength="1"
+              d="M640 344h44v24a12 12 0 0 1-12 12h-20a12 12 0 0 1-12-12zM684 350h8a8 8 0 0 1 0 16h-8M654 332c-6-8 6-12 0-20M668 332c-6-8 6-12 0-20"
+            ></path>
+            <path pathLength="1" d="M560 276l-30-80 60-40M590 156l34 10-14 30-30-10z"></path>
+            <path
+              pathLength="1"
+              transform="rotate(-4 165 175)"
+              d="M120 120h90v110h-90zM134 146h60M134 162h52M134 178h60M134 194h40"></path>
+            <path pathLength="1" transform="rotate(3 270 158)" d="M230 110h80v96h-80zM244 134h52M244 150h44M244 166h52"
+            ></path>
+            <path
+              pathLength="1"
+              d="M620 90h130v150H620zM685 90v150M620 165h130M634 222h24v-10h-24zM700 222h24v-10h-24zM646 200a5 5 0 1 0 .1 0M712 200a5 5 0 1 0 .1 0"
+            ></path>
+          </g>
+        </svg>
+      </div>
+
+      <p class="intro-cap" data-cap aria-hidden="true"></p>
+
+      <p class="intro-quote">
+        <span>Research begins with curiosity.</span>
+        <span>Change begins with people.</span>
+      </p>
+
+      <div class="intro-id">
+        <h1 class="intro-name">Oluwafunto Abimbola</h1>
+        <ul class="intro-roles">
+          <li>Inclusive Education Researcher</li>
+          <li>Education Policy Analyst</li>
+          <li>Speaker</li>
+          <li>Founder</li>
         </ul>
+        <button class="btn enter" type="button" data-enter>Enter My World</button>
       </div>
-    </div>
-  </section>
 
-  <section class="journey" data-journey>
-    <div class="pin">
-      <div class="wrap grid">
-        <div class="copy">
-          <p class="label"><span class="n">01</span> The problem</p>
-          <h2 class="h2">Where does inclusion <em>get lost?</em></h2>
-          <ol class="stops">
-            {
-              stops.map((s, i) => (
-                <li class="stop">
-                  <p class="kicker">Stop {i + 1} of 5</p>
-                  <h3>{s.title}</h3>
-                  <p class="say">{s.say}</p>
-                  {i === 4 && (
-                    <p class="pull">
-                      That gap is <em>where I work.</em>
-                    </p>
-                  )}
-                </li>
-              ))
-            }
-          </ol>
-          <div class="ticks" aria-hidden="true">
-            <span></span><span></span><span></span><span></span><span></span>
-          </div>
-        </div>
-        <div class="scene-wrap" aria-hidden="true">
-          <div class="scene">
-            <div class="stack" data-stack>
-              <span class="plate"></span><span class="plate"></span><span class="plate"></span><span
-                class="plate"></span><span class="plate"></span>
-            </div>
-          </div>
-        </div>
+      <div class="intro-tools">
+        <button type="button" class="tool" data-sound aria-pressed="false">Sound: off</button>
+        <button type="button" class="tool" data-skip>Skip intro</button>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section">
-    <div class="wrap grid">
-      <div class="head">
-        <p class="label" data-reveal><span class="n">02</span> Three sides of the same problem</p>
-        <h2 class="h2" data-split>Research, programmes and practice, <em>in one person</em></h2>
-        <p class="lead" data-reveal>
-          In most teams these three sit with different people. I work across all of them, so findings turn into
-          programmes and programmes hold up in real classrooms.
-        </p>
-      </div>
-      <figure class="photo portrait" data-reveal>
-        <Image
-          src={portrait}
-          alt="Oluwafunto Abimbola in a graduation gown and cap, smiling and holding a blue diploma folder outside the Higher School of Economics in Moscow"
-          widths={[380, 570, 760, 960]}
-          sizes="(max-width: 900px) 380px, 400px"
-        />
-      </figure>
-      <div class="bigrows" data-stagger>
+    <!-- ================= The world ================= -->
+    <div class="world" data-world>
+      <header class="world-top">
+        <a class="brand" href="/home">Oluwafunto Abimbola</a>
+        <nav class="world-links" aria-label="Site">
+          <a href="/home">Home page</a>
+          <button type="button" class="tool" data-replay>Replay intro</button>
+        </nav>
+      </header>
+
+      <p class="world-hint" data-reveal>Choose where to go.</p>
+
+      <nav class="scene" data-scene aria-label="Chapters of my story">
+        <svg class="threads" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          {places.map((p) => <path pathLength="1" d={`M50 46 Q ${(50 + p.x) / 2} ${p.y} ${p.x} ${p.y}`}></path>)}
+        </svg>
+        <div class="heart">
+          <Image
+            src={portrait}
+            alt="Oluwafunto Abimbola smiling, a red blazer draped over her shoulders"
+            widths={[320, 480, 640]}
+            sizes="(max-width: 900px) 240px, 300px"
+            loading="eager"
+          />
+          <p class="heart-name">Oluwafunto Abimbola</p>
+          <p class="heart-sub">From Ilesa, Nigeria</p>
+        </div>
         {
-          sides.map((s, i) => (
-            <a class="bigrow" href={s.href} data-reveal>
-              <span class="num">0{i + 1}</span>
-              <h3>{s.title}</h3>
-              <span class="go" aria-hidden="true">
-                ↗
-              </span>
-              <p>{s.text}</p>
+          places.map((p, i) => (
+            <a class="place" href={`#${p.id}`} data-place={p.id} style={`--x:${p.x}%;--y:${p.y}%;--i:${i}`}>
+              <svg viewBox="0 0 64 64" aria-hidden="true" set:html={icons[p.id]} />
+              <span class="place-kicker">{p.place}</span>
+              <span class="place-title">{p.title}</span>
             </a>
           ))
         }
-      </div>
-    </div>
-  </section>
+      </nav>
 
-  <section class="section same">
-    <div class="wrap">
-      <p class="label" data-reveal style="margin-bottom:28px"><span class="n">03</span> Where the work has appeared</p>
+      <a class="btn ghost world-home" href="/home">Read the full story <span class="arrow" aria-hidden="true">↗</span></a>
     </div>
-    <div class="strip" data-reveal>
-      <div class="strip-track">
-        <ul>
-          {names.map((n) => <li>{n}</li>)}
-        </ul>
-        <ul aria-hidden="true">
-          {names.map((n) => <li>{n}</li>)}
-        </ul>
-      </div>
-    </div>
-  </section>
 
-  <Cta
-    heading="Working on inclusion?"
-    em="Let's talk."
-    text="I am open to research partnerships, programme and policy work, and invitations to speak."
-  >
-    <A class="btn" href={email}>Email me</A>
-    <A class="btn ghost" href="https://www.linkedin.com/in/abimbola-oluwafunto">Follow on LinkedIn</A>
-    <A class="btn ghost" href="https://substack.com/@funtoabimbola">Subscribe on Substack</A>
-  </Cta>
+    <!-- ================= The chapter panel ================= -->
+    <div class="panel" data-panel role="dialog" aria-modal="true" aria-label="Chapter" hidden>
+      <div class="panel-bar">
+        <button type="button" class="tool" data-close>← Back to the world</button>
+        <div class="panel-step">
+          <button type="button" class="tool" data-prev aria-label="Previous chapter">←</button>
+          <button type="button" class="tool" data-next aria-label="Next chapter">→</button>
+        </div>
+      </div>
+      <div class="panel-body" data-panel-body tabindex="-1"></div>
+    </div>
+
+    <!-- ================= The chapters (plain document when scripts are off) ================= -->
+    <main id="main" class="chapters" data-chapters>
+      <!-- Research -->
+      <article class="chapter" id="research" data-chapter>
+        <header class="ch-head">
+          <svg viewBox="0 0 64 64" aria-hidden="true" set:html={icons.research} />
+          <p class="label">Library</p>
+          <h2 class="h2">Research</h2>
+          <p class="lead">
+            My research on inclusive education policy in Nigeria asks one question: why do commitments made in law stall
+            before they reach children?
+          </p>
+        </header>
+        <div class="ch-grid">
+          <div class="glass">
+            <p class="label plain">The doctoral study</p>
+            <h3 class="h3">Five schools in Osun State</h3>
+            <ul class="bullets">
+              <li>Qualitative fieldwork in five schools, three private and two state-run, in December 2024</li>
+              <li>48 adult participants and 15 learner narratives</li>
+              <li>Interviews run, transcribed and analysed in Yoruba and English, with no translator in between</li>
+              <li>Policy document analysis at international, federal and state level</li>
+            </ul>
+          </div>
+          <div class="glass">
+            <p class="label plain">Idea 01</p>
+            <h3 class="h3">Culturally Negotiated Inclusion</h3>
+            <p>Communities do not simply fail to implement inclusion. They reshape it.</p>
+          </div>
+          <div class="glass">
+            <p class="label plain">Idea 02</p>
+            <h3 class="h3">Advocacy Literacy</h3>
+            <p>
+              The competence families, mothers in particular, build to claim entitlements for their children that exist
+              only on paper.
+            </p>
+          </div>
+        </div>
+        <div class="ch-meter">
+          <div><b data-count="5">5</b><span>schools</span></div>
+          <div><b data-count="48">48</b><span>adults interviewed</span></div>
+          <div><b data-count="15">15</b><span>learner narratives</span></div>
+          <div><b data-count="3">3</b><span>journal articles published</span></div>
+        </div>
+        <p class="ch-more"><a class="btn ghost" href="/research">Open the full research page <span class="arrow" aria-hidden="true">↗</span></a></p>
+      </article>
+
+      <!-- Education -->
+      <article class="chapter" id="education" data-chapter>
+        <header class="ch-head">
+          <svg viewBox="0 0 64 64" aria-hidden="true" set:html={icons.education} />
+          <p class="label">University</p>
+          <h2 class="h2">Education</h2>
+        </header>
+        <ol class="steps-rise">
+          <li class="glass">
+            <p class="label plain">2014 to 2018 · Iwo, Nigeria</p>
+            <h3 class="h3">BA, History and International Studies</h3>
+            <p>Bowen University. Student Ambassador of the Year, 2018.</p>
+          </li>
+          <li class="glass">
+            <p class="label plain">2021 to 2023 · Moscow, Russia</p>
+            <h3 class="h3">MSc, Political Analysis and Public Policy</h3>
+            <p>
+              HSE University. Thesis: Analysis of ICT Policy in the Nigerian Education System: A Comparative Analysis of
+              Nigeria and Brazil. Pa. Awomolo Excellence Award, fully funded.
+            </p>
+          </li>
+          <li class="glass">
+            <p class="label plain">Started November 2023 · Moscow, Russia</p>
+            <h3 class="h3">Doctorate, Education Policy</h3>
+            <p>
+              Institute of Education, HSE University. Programme completed October 2026, final defense ahead. Supervisor:
+              Prof. Sergey Kosaretsky. Russian Government Academic Scholarship.
+            </p>
+          </li>
+        </ol>
+      </article>
+
+      <!-- International -->
+      <article class="chapter" id="international" data-chapter>
+        <header class="ch-head">
+          <svg viewBox="0 0 64 64" aria-hidden="true" set:html={icons.international} />
+          <p class="label">Globe</p>
+          <h2 class="h2">International Experience</h2>
+          <p class="lead">Turn the globe, or choose a country, to see what happened there.</p>
+        </header>
+        <div class="globe-wrap" data-picks>
+          <div class="globe">
+            <canvas data-globe data-lit={lands.map((l) => l.id).join(',')} aria-hidden="true"></canvas>
+          </div>
+          <div class="globe-side">
+            <ul class="chips">
+              {
+                lands.map((l, i) => (
+                  <li>
+                    <button type="button" class="chip" data-pick={l.id} aria-pressed={i === 0 ? 'true' : 'false'}>
+                      {l.name}
+                    </button>
+                  </li>
+                ))
+              }
+            </ul>
+            {
+              lands.map((l, i) => (
+                <div class={`glass pane ${i === 0 ? 'on' : ''}`} data-pane={l.id}>
+                  <p class="label plain">{l.kind}</p>
+                  <h3 class="h3">{l.name}</h3>
+                  <ul class="bullets">
+                    {l.notes.map((n) => <li>{n}</li>)}
+                  </ul>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </article>
+
+      <!-- Publications -->
+      <article class="chapter" id="publications" data-chapter>
+        <header class="ch-head">
+          <svg viewBox="0 0 64 64" aria-hidden="true" set:html={icons.publications} />
+          <p class="label">Open Journal</p>
+          <h2 class="h2">Publications</h2>
+          <p class="lead">Take a book from the shelf.</p>
+        </header>
+        <div class="library" data-picks>
+          <div class="shelf">
+            {
+              books.map((b, i) => (
+                <button
+                  type="button"
+                  class={`book tone-${b.tone}`}
+                  style={`--h:${b.h}%`}
+                  data-pick={b.id}
+                  aria-pressed={i === 0 ? 'true' : 'false'}
+                >
+                  <span>{b.spine}</span>
+                </button>
+              ))
+            }
+          </div>
+          {
+            books.map((b, i) => (
+              <div class={`glass pane book-open ${i === 0 ? 'on' : ''}`} data-pane={b.id}>
+                <p class="label plain">
+                  {b.status}
+                  {b.year && ` · ${b.year}`}
+                </p>
+                <h3 class="h3">{b.title}</h3>
+                <dl class="facts-list">
+                  {b.where && (
+                    <>
+                      <dt>Published in</dt>
+                      <dd>{b.where}</dd>
+                    </>
+                  )}
+                  <dt>Authors</dt>
+                  <dd>{b.who}</dd>
+                </dl>
+                {b.doi && (
+                  <a class="btn" href={b.doi} target="_blank" rel="noopener">
+                    {b.link || 'Read the paper'} <span class="arrow" aria-hidden="true">↗</span>
+                  </a>
+                )}
+              </div>
+            ))
+          }
+        </div>
+        <p class="ch-more small muted">
+          Full record: <a class="link" href="https://orcid.org/0000-0001-6459-255X" target="_blank" rel="noopener">ORCID 0000-0001-6459-255X</a>
+        </p>
+      </article>
+
+      <!-- Speaking -->
+      <article class="chapter" id="speaking" data-chapter>
+        <header class="ch-head">
+          <svg viewBox="0 0 64 64" aria-hidden="true" set:html={icons.speaking} />
+          <p class="label">Stage</p>
+          <h2 class="h2">Speaking</h2>
+          <p class="lead">Four conference talks since 2024, and two more papers accepted at international conferences.</p>
+        </header>
+        <div class="stage" data-picks>
+          <div class="stage-cards">
+            {
+              talks.map((t, i) => (
+                <button
+                  type="button"
+                  class="ticket"
+                  style={`--i:${i}`}
+                  data-pick={t.id}
+                  aria-pressed={i === 0 ? 'true' : 'false'}
+                >
+                  <span class="ticket-when">{t.when}</span>
+                  <span class="ticket-city">{t.city}</span>
+                  <span class="ticket-kind">{t.kind}</span>
+                </button>
+              ))
+            }
+          </div>
+          <div class="stage-floor" aria-hidden="true"></div>
+          {
+            talks.map((t, i) => (
+              <div class={`glass pane ${i === 0 ? 'on' : ''}`} data-pane={t.id}>
+                <p class="label plain">
+                  {t.kind} · {t.when}
+                </p>
+                <h3 class="h3">{t.title}</h3>
+                <p>{t.where}</p>
+              </div>
+            ))
+          }
+        </div>
+        <p class="ch-more">
+          <a class="btn" href={`mailto:${email}?subject=Speaking%20invitation`}>Invite me to speak <span class="arrow" aria-hidden="true">↗</span></a>
+          <a class="btn ghost" href="/speaking">Topics and formats <span class="arrow" aria-hidden="true">↗</span></a>
+        </p>
+      </article>
+
+      <!-- Community -->
+      <article class="chapter" id="community" data-chapter>
+        <header class="ch-head">
+          <svg viewBox="0 0 64 64" aria-hidden="true" set:html={icons.community} />
+          <p class="label">Community</p>
+          <h2 class="h2">NGO and Social Impact</h2>
+          <p class="lead">
+            Living Hope Care Society paid for my schooling from 2005 to 2018. Since January 2026 I have directed its
+            programmes.
+          </p>
+        </header>
+        <div class="web-wrap" data-picks>
+          <div class="web">
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              {nodes.map((n) => <path pathLength="1" d={`M50 51 L ${n.x} ${n.y}`}></path>)}
+              {
+                nodes.map((n, i) => {
+                  const m = nodes[(i + 1) % nodes.length];
+                  return <path class="ring" pathLength="1" d={`M${n.x} ${n.y} L ${m.x} ${m.y}`}></path>;
+                })
+              }
+            </svg>
+            <div class="web-core">Living Hope Care Society</div>
+            {
+              nodes.map((n, i) => (
+                <button
+                  type="button"
+                  class="node"
+                  style={`--x:${n.x}%;--y:${n.y}%`}
+                  data-pick={n.id}
+                  aria-pressed={i === 0 ? 'true' : 'false'}
+                >
+                  {n.name}
+                </button>
+              ))
+            }
+          </div>
+          <div>
+            {
+              nodes.map((n, i) => (
+                <div class={`glass pane ${i === 0 ? 'on' : ''}`} data-pane={n.id}>
+                  <p class="label plain">Connection</p>
+                  <h3 class="h3">{n.name}</h3>
+                  <ul class="bullets">
+                    {n.notes.map((t) => <li>{t}</li>)}
+                  </ul>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+        <div class="ch-meter">
+          <div><b data-count="2500" data-suffix="+">2,500+</b><span>beneficiaries tracked in programme reports</span></div>
+          <div><b data-count="20" data-suffix="+">20+</b><span>partner schools and organisations</span></div>
+          <div><b data-count="12">12</b><span>communities reached by the USAID-supported programme</span></div>
+        </div>
+        <p class="ch-more"><a class="btn ghost" href="/programmes">Open the programmes page <span class="arrow" aria-hidden="true">↗</span></a></p>
+      </article>
+
+      <!-- Travel -->
+      <article class="chapter" id="travel" data-chapter>
+        <header class="ch-head">
+          <svg viewBox="0 0 64 64" aria-hidden="true" set:html={icons.travel} />
+          <p class="label">Airplane</p>
+          <h2 class="h2">Travel and Global Work</h2>
+          <p class="lead">Places the work has taken me, in the order I reached them.</p>
+        </header>
+        <ol class="stamps">
+          {
+            stamps.map((s, i) => (
+              <li class="stamp" style={`--i:${i}`}>
+                <span class="stamp-year">{s.year}</span>
+                <span class="stamp-city">{s.city}</span>
+                <span class="stamp-why">{s.why}</span>
+              </li>
+            ))
+          }
+        </ol>
+        <p class="small muted ch-more">I am Yoruba, from Ilesa in Osun State, and I have lived in Moscow since 2021.</p>
+      </article>
+
+      <!-- Media -->
+      <article class="chapter" id="media" data-chapter>
+        <header class="ch-head">
+          <svg viewBox="0 0 64 64" aria-hidden="true" set:html={icons.media} />
+          <p class="label">Camera</p>
+          <h2 class="h2">Media</h2>
+        </header>
+        <div class="ch-grid">
+          <a class="glass" href="https://substack.com/@funtoabimbola" target="_blank" rel="noopener">
+            <p class="label plain">Writing</p>
+            <h3 class="h3">Substack</h3>
+            <p>Funto Abimbola</p>
+            <span class="more">Open <span class="arrow" aria-hidden="true">↗</span></span>
+          </a>
+          <a class="glass" href="https://instagram.com/phdwithfunto" target="_blank" rel="noopener">
+            <p class="label plain">Instagram</p>
+            <h3 class="h3">@phdwithfunto</h3>
+            <p>Research, academia and life as an international student.</p>
+            <span class="more">Open <span class="arrow" aria-hidden="true">↗</span></span>
+          </a>
+          <div class="glass">
+            <p class="label plain">2021 to 2023</p>
+            <h3 class="h3">Columnist</h3>
+            <p>HSE University, Moscow.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Experience -->
+      <article class="chapter" id="experience" data-chapter>
+        <header class="ch-head">
+          <svg viewBox="0 0 64 64" aria-hidden="true" set:html={icons.experience} />
+          <p class="label">Briefcase</p>
+          <h2 class="h2">Professional Experience</h2>
+        </header>
+        <div class="ledger">
+          <div class="row no-end">
+            <p class="when">Founder</p>
+            <div class="what">
+              <p class="title">Cityscape Concierge</p>
+              <p class="detail">Founder and owner</p>
+            </div>
+          </div>
+          {
+            jobs.map(([when, role, org]) => (
+              <div class="row no-end">
+                <p class="when">{when}</p>
+                <div class="what">
+                  <p class="title">{role}</p>
+                  <p class="detail">{org}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+        <p class="ch-more"><a class="btn ghost" href="/about">More about me <span class="arrow" aria-hidden="true">↗</span></a></p>
+      </article>
+
+      <!-- Contact -->
+      <article class="chapter" id="contact" data-chapter>
+        <header class="ch-head">
+          <svg viewBox="0 0 64 64" aria-hidden="true" set:html={icons.contact} />
+          <p class="label">Envelope</p>
+          <h2 class="h2">Pull up a chair.</h2>
+          <p class="lead">
+            I am open to research partnerships, programme and policy work, and invitations to speak. Email is the best
+            way to reach me.
+          </p>
+        </header>
+        <div class="desk">
+          <svg viewBox="0 0 800 360" aria-hidden="true">
+            <g class="draw">
+              <path pathLength="1" d="M40 300h720M80 300v50M720 300v50"></path>
+              <path pathLength="1" d="M300 292l16-120h200l16 120zM284 292h280v8H284zM340 196h150M340 214h110M340 232h130"
+              ></path>
+              <path
+                pathLength="1"
+                d="M110 250h130v42H110zM175 250v42M122 262h40M122 274h34M188 262h40M188 274h30M238 246l44-52 8 6-44 52z"
+              ></path>
+              <path
+                pathLength="1"
+                d="M600 256h52v26a14 14 0 0 1-14 14h-24a14 14 0 0 1-14-14zM652 262h8a9 9 0 0 1 0 18h-8M616 244c-7-9 7-13 0-22M634 244c-7-9 7-13 0-22"
+              ></path>
+            </g>
+          </svg>
+          <div class="desk-actions">
+            <a class="btn" href={`mailto:${email}`}>Start a conversation <span class="arrow" aria-hidden="true">↗</span></a>
+            <button type="button" class="btn ghost" data-copy={email}>Copy my email address</button>
+            <p class="small muted" data-copied aria-live="polite">{email}</p>
+          </div>
+          <ul class="chips">
+            <li><a class="chip" href="https://www.linkedin.com/in/abimbola-oluwafunto" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+            <li><a class="chip" href="https://substack.com/@funtoabimbola" target="_blank" rel="noopener">Substack ↗</a></li>
+            <li><a class="chip" href="https://orcid.org/0000-0001-6459-255X" target="_blank" rel="noopener">ORCID ↗</a></li>
+            <li><a class="chip" href="https://instagram.com/phdwithfunto" target="_blank" rel="noopener">Instagram ↗</a></li>
+          </ul>
+        </div>
+      </article>
+    </main>
+  </div>
+
+  <script>
+    import '../scripts/experience.js';
+  </script>
 </Base>
