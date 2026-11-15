@@ -211,7 +211,7 @@ function init() {
     o.frequency.value = scale[((n % scale.length) + scale.length) % scale.length];
     const g = ctx.createGain();
     g.gain.setValueAtTime(0.0001, t);
-    g.gain.exponentialRampToValueAtTime(0.22, t + 0.03);
+    g.gain.exponentialRampToValueAtTime(0.12, t + 0.05);
     g.gain.exponentialRampToValueAtTime(0.0001, t + 3.2);
     o.connect(g).connect(bus);
     o.start(t);
@@ -225,7 +225,7 @@ function init() {
     const now = audio.ctx.currentTime;
     audio.master.gain.cancelScheduledValues(now);
     audio.master.gain.setValueAtTime(audio.master.gain.value, now);
-    audio.master.gain.linearRampToValueAtTime(want ? 0.5 : 0, now + (want ? 2.2 : 0.8));
+    audio.master.gain.linearRampToValueAtTime(want ? 0.16 : 0, now + (want ? 3 : 0.8));
     soundBtns.forEach((btn) => {
       btn.setAttribute('aria-pressed', String(want));
       btn.textContent = want ? 'Sound: on' : 'Sound: off';
