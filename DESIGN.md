@@ -45,7 +45,7 @@ Gloock for headings (large, editorial). Hanken Grotesk for body, labels and butt
 6. The quote appears in two beats: "Research begins with curiosity." then "Change begins with people." It holds, then fades.
 7. Her name, her four roles, and one large gold button: Enter My World.
 
-Rules: the map is drawn from open geographic data at build time. Osun State is shown as a point, not an outline, because the data has no state borders. A "Skip intro" button is always available. The sequence plays once per visit; "Replay intro" brings it back. Sound is a soft generated tone, off unless the visitor switches it on.
+Rules: the map is drawn from open geographic data at build time. Osun State is shown as a point, not an outline, because the data has no state borders. A "Skip intro" button is always available. The sequence plays once per visit; "Replay intro" brings it back. The very first screen asks one thing: "Begin with sound" or "Begin without sound". With sound, a slow warm chord plays under the whole experience and a soft chime marks each move of the camera, each arrival and each choice. A Sound switch stays available in the opening and in the world.
 
 ## 6. The world
 
@@ -125,4 +125,4 @@ Every design choice gets recorded here, newest at the bottom.
 | D36 | 2026-11-15 | Built without Framer Motion or Lottie. | Both belong to a different kind of codebase, and Lottie needs ready-made animation files. The same effects are written directly as SVG, canvas and CSS, which is lighter. | In use |
 | D37 | 2026-11-15 | Sound is a quiet generated tone, off by default, behind a switch. | Browsers block sound until the visitor acts, and she chose this option. | Her decision |
 | D38 | 2026-11-15 | Inner pages open on navy and read on ivory. | Brings the brief's ivory background into the site while keeping the navigation legible over a dark opening. | In use |
-
+| D39 | 2026-11-15 | The experience now opens on a choice, "Begin with sound" or "Begin without sound", and the sound itself was rebuilt: a fuller chord in a register phone speakers can play, a gentle echo, and chimes on each beat. It also asks the browser to play even when an iPhone's side switch is on silent, where the browser allows that. Supersedes D37. | She reported hearing no sound. The first version started only from a small corner switch, was very quiet, and was pitched too low for a phone speaker. Asking first also lets the sound run from the first frame, which browsers otherwise forbid. | In use |

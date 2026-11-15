@@ -95,7 +95,53 @@
 .btn.enter:hover {
   background: var(--gold-soft);
 }
-.intro-tools {
+.intro-tools,
+.gate {
+  display: none;
+}
+/* the first choice: with sound, or without */
+.js .gate {
+  display: grid;
+  justify-items: center;
+  gap: 26px;
+  position: absolute;
+  left: var(--gutter);
+  right: var(--gutter);
+  top: 50%;
+  translate: 0 -50%;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 1.2s var(--ease),
+    visibility 1.2s;
+}
+.intro[data-step='gate'] .gate {
+  opacity: 1;
+  visibility: visible;
+}
+.gate-line {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4.6vw, 54px);
+  line-height: 1.1;
+}
+.gate .btns {
+  justify-content: center;
+}
+.gate .btn.enter {
+  margin-top: 0;
+}
+.gate .btn.ghost {
+  min-height: 62px;
+  padding: 18px 30px;
+  font-size: 17px;
+}
+.gate-note {
+  font-size: 13.5px;
+  color: var(--dim);
+  max-width: 26em;
+}
+.intro[data-step='gate'] .intro-tools {
   display: none;
 }
 

@@ -269,6 +269,8 @@ a:focus-visible .arrow {
 }
 
 .btn {
+  font-family: inherit;
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 10px;

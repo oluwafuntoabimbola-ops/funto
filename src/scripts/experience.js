@@ -78,13 +78,13 @@ function init() {
     }
     const beats = [
       [1300, () => step(1)],
-      [2800, () => (step(2), setCam('west', 4.4), caption('West Africa'))],
-      [4600, () => (step(3), setCam('nigeria', 4.2), caption('Nigeria'))],
-      [4600, () => (step(4), setCam('osun', 3.8), caption('Osun State'))],
-      [4200, () => (step(5), setCam('ilesa', 3.6), caption('Ilesa'))],
-      [4400, () => (step(6), caption(''))],
-      [5000, () => step(7)],
-      [5800, () => step(8)],
+      [2800, () => (step(2), setCam('west', 4.4), caption('West Africa'), chime(0))],
+      [4600, () => (step(3), setCam('nigeria', 4.2), caption('Nigeria'), chime(2))],
+      [4600, () => (step(4), setCam('osun', 3.8), caption('Osun State'), chime(3))],
+      [4200, () => (step(5), setCam('ilesa', 3.6), caption('Ilesa'), chime(4))],
+      [4400, () => (step(6), caption(''), chime(1))],
+      [5000, () => (step(7), chime(2), later(() => chime(4), 1500))],
+      [5800, () => (step(8), chime(0), later(() => chime(2), 300), later(() => chime(5), 600))],
     ];
     let t = 0;
     beats.forEach(([wait, fn]) => {
@@ -143,44 +143,98 @@ function init() {
   teardown.push(stopMotes);
   on(window, 'resize', () => motesOn && sizeMotes());
 
-  // ---------- a soft tone, only if the visitor asks for it ----------
+  // ---------- sound: a slow warm chord and soft chimes, only if the visitor asks for it ----------
   let audio = null;
-  const soundBtn = exp.querySelector('[data-sound]');
-  const setSound = (want) => {
-    if (want && !audio) {
-      const AC = window.AudioContext || window.webkitAudioContext;
-      if (!AC) return;
-      const ctx = new AC();
-      const out = ctx.createGain();
-      out.gain.value = 0;
-      const filter = ctx.createBiquadFilter();
-      filter.type = 'lowpass';
-      filter.frequency.value = 520;
-      [110, 164.81, 220.4, 329.2].forEach((f, i) => {
-        const o = ctx.createOscillator();
-        o.type = 'sine';
-        o.frequency.value = f;
-        const g = ctx.createGain();
-        g.gain.value = [0.5, 0.32, 0.22, 0.1][i];
-        o.connect(g).connect(filter);
-        o.start();
-      });
+  const soundBtns = [...exp.querySelectorAll('[data-sound]')];
+  const buildAudio = () => {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return null;
+    // let it be heard on iPhones even when the side switch is set to silent, where the browser allows
+    try {
+      if (navigator.audioSession) navigator.audioSession.type = 'playback';
+    } catch {}
+    const ctx = new AC();
+    const master = ctx.createGain();
+    master.gain.value = 0;
+    master.connect(ctx.destination);
+    // a gentle echo, so notes hang in the air
+    const delay = ctx.createDelay(1.5);
+    delay.delayTime.value = 0.42;
+    const feedback = ctx.createGain();
+    feedback.gain.value = 0.46;
+    const damp = ctx.createBiquadFilter();
+    damp.type = 'lowpass';
+    damp.frequency.value = 1800;
+    delay.connect(damp).connect(feedback).connect(delay);
+    delay.connect(master);
+    const bus = ctx.createGain();
+    bus.connect(master);
+    bus.connect(delay);
+    // the chord: A, E, A, B, C sharp, each voice swelling at its own pace
+    const tone = ctx.createBiquadFilter();
+    tone.type = 'lowpass';
+    tone.frequency.value = 1500;
+    tone.connect(bus);
+    [
+      [220, 0.2, 0.05],
+      [329.63, 0.16, 0.07],
+      [440, 0.13, 0.09],
+      [493.88, 0.07, 0.06],
+      [554.37, 0.08, 0.11],
+    ].forEach(([f, level, rate], i) => {
+      const o = ctx.createOscillator();
+      o.type = i % 2 ? 'sine' : 'triangle';
+      o.frequency.value = f;
+      o.detune.value = (i - 2) * 4;
+      const g = ctx.createGain();
+      g.gain.value = level * 0.6;
       const lfo = ctx.createOscillator();
-      lfo.frequency.value = 0.07;
+      lfo.frequency.value = rate;
       const depth = ctx.createGain();
-      depth.gain.value = 0.012;
-      lfo.connect(depth).connect(out.gain);
+      depth.gain.value = level * 0.4;
+      lfo.connect(depth).connect(g.gain);
+      o.connect(g).connect(tone);
+      o.start();
       lfo.start();
-      filter.connect(out).connect(ctx.destination);
-      audio = { ctx, out };
-    }
-    if (!audio) return;
-    if (want) audio.ctx.resume();
-    audio.out.gain.linearRampToValueAtTime(want ? 0.04 : 0, audio.ctx.currentTime + 2.5);
-    soundBtn.setAttribute('aria-pressed', String(want));
-    soundBtn.textContent = want ? 'Sound: on' : 'Sound: off';
+    });
+    return { ctx, master, bus };
   };
-  on(soundBtn, 'click', () => setSound(soundBtn.getAttribute('aria-pressed') !== 'true'));
+  const scale = [659.25, 739.99, 880, 987.77, 1108.73, 1318.51];
+  let chimeAt = 0;
+  const chime = (n = 0) => {
+    if (!audio || !audio.on) return;
+    const { ctx, bus } = audio;
+    const t = Math.max(ctx.currentTime, chimeAt);
+    chimeAt = t + 0.12;
+    const o = ctx.createOscillator();
+    o.type = 'sine';
+    o.frequency.value = scale[((n % scale.length) + scale.length) % scale.length];
+    const g = ctx.createGain();
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(0.22, t + 0.03);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 3.2);
+    o.connect(g).connect(bus);
+    o.start(t);
+    o.stop(t + 3.4);
+  };
+  const setSound = (want) => {
+    if (want && !audio) audio = buildAudio();
+    if (!audio) return;
+    audio.on = want;
+    if (want) audio.ctx.resume();
+    const now = audio.ctx.currentTime;
+    audio.master.gain.cancelScheduledValues(now);
+    audio.master.gain.setValueAtTime(audio.master.gain.value, now);
+    audio.master.gain.linearRampToValueAtTime(want ? 0.5 : 0, now + (want ? 2.2 : 0.8));
+    soundBtns.forEach((btn) => {
+      btn.setAttribute('aria-pressed', String(want));
+      btn.textContent = want ? 'Sound: on' : 'Sound: off';
+    });
+    try {
+      sessionStorage.setItem('sound', want ? '1' : '0');
+    } catch {}
+  };
+  soundBtns.forEach((btn) => on(btn, 'click', () => setSound(btn.getAttribute('aria-pressed') !== 'true')));
   teardown.push(() => {
     if (audio) audio.ctx.close();
     audio = null;
@@ -190,11 +244,19 @@ function init() {
   const enter = () => {
     clearTimers();
     exp.dataset.state = 'world';
+    chime(0);
+    later(() => chime(3), 250);
     try {
       sessionStorage.setItem('intro-seen', '1');
     } catch {}
     later(stopMotes, 1800);
   };
+  exp.querySelectorAll('[data-begin]').forEach((btn) =>
+    on(btn, 'click', () => {
+      setSound(btn.dataset.begin === 'sound');
+      play();
+    }),
+  );
   on(exp.querySelector('[data-enter]'), 'click', enter);
   on(exp.querySelector('[data-skip]'), 'click', finale);
   on(exp.querySelector('[data-replay]'), 'click', play);
@@ -258,6 +320,7 @@ function init() {
     lastPlace = place;
     if (place) place.classList.add('going');
     exp.dataset.state = 'chapter';
+    chime(ids.indexOf(id));
     if (push && location.hash !== `#${id}`) history.pushState(null, '', `#${id}`);
     const arrive = () => {
       panel.classList.remove('leaving');
@@ -329,6 +392,7 @@ function init() {
       group.querySelectorAll('[data-pick]').forEach((b) => b.setAttribute('aria-pressed', String(b === pick)));
       group.querySelectorAll('[data-pane]').forEach((p) => p.classList.toggle('on', p.dataset.pane === id));
       group.dispatchEvent(new CustomEvent('pick', { detail: id }));
+      chime([...group.querySelectorAll('[data-pick]')].indexOf(pick));
       return;
     }
     const copy = e.target.closest('[data-copy]');
@@ -367,7 +431,10 @@ function init() {
     finale();
     exp.dataset.state = 'world';
   } else {
-    play();
+    // first visit: ask about sound before anything moves
+    exp.dataset.state = 'intro';
+    step('gate');
+    startMotes();
   }
 }
 
