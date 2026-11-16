@@ -487,12 +487,17 @@ const jobs = [
       </div>
 
       <div class="gate">
-        <p class="gate-line">This story is best with sound.</p>
-        <div class="btns">
-          <button type="button" class="btn enter" data-begin="sound">Begin with sound</button>
-          <button type="button" class="btn ghost" data-begin="quiet">Begin without sound</button>
-        </div>
-        <p class="gate-note">If you hear nothing on an iPhone, check the silent switch on its side.</p>
+        <div class="gate-mark" aria-hidden="true"><span>OA</span></div>
+        <p class="gate-name">Oluwafunto Abimbola</p>
+        <h2 class="gate-title">Welcome.</h2>
+        <p class="gate-sub">A short introduction. About 30 seconds, and you can skip at any time.</p>
+        <button type="button" class="btn enter" data-begin>Begin <span class="arrow" aria-hidden="true">→</span></button>
+        <button type="button" class="switch" role="switch" aria-checked="true" data-gate-sound>
+          <span class="switch-label">Sound</span>
+          <span class="switch-track" aria-hidden="true"><i></i></span>
+          <span class="switch-state">On</span>
+        </button>
+        <p class="gate-note" data-ios-note>On an iPhone, sound is silenced by the switch on its side.</p>
       </div>
 
       <div class="intro-tools">

@@ -251,12 +251,17 @@ function init() {
     } catch {}
     later(stopMotes, 1800);
   };
-  exp.querySelectorAll('[data-begin]').forEach((btn) =>
-    on(btn, 'click', () => {
-      setSound(btn.dataset.begin === 'sound');
-      play();
-    }),
-  );
+  const gateSwitch = exp.querySelector('[data-gate-sound]');
+  on(gateSwitch, 'click', () => {
+    const next = gateSwitch.getAttribute('aria-checked') !== 'true';
+    gateSwitch.setAttribute('aria-checked', String(next));
+    gateSwitch.querySelector('.switch-state').textContent = next ? 'On' : 'Off';
+  });
+  if (/iPhone|iPad|iPod/.test(navigator.userAgent)) exp.querySelector('[data-ios-note]')?.classList.add('show');
+  on(exp.querySelector('[data-begin]'), 'click', () => {
+    setSound(gateSwitch ? gateSwitch.getAttribute('aria-checked') === 'true' : false);
+    play();
+  });
   on(exp.querySelector('[data-enter]'), 'click', enter);
   on(exp.querySelector('[data-skip]'), 'click', finale);
   on(exp.querySelector('[data-replay]'), 'click', play);

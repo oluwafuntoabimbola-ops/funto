@@ -99,11 +99,11 @@
 .gate {
   display: none;
 }
-/* the first choice: with sound, or without */
+/* the title card the visitor meets first */
 .js .gate {
   display: grid;
   justify-items: center;
-  gap: 26px;
+  gap: 0;
   position: absolute;
   left: var(--gutter);
   right: var(--gutter);
@@ -113,33 +113,174 @@
   opacity: 0;
   visibility: hidden;
   transition:
-    opacity 1.2s var(--ease),
-    visibility 1.2s;
+    opacity 1.4s var(--ease),
+    visibility 1.4s;
 }
 .intro[data-step='gate'] .gate {
   opacity: 1;
   visibility: visible;
 }
-.gate-line {
-  font-family: var(--serif);
-  font-size: clamp(28px, 4.6vw, 54px);
-  line-height: 1.1;
+.js .gate > * {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 1.2s var(--ease),
+    transform 1.2s var(--ease);
 }
-.gate .btns {
-  justify-content: center;
+.intro[data-step='gate'] .gate > * {
+  opacity: 1;
+  transform: none;
+}
+.intro[data-step='gate'] .gate > :nth-child(2) {
+  transition-delay: 0.25s;
+}
+.intro[data-step='gate'] .gate > :nth-child(3) {
+  transition-delay: 0.45s;
+}
+.intro[data-step='gate'] .gate > :nth-child(4) {
+  transition-delay: 0.65s;
+}
+.intro[data-step='gate'] .gate > :nth-child(5) {
+  transition-delay: 0.85s;
+}
+.intro[data-step='gate'] .gate > :nth-child(6) {
+  transition-delay: 1.05s;
+}
+.gate-mark {
+  position: relative;
+  width: 84px;
+  height: 84px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(227, 201, 135, 0.7);
+  font-family: var(--serif);
+  font-size: 28px;
+  letter-spacing: 0.02em;
+  color: var(--gold-soft);
+  background: radial-gradient(circle at 30% 25%, rgba(227, 201, 135, 0.16), transparent 70%);
+}
+.gate-mark::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  border: 1px solid rgba(227, 201, 135, 0.6);
+  animation: halo 4.6s ease-out infinite;
+}
+@keyframes halo {
+  from {
+    scale: 1;
+    opacity: 0.9;
+  }
+  to {
+    scale: 1.9;
+    opacity: 0;
+  }
+}
+.gate-name {
+  margin-top: 30px;
+  font-size: 12.5px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+}
+.gate-title {
+  margin-top: 14px;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(46px, 8vw, 96px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.gate-sub {
+  margin-top: 20px;
+  max-width: 24em;
+  font-size: clamp(15px, 1.3vw, 17px);
+  line-height: 1.55;
+  color: var(--muted);
 }
 .gate .btn.enter {
-  margin-top: 0;
+  margin-top: 38px;
+  min-width: 220px;
+  justify-content: center;
 }
-.gate .btn.ghost {
-  min-height: 62px;
-  padding: 18px 30px;
-  font-size: 17px;
+.intro[data-step='gate'] .btn.enter {
+  animation: ring 3.6s ease-out 2.8s infinite;
+}
+@keyframes ring {
+  from {
+    outline: 1px solid rgba(227, 201, 135, 0.75);
+    outline-offset: 0;
+  }
+  to {
+    outline: 1px solid rgba(227, 201, 135, 0);
+    outline-offset: 18px;
+  }
+}
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 48px;
+  margin-top: 18px;
+  padding: 6px 8px;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 14.5px;
+  cursor: pointer;
+  transition: color 0.3s var(--ease);
+}
+.switch:hover {
+  color: var(--ivory);
+}
+.switch-track {
+  position: relative;
+  width: 46px;
+  height: 26px;
+  border-radius: 999px;
+  border: 1px solid var(--line-2);
+  background: rgba(246, 241, 231, 0.08);
+  transition:
+    background-color 0.3s var(--ease),
+    border-color 0.3s var(--ease);
+}
+.switch-track i {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--ivory);
+  transition:
+    transform 0.3s var(--ease),
+    background-color 0.3s var(--ease);
+}
+.switch[aria-checked='true'] .switch-track {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+.switch[aria-checked='true'] .switch-track i {
+  transform: translateX(20px);
+  background: var(--navy);
+}
+.switch-state {
+  min-width: 2em;
+  text-align: left;
+  color: var(--ivory);
 }
 .gate-note {
-  font-size: 13.5px;
-  color: var(--dim);
+  display: none;
+  margin-top: 8px;
   max-width: 26em;
+  font-size: 13px;
+  color: var(--dim);
+}
+.gate-note.show {
+  display: block;
 }
 .intro[data-step='gate'] .intro-tools {
   display: none;
@@ -1359,6 +1500,7 @@ html:not(.js) .globe {
   .cam,
   .js .intro-quote span,
   .js .intro-id > *,
+  .js .gate > *,
   .draw path {
     transition: none !important;
   }
@@ -1376,6 +1518,8 @@ html:not(.js) .globe {
   .panel .chapter.on .ch-head > *,
   .panel .chapter.on > :not(.ch-head),
   .js .pane.on,
+  .gate-mark::before,
+  .intro[data-step='gate'] .btn.enter,
   .intro[data-step='8'] .btn.enter {
     animation: none !important;
   }
